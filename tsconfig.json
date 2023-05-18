@@ -14,8 +14,11 @@
         "allowJs": true,
         // В 99% случаев используется node
         "moduleResolution": "node",
-        // Для абсолютного ипорта
-        // "baseUrl": ".",
+        // Для абсолютного импорта
+         "baseUrl": ".",
+         "paths": {
+            "*": ["./src/*"],
+         },
         // esModuleInterop позволяет работать с пакетами, которые используют common js как с обычными пакетами с помощью import !(require() module.export) = common js
         "esModuleInterop": true,
         // Если какая-либо библиотека не имеет default import, лоадеры вроде ts-loader или babel-loader автоматически создает их вместо такого импорта import * as React from 'react'; можно писать такой import React from 'react';
