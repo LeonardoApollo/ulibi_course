@@ -2,20 +2,8 @@
     height: calc(100vh - var(--navbar-height));
     width: var(--sidebar-with);
     background: var(--inverted-bg-color);
-
     position: relative;
     transition: width ease-out 0.3s;
-}
-
-.collapsed {
-    width: var(--sidebar-with-collapsed);
-    .swithcers {
-        flex-direction: column;
-        .lang {
-            margin-top: 0.3em;
-            margin-left: 0;
-        }
-    }
 }
 
 .swithcers {
@@ -28,4 +16,17 @@
 
 .lang {
     margin-left: 1.3em;
+}
+
+.collapsed {
+    width: var(--sidebar-with-collapsed);
+
+    .swithcers {
+        flex-direction: column;
+
+        .lang {
+            margin-top: 0.3em;
+            margin-left: 0;
+        }
+    }
 }
