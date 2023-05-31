@@ -28,5 +28,9 @@
         "compilerOptions": {
             "module": "CommonJS"
         }
-    }
+    },
+    "include": [
+        "src/**/*",
+        "./config/jest/setupTest.ts"
+    ]
 }
