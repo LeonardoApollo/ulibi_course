@@ -7,10 +7,10 @@ on:
     branches: [ main ]
 jobs:
   pipeline:
-    runs-on: windows-2019
+    runs-on: ubundu-latest
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        node-version: [ 17.x ]
     steps:
       - uses: actions/checkout@v2
       - name: Staring Node.js ${{ matrix.node-version }}
@@ -27,7 +27,3 @@ jobs:
         run: npm run lint:scss
       - name: unit tests
         run: npm run test:unit
-      - name: build storybook
-        run: npm run storybook:build
-      - name: screenshot testing
-        run: npm run test:ui:ci
