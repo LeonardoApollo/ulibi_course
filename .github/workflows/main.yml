@@ -2,9 +2,9 @@ name: linting, testing, building
 run-name: ${{ github.actor }} run tests
 on:
   push:
-    branches: [ origin ]
+    branches: [ main ]
   pull_request:
-    branches: [ origin ]
+    branches: [ main ]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
