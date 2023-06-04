@@ -2,21 +2,21 @@ name: linting, testing, building
 run-name: ${{ github.actor }} run tests
 on:
   push:
-    branches: [ origin ]
+    branches: [ main ]
   pull_request:
-    branches: [ origin ]
+    branches: [ main ]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 18.x ]
+        node-version: [ 17.x ]
     steps:
       - uses: actions/checkout@v2
-      - name: String Node.js ${{ matrix.node-version }}
+      - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: $ {{ matrix.node-version }}
+          node-version: ${{ matrix.node-version }}
       - name: install modules
         run: npm ci
       - name: build production project
