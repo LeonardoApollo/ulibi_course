@@ -11,7 +11,6 @@ jobs:
     strategy:
       matrix:
         node-version: [ 18.x ]
-
     steps:
       - uses: actions/checkout@v2
       - name: String Node.js ${{ matrix.node-version }}
@@ -20,11 +19,11 @@ jobs:
           node-version: $ {{ matrix.node-version }}
       - name: install modules
         run: npm ci
-      -name: build production project
+      - name: build production project
         run: npm run build:prod
-      -name: linting typescript
+      - name: linting typescript
         run: npm run lint:ts
-      -name: linting scss
+      - name: linting scss
         run: npm run lint:scss
-      -name: unit tests
+      - name: unit tests
         run: npm run test:unit
