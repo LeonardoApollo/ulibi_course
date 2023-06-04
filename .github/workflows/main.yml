@@ -20,7 +20,6 @@ jobs:
       - name: install modules
         run: npm ci
       - name: build production project
-      - name: production
         run: npm run build:prod
       - name: linting typescript
         run: npm run lint:ts
@@ -28,5 +27,3 @@ jobs:
         run: npm run lint:scss
       - name: unit tests
         run: npm run test:unit
-        run: npm run test:unit
-
