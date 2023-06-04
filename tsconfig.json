@@ -22,15 +22,17 @@
         // esModuleInterop позволяет работать с пакетами, которые используют common js как с обычными пакетами с помощью import !(require() module.export) = common js
         "esModuleInterop": true,
         // Если какая-либо библиотека не имеет default import, лоадеры вроде ts-loader или babel-loader автоматически создает их вместо такого импорта import * as React from 'react'; можно писать такой import React from 'react';
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "noImplicitThis": true,
     },
     "ts-node": {
         "compilerOptions": {
-            "module": "CommonJS"
+            "module": "CommonJS",           
         }
     },
     "include": [
-        "src/**/*",
+        "src/**/*.ts",
+        "src/**/*.tsx",
         "./config/jest/setupTest.ts"
     ]
 }

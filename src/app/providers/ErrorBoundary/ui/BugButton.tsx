@@ -14,10 +14,11 @@ export const BugButton = () => {
     }, [error]);
 
     return (
+        // eslint-disable i18next/no-literal-string
         <Button
             onClick={onThrow}
         >
-            throw error
+            404
         </Button>
     );
 };
