@@ -13,6 +13,8 @@ jobs:
         node-version: [ 17.x ]
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -27,3 +29,7 @@ jobs:
         run: npm run lint:scss
       - name: unit tests
         run: npm run test:unit
+      - name: ui tests 
+        uses: chromaui/action@v1
+        with: 
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
