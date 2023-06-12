@@ -1,4 +1,3 @@
-import './styles/index.scss';
 import { useTheme } from 'app/providers/ThemeProvider/lib/useTheme';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Navbar } from 'widgets/Navbar';
