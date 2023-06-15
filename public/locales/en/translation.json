@@ -1,11 +1,13 @@
 {
-    "Язык": "Русский",
-    "Короткий язык": "Рус",
+    "Язык": "English",
+    "Короткий язык": "Eng",
     "О сайте": "About us",
     "Главная страница": "Main page",
     "Страница не найдена": "Page not found",
     "Свернуть": "Close",
     "Произошла непредвиденная ошибка": "An unexpected error has occurred",
     "Обновить страницу": "Reset the page",
-    "Войти": "Login"
+    "Войти": "Login",
+    "Введите логин": "Enter Username",
+    "Введите пароль": "Enter password"
 }
