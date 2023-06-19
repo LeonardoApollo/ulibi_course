@@ -9,5 +9,8 @@
     "Обновить страницу": "Reset the page",
     "Войти": "Login",
     "Введите логин": "Enter Username",
-    "Введите пароль": "Enter password"
+    "Введите пароль": "Enter password",
+    "Форма авторизации": "Auth form",
+    "Вы ввели неверный логин или пароль": "incorrect username or password",
+    "Выйти": "Logout"
 }
