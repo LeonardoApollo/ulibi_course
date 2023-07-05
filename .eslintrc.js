@@ -45,7 +45,7 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
-                    'to', 'data-testid',
+                    'to', 'data-testid', 'name',
                 ],
             },
         ],
