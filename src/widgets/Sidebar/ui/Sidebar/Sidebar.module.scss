@@ -31,27 +31,6 @@
     flex-direction: column;
 }
 
-.item {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.link {
-    visibility: visible;
-    opacity: 1;
-    margin-left: 10px;
-    transition: opacity 0.2s, visibility 0s linear 0.2s;
-}
-
-.item:first-child {
-    margin-top: 0;
-}
-
-.icon {
-    fill: var(--inverted-primary-color);
-}
-
 .collapsed {
     width: var(--sidebar-with-collapsed);
 
@@ -63,12 +42,5 @@
             margin-top: 0.3em;
             margin-left: 0;
         }
-    }
-
-    .link {
-        visibility: hidden;
-        opacity: 0;
-        transition: all linear 0.1s;
-        width: 0;
     }
 }

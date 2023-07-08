@@ -1,41 +1,48 @@
 {
     "posts": [
         {
-            "id": 1,
+            "id": "1",
             "title": "json-server",
             "author": "Mikle"
         },
         {
-            "id": 2,
+            "id": "2",
             "title": "json-server 1",
             "author": "Mikle"
         },
         {
-            "id": 3,
+            "id": "3",
             "title": "json-server 2",
             "author": "Mikle"
         },
         {
-            "id": 4,
+            "id": "4",
             "title": "json-server 3",
             "author": "Mikle"
         }
     ],
     "comments": [
         {
-            "id": 1,
+            "id": "1",
             "body": "some comment",
-            "postId": 1
+            "postId": "1"
         }
     ],
     "users": [
         {
-            "id": 1,
+            "id": "1",
             "username": "Admin",
             "password": "123"
         }
     ],
     "profile": {
-        "name": "Mikle"
+        "firstname": "Михаил",
+        "lastname": "Тяпков",
+        "age": "21",
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "Cheboksary",
+        "username": "Admin",
+        "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
     }
 }
