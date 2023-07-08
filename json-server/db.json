@@ -36,6 +36,13 @@
         }
     ],
     "profile": {
-        "name": "Mikle"
+        "firstname": "Михаил",
+        "lastname": "Тяпков",
+        "age": "21",
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "Cheboksary",
+        "username": "Admin",
+        "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
     }
 }

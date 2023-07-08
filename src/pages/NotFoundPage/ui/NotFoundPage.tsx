@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ interface NotFoundPageProps {
     className?: string;
 }
 
-export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
+export const NotFoundPage = memo(({ className } : NotFoundPageProps) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
@@ -23,4 +23,4 @@ export const NotFoundPage: FC<NotFoundPageProps> = ({ className }) => {
             {t('Страница не найдена')}
         </div>
     );
-};
+});
