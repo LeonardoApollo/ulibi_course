@@ -45,7 +45,7 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
-                    'to', 'data-testid', 'name',
+                    'to', 'data-testid', 'name', 'alt',
                 ],
             },
         ],
@@ -60,6 +60,7 @@ module.exports = {
     globals: {
         __IS_DEV__: true,
         __API__: true,
+        __PROJECT__: true,
     },
     overrides: [
         {

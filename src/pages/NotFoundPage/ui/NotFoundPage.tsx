@@ -12,11 +12,11 @@ export const NotFoundPage = memo(({ className } : NotFoundPageProps) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        setTimeout(() => {
-            navigate('/');
-        }, 3000);
-    });
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         navigate('/');
+    //     }, 3000);
+    // });
 
     return (
         <div className={classNames(cls.NotFoundPage, {}, [className])}>
