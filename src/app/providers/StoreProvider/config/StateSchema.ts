@@ -2,6 +2,7 @@ import {
     AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+import { ArticleDetailsSchema } from 'entities/Article';
 import { CounterSchema } from 'entities/Counter';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
@@ -15,18 +16,19 @@ export interface StateSchema {
     // Асинхронные редьюсеры
     loginForm?: LoginSchema,
     profile?: ProfileSchema,
+    articleDetails?: ArticleDetailsSchema,
 }
 
 export type StateShchemaKey = keyof StateSchema;
 
-export interface RedcerManager {
+export interface ReducerManager {
     getReducerMap: () => ReducersMapObject<StateSchema>;
     reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
     add: (key: StateShchemaKey, reducer: Reducer) => void;
     remove: (key: StateShchemaKey) => void;
 }
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
-    reducerManager: RedcerManager;
+    reducerManager: ReducerManager;
 }
 
 export interface ThunkExtraArg {
