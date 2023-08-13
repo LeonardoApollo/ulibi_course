@@ -32,7 +32,7 @@ const reducers: ReducersList = {
     articleDetails: articleDetailsReducer,
 };
 
-const renderBlock = function (block: ArticleBlock) {
+const renderBlock = (block: ArticleBlock) => {
     switch (block.type) {
     case ArticleBlockType.CODE:
         return (
