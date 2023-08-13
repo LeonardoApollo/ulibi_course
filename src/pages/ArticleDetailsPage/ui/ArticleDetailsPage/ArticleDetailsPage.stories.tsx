@@ -61,4 +61,21 @@ Primary.decorators = [StoreDecorator({
     articleDetails: {
         data: article,
     },
+    articleDetailsComments: {
+        isLoading: false,
+        error: undefined,
+        ids: ['1', '2'],
+        entities: {
+            1: {
+                id: '1',
+                text: 'some comment 1',
+                user: { id: '1', username: 'Admin' },
+            },
+            2: {
+                id: '2',
+                text: 'some comment 2',
+                user: { id: '2', username: 'User' },
+            },
+        },
+    },
 })];

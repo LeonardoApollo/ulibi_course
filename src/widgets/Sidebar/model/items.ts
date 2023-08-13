@@ -24,7 +24,7 @@ export const SidebarItemList: SidebarItemType[] = [
         text: 'О сайте',
     },
     {
-        path: RoutePath.profile,
+        path: `${RoutePath.profile}`,
         Icon: ProfileIcon,
         text: 'Профиль',
         authOnly: true,
