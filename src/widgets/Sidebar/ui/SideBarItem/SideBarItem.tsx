@@ -4,8 +4,7 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { SidebarItemType } from '../../model/items';
+import { SidebarItemType } from 'widgets/Sidebar/model/types/sidebar';
 import cls from './SideBarItem.module.scss';
 
 interface SideBarItemProps {
@@ -24,7 +23,7 @@ export const SideBarItem: FC<SideBarItemProps> = ({ item, collapsed }) => {
     return (
         <AppLink
             theme={AppLinkTheme.SECONDARY}
-            to={item.path === RoutePath.profile ? `${RoutePath.profile}${isAuth?.id}` : item.path}
+            to={item.path}
             className={classNames(cls.item, { [cls.collapsed]: collapsed })}
         >
             <item.Icon className={cls.icon} />
