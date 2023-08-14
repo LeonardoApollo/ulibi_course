@@ -1,0 +1,105 @@
+.LIST {
+    .views {
+        margin-left: auto;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+    }
+
+    .username {
+        margin-left: 8px;
+    }
+
+    .date {
+        margin-left: auto;
+    }
+
+    .title {
+        margin-top: 8px;
+    }
+
+    .img {
+        width: 100%;
+        object-fit: cover;
+        max-height: 250px;
+        margin: 16px 0;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        margin-top: 16px;
+    }
+
+    .textBlock {
+        max-height: 200px;
+        overflow-y: hidden;
+    }
+}
+
+.GRID {
+    width: 250px;
+    transition: all linear 0.2s;
+    cursor: pointer;
+
+    .date {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        opacity: 0.8;
+
+        .date {
+            display: block;
+        }
+    }
+
+    .imageWrapper {
+        display: flex;
+        justify-content: center;
+        width: 230px;
+        height: 200px;
+        position: relative;
+    }
+
+    .img {
+        object-fit: cover;
+        max-width: 230px;
+        max-height: 200px;
+    }
+
+    .infoWrapper {
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .types p {
+        max-width: 135px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .views {
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    .title {
+        margin-top: 8px;
+    }
+
+    .title p {
+        width: 230px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

@@ -14,6 +14,7 @@ export function buildBabelLoader({ isDev }: BuildOptions) {
                         {
                             locales: ['ru', 'en'],
                             keyAsDefaultValue: true,
+                            keySeparator: false,
                         },
                     ],
                     isDev && require.resolve('react-refresh/babel'),
