@@ -26,10 +26,15 @@ const article = {
     id: '1',
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год',
-    img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
+    img: 'https://play-lh.googleusercontent.com/IHMe-gJ6G4rf5-TVlDZOtcW-3EDBwJ4p2qomk86O6qkjjutl5ePczGmyqCDOvhGJ1w=w240-h480-rw',
     views: 997,
     createdAt: '26.02.2022',
     type: [ArticleType.IT],
+    user: {
+        id: '1',
+        username: 'Admin',
+        avatar: 'https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg',
+    },
     blocks: [
         {
             id: '1',
