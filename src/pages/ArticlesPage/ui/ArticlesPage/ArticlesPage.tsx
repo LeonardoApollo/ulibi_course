@@ -40,8 +40,10 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
     }, [dispatch]);
 
     const onLoadNextPart = useCallback(() => {
-        if (!isLoading) {
-            dispatch(fetchNextArticlesPage());
+        if (__PROJECT__ !== 'storybook') {
+            if (!isLoading) {
+                dispatch(fetchNextArticlesPage());
+            }
         }
     }, [dispatch, isLoading]);
 
