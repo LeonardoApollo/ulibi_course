@@ -6,7 +6,7 @@ import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/Dynami
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useInitialEffect } from 'shared/hooks/useInitialEffect';
 import { useSelector } from 'react-redux';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page/Page';
 import { initArticlePage } from '../../model/services/initArticlePage';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage';
 import {

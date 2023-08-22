@@ -12,7 +12,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { AddNewCommentForm } from 'features/addNewComment';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page/Page';
 import { fetchCommentsByArticleId } from '../../modal/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { articleDetailsCommentsReducer, getArticleComments } from '../../modal/slices/ArticleDetailsCommentsSlice';

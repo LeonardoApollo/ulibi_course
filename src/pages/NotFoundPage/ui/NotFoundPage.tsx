@@ -2,7 +2,7 @@ import { memo, useEffect } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Page } from 'shared/ui/Page/Page';
+import { Page } from 'widgets/Page/Page';
 import cls from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
