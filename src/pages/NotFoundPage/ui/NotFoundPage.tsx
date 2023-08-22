@@ -2,13 +2,14 @@ import { memo, useEffect } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { Page } from 'shared/ui/Page/Page';
 import cls from './NotFoundPage.module.scss';
 
 interface NotFoundPageProps {
     className?: string;
 }
 
-export const NotFoundPage = memo(({ className } : NotFoundPageProps) => {
+export const NotFoundPage = memo(({ className }: NotFoundPageProps) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
@@ -19,8 +20,8 @@ export const NotFoundPage = memo(({ className } : NotFoundPageProps) => {
     });
 
     return (
-        <div className={classNames(cls.NotFoundPage, {}, [className])}>
+        <Page className={classNames(cls.NotFoundPage, {}, [className])}>
             {t('Страница не найдена')}
-        </div>
+        </Page>
     );
 });
