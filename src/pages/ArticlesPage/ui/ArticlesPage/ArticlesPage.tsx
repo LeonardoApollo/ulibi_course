@@ -62,6 +62,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
                     view={view}
                     articles={articles}
                     className={cls.list}
+                    target="_self"
                 />
             </Page>
         </DynamicModuleLoader>

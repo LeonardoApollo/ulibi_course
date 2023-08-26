@@ -429,6 +429,24 @@
       "userId": "2",
       "text": "some comment 6",
       "id": "Bp-J7sM"
+    },
+    {
+      "articleId": "6",
+      "userId": "2",
+      "text": "text comment",
+      "id": "81rXd3e"
+    },
+    {
+      "articleId": "6",
+      "userId": "2",
+      "text": "another test",
+      "id": "SL7Htst"
+    },
+    {
+      "articleId": "6",
+      "userId": "2",
+      "text": "1",
+      "id": "4p_bfj6"
     }
   ],
   "users": [
