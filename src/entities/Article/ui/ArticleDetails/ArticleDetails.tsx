@@ -108,7 +108,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
                 </HStack>
                 <VStack gap="4">
                     <Text
-                        header="h1"
+                        head="h1"
                         title={article?.title}
                         text={article?.subtitle}
                         size={TextSize.L}

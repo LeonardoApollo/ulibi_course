@@ -20,7 +20,7 @@ export enum TextSize {
     L = 'size_l',
 }
 
-type HeaderTagH1 = 'h1';
+type HeadTagH1 = 'h1';
 interface TextProps {
     className?: string;
     title?: string;
@@ -28,7 +28,7 @@ interface TextProps {
     theme?: TextTheme;
     align?: TextAlign;
     size?: TextSize;
-    header?: HeaderTagH1;
+    head?: HeadTagH1;
 }
 
 type HeaderTagType = 'h2' | 'h3' | 'h4';
@@ -39,7 +39,7 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
     [TextSize.L]: 'h2',
 };
 
-const mapHeaderTagH1: Record<HeaderTagH1, HeaderTagH1> = {
+const mapHeadTagH1: Record<HeadTagH1, HeadTagH1> = {
     h1: 'h1',
 };
 
@@ -51,10 +51,10 @@ export const Text = memo((props: TextProps) => {
         theme = TextTheme.PRIMARY,
         align = TextAlign.LEFT,
         size = TextSize.M,
-        header,
+        head,
     } = props;
 
-    const HeaderTag = header ? mapHeaderTagH1[header] : mapSizeToHeaderTag[size];
+    const HeaderTag = head ? mapHeadTagH1[head] : mapSizeToHeaderTag[size];
 
     const aditionals = [
         className,
