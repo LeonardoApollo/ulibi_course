@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'ulib-tv-course-plugin',
     ],
     rules: {
         'react/react-in-jsx-scope': 'off',
@@ -45,7 +46,20 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
-                    'to', 'data-testid', 'name', 'alt', 'target'
+                    'to',
+                    'data-testid',
+                    'name',
+                    'alt',
+                    'target',
+                    'justify',
+                    'align',
+                    'direction',
+                    'gap',
+                    'head',
+                    'role',
+                    'as',
+                    'direction',
+                    'refName',
                 ],
             },
         ],
@@ -56,6 +70,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'ulib-tv-course-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
-import { ArticleView } from 'entities/Article/model/types/article';
 import ListIcon from 'shared/assets/icons/Articles_List.svg';
 import GridIcon from 'shared/assets/icons/Articles_Grid.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
@@ -8,6 +7,7 @@ import { Icon } from 'shared/ui/Icon/Icon';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList';
 import { articlesPageSliceActions } from 'pages/ArticlesPage/model/slices/articlePageSlice';
+import { ArticleView } from '../../model/types/article';
 import cls from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {
