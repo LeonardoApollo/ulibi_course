@@ -1,5 +1,7 @@
 .InputWrapper {
     display: flex;
+    min-width: 100%;
+    overflow: hidden;
 }
 
 .placeholder {
@@ -9,10 +11,11 @@
 .input {
     background: transparent;
     border: none;
-    outline: none;
+    outline-color: transparent;
     width: 100%;
     color: transparent;
     text-shadow: 0 0 0 var(--primary-color);
+    text-overflow: ellipsis;
 
     &:focus {
         outline: none;

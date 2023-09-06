@@ -3,6 +3,7 @@ import {
 } from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Listbox as HListBox } from '@headlessui/react';
+import { DropDownDirection } from 'shared/types/ui';
 import cls from './ListBox.module.scss';
 import { Button } from '../Button/Button';
 import { HStack } from '../Stack';
@@ -12,8 +13,6 @@ export interface ListBoxItem {
     content: ReactNode;
     disabled?: boolean;
 }
-
-type DropDownDirection = 'top' | 'bottom';
 
 interface ListBoxProps {
     className?: string;
@@ -35,7 +34,7 @@ export const ListBox = memo((props: ListBoxProps) => {
         onChange,
         readonly,
         label,
-        direction = 'bottom',
+        direction = 'bottom right',
     } = props;
 
     return (
@@ -50,7 +49,7 @@ export const ListBox = memo((props: ListBoxProps) => {
                 onChange={onChange}
                 disabled={readonly}
             >
-                <HListBox.Button className={cls.trigger}>
+                <HListBox.Button as="div" className={cls.trigger}>
                     <Button disabled={readonly}>
                         {value ?? defaultValue}
                     </Button>
