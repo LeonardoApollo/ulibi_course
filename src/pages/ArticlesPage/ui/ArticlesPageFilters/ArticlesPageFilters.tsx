@@ -35,7 +35,7 @@ interface ArticlesPageFiltersProps {
 export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps) => {
     const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
-    const view = useSelector(getArticlesPageView);
+    const views = useSelector(getArticlesPageView);
     const sort = useSelector(getArticlesPageSort);
     const order = useSelector(getArticlesPageOrder);
     const search = useSelector(getArticlesPageSearch);
@@ -48,13 +48,13 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
     const debouncedFetchData = useDebounce(fetchData, 500);
 
     const onChangeView = useCallback((view: ArticleView) => {
-        dispatch(articlesPageSliceActions.setView(view));
-        dispatch(articlesPageSliceActions.setPage(1));
-        dispatch(articlesPageSliceActions.setLimit(view === ArticleView.GRID ? 9 : 4));
-        if (__PROJECT__ !== 'storybook') {
+        if (views !== view && __PROJECT__ !== 'storybook') {
+            dispatch(articlesPageSliceActions.setPage(1));
+            dispatch(articlesPageSliceActions.setLimit(view === ArticleView.GRID ? 9 : 4));
+            dispatch(articlesPageSliceActions.setView(view));
             dispatch(fetchArticlesList({ replace: true }));
         }
-    }, [dispatch]);
+    }, [dispatch, views]);
 
     const onChangeSort = useCallback((newSort: ArticleSortField) => {
         dispatch(articlesPageSliceActions.setSort(newSort));
@@ -83,7 +83,7 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
     return (
         <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
             <div className={cls.sortWrapper}>
-                <ArticleViewSelector view={view} onViewClick={onChangeView} />
+                <ArticleViewSelector view={views} onViewClick={onChangeView} />
                 <ArticleSortSelector
                     order={order}
                     sort={sort}
