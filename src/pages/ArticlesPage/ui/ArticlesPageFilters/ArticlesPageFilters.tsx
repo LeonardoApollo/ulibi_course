@@ -49,6 +49,11 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
 
     const onChangeView = useCallback((view: ArticleView) => {
         dispatch(articlesPageSliceActions.setView(view));
+        dispatch(articlesPageSliceActions.setPage(1));
+        dispatch(articlesPageSliceActions.setLimit(view === ArticleView.GRID ? 9 : 4));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticlesList({ replace: true }));
+        }
     }, [dispatch]);
 
     const onChangeSort = useCallback((newSort: ArticleSortField) => {

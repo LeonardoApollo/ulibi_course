@@ -4,9 +4,6 @@ import ListIcon from 'shared/assets/icons/Articles_List.svg';
 import GridIcon from 'shared/assets/icons/Articles_Grid.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList';
-import { articlesPageSliceActions } from 'pages/ArticlesPage/model/slices/articlePageSlice';
 import { ArticleView } from '../../model/types/article';
 import cls from './ArticleViewSelector.module.scss';
 
@@ -29,15 +26,7 @@ const viewTypes = [
 
 export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
     const { className, view, onViewClick } = props;
-    const dispatch = useAppDispatch();
     const onClick = (newView: ArticleView) => () => {
-        if (__PROJECT__ !== 'storybook') {
-            if (view !== newView) {
-                dispatch(articlesPageSliceActions.setPage(1));
-                dispatch(articlesPageSliceActions.setLimit(newView === ArticleView.GRID ? 9 : 4));
-                dispatch(fetchArticlesList({ replace: true }));
-            }
-        }
         onViewClick?.(newView);
     };
 
