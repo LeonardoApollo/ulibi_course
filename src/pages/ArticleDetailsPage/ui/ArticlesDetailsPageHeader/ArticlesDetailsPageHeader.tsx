@@ -7,6 +7,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useSelector } from 'react-redux';
 import { getArticleDetailsData } from 'entities/Article';
 import { HStack } from 'shared/ui/Stack';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { getCanEditArticle } from '../../modal/selectors/getArticleCanChange/getCanEditArticle';
 
 interface ArticlesDetailsPageHeaderProps {

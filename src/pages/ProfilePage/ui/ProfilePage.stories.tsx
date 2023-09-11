@@ -5,6 +5,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { EditableProfileCard } from 'features/editableProfileCard';
 import ProfilePage from './ProfilePage';
 
 export default {
@@ -15,7 +16,11 @@ export default {
     },
 } as ComponentMeta<typeof ProfilePage>;
 
-const Template: ComponentStory<typeof ProfilePage> = (args) => <ProfilePage {...args} />;
+const Template: ComponentStory<typeof ProfilePage> = (args) => (
+    <ProfilePage {...args}>
+        <EditableProfileCard id="1" />
+    </ProfilePage>
+);
 
 export const Light = Template.bind({});
 Light.args = {};

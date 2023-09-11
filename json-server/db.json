@@ -447,6 +447,12 @@
       "userId": "2",
       "text": "1",
       "id": "4p_bfj6"
+    },
+    {
+      "articleId": "6",
+      "userId": "1",
+      "text": "asd",
+      "id": "9tr8dO8"
     }
   ],
   "users": [
@@ -454,14 +460,27 @@
       "id": "1",
       "username": "Admin",
       "password": "123",
-      "role": "ADMIN",
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
     },
     {
       "id": "2",
       "username": "User",
       "password": "345",
-      "role": "USER",
+      "roles": [
+        "USER"
+      ],
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
+    },
+    {
+      "id": "3",
+      "username": "Manager",
+      "password": "345",
+      "roles": [
+        "MANAGER"
+      ],
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
     }
   ],
