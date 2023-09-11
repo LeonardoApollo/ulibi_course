@@ -1,5 +1,4 @@
-import { ArticleSortField, ArticleView } from 'entities/Article';
-import { ArticleType } from 'entities/Article/model/types/article';
+import { ArticleSortField, ArticleView, ArticleType } from 'entities/Article';
 import { ArticlesPageSchema } from '../types/articlePageSchema';
 import { articlesPageSliceActions, articlesPageSliceReducer } from './articlePageSlice';
 import { fetchArticlesList } from '../services/fetchArticlesList';

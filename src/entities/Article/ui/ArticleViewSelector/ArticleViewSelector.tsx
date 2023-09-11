@@ -4,7 +4,7 @@ import ListIcon from 'shared/assets/icons/Articles_List.svg';
 import GridIcon from 'shared/assets/icons/Articles_Grid.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import { ArticleView } from '../../model/types/article';
+import { ArticleView } from '../../model/consts/consts';
 import cls from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {

@@ -1,4 +1,4 @@
-export {
+export type {
     Profile,
 } from './module/types/profile';
 
