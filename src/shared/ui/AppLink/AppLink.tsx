@@ -1,6 +1,11 @@
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Link, LinkProps } from 'react-router-dom';
-import { ForwardedRef, ReactNode, forwardRef } from 'react';
+import {
+    ForwardedRef,
+    HTMLAttributeAnchorTarget,
+    ReactNode,
+    forwardRef,
+} from 'react';
 import cls from './AppLink.module.scss';
 
 export enum AppLinkTheme {
@@ -12,6 +17,7 @@ interface AppLinkProps extends LinkProps {
     className?: string;
     theme?: AppLinkTheme;
     children?: ReactNode;
+    target?: HTMLAttributeAnchorTarget;
 }
 
 export const AppLink = forwardRef((props: AppLinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
@@ -20,6 +26,7 @@ export const AppLink = forwardRef((props: AppLinkProps, ref: ForwardedRef<HTMLAn
         className,
         children,
         theme = AppLinkTheme.PRIMARY,
+        target,
         ...otherProps
     } = props;
 
@@ -27,6 +34,7 @@ export const AppLink = forwardRef((props: AppLinkProps, ref: ForwardedRef<HTMLAn
         <Link
             to={to}
             ref={ref}
+            target={target}
             className={classNames(cls.AppLink, {}, [className, cls[theme]])}
             {...otherProps}
         >

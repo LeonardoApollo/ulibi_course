@@ -17,7 +17,7 @@ interface FetchArticlesListProps {
 
 export const fetchArticlesList = createAsyncThunk<Article[], FetchArticlesListProps, ThunkConfig<string>>(
     'articlesPage/fetchArticlesList',
-    async (props, { extra, rejectWithValue, getState }) => {
+    async (_, { extra, rejectWithValue, getState }) => {
         const limit = getArticlesPageLimit(getState());
         const sort = getArticlesPageSort(getState());
         const order = getArticlesPageOrder(getState());

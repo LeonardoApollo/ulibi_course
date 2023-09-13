@@ -4,9 +4,10 @@ import {
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Listbox as HListBox } from '@headlessui/react';
 import { DropDownDirection } from 'shared/types/ui';
+import { Button } from '../../../Button/Button';
+import { HStack } from '../../../Stack';
 import cls from './ListBox.module.scss';
-import { Button } from '../Button/Button';
-import { HStack } from '../Stack';
+import popupCls from '../../styles/popup.module.scss';
 
 export interface ListBoxItem {
     value: string;
@@ -25,7 +26,7 @@ interface ListBoxProps {
     direction?: DropDownDirection;
 }
 
-export const ListBox = memo((props: ListBoxProps) => {
+export const ListBox = (props: ListBoxProps) => {
     const {
         className,
         items,
@@ -34,7 +35,7 @@ export const ListBox = memo((props: ListBoxProps) => {
         onChange,
         readonly,
         label,
-        direction = 'bottom right',
+        direction = 'bottomRight',
     } = props;
 
     return (
@@ -44,12 +45,12 @@ export const ListBox = memo((props: ListBoxProps) => {
             )}
             <HListBox
                 as="div"
-                className={classNames(cls.ListBox, { [cls.readonly]: readonly }, [className])}
+                className={classNames(popupCls.popup, { [cls.readonly]: readonly }, [className])}
                 value={value}
                 onChange={onChange}
                 disabled={readonly}
             >
-                <HListBox.Button as="div" className={cls.trigger}>
+                <HListBox.Button as="div" className={popupCls.trigger}>
                     <Button disabled={readonly}>
                         {value ?? defaultValue}
                     </Button>
@@ -66,7 +67,7 @@ export const ListBox = memo((props: ListBoxProps) => {
                                 <li
                                     className={classNames(cls.item, {
                                         [cls.active]: active,
-                                        [cls.disabled]: item.disabled,
+                                        [popupCls.disabled]: item.disabled,
                                     }, [])}
                                 >
                                     {selected && '>'}
@@ -79,4 +80,4 @@ export const ListBox = memo((props: ListBoxProps) => {
             </HListBox>
         </HStack>
     );
-});
+};
