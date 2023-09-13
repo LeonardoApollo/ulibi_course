@@ -27,7 +27,8 @@ export const Popover = (props: PopoverProps) => {
             </HPopover.Button>
 
             <HPopover.Panel
-                unmount={false}
+                // Используется для постоянных запросов на сервер
+                // unmount={false}
                 className={classNames(cls.panel, {}, [cls[direction]])}
             >
                 {children}
