@@ -1,4 +1,6 @@
-import { memo, useCallback, useState } from 'react';
+import {
+    memo, useCallback, useState,
+} from 'react';
 import { classNames } from 'shared/libs/classNames/classNames';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
