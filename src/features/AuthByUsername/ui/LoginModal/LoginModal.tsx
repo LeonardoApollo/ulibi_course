@@ -1,7 +1,7 @@
 import { FC, Suspense } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
-import { Modal } from 'shared/ui/Modal/Modal';
-import { Loader } from 'shared/ui/Loader/Loader';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { Modal } from '@/shared/ui/Modal/Modal';
+import { Loader } from '@/shared/ui/Loader/Loader';
 import cls from './LoginModal.module.scss';
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 

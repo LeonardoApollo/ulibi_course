@@ -1,11 +1,11 @@
 import { FC, memo, useCallback } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from 'shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { Page } from 'widgets/Page/Page';
-import { useInitialEffect } from 'shared/hooks/useInitialEffect';
 import { useSearchParams } from 'react-router-dom';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { Page } from '@/widgets/Page/Page';
+import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage';
 import {
     getArticlesPageIsLoading, getArticlesPageView,

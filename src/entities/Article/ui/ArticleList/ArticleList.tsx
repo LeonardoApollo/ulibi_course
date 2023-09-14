@@ -1,11 +1,11 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     List, ListRowProps, WindowScroller,
 } from 'react-virtualized';
-import { PAGE_ID } from 'widgets/Page/Page';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { PAGE_ID } from '@/widgets/Page/Page';
 import { Article } from '../../model/types/article';
 import { ArticleView } from '../../model/consts/consts';
 import cls from './ArticleList.module.scss';
@@ -17,7 +17,6 @@ interface ArticleListProps {
     articles: Article[];
     isLoading?: boolean;
     view?: ArticleView;
-    virtualized?: boolean;
     target: HTMLAttributeAnchorTarget;
 }
 
@@ -37,7 +36,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
         isLoading,
         view = ArticleView.GRID,
         target,
-        virtualized,
     } = props;
     const { t } = useTranslation('article');
 

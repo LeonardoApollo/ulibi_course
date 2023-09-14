@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
+import { classNames } from '@/shared/libs/classNames/classNames';
 import cls from './Card.module.scss';
 
 export enum ThemeCard {

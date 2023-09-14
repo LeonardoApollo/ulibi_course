@@ -1,4 +1,4 @@
-import { TestAsyncThunk } from 'shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
+import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
 import { fetcArticleById } from './fetchArticleById';
 import { ArticleBlockType, ArticleType } from '../../consts/consts';
 
