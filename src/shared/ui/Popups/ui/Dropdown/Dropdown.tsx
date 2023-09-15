@@ -53,7 +53,7 @@ export const Dropdown = (props: DropdownProps) => {
                                 to={item.href}
                                 disabled={item.disabled}
                                 // eslint-disable-next-line
-                                key={index}
+                                key={`dropdown-key-${index}`}
                             >
                                 {content}
                             </Menu.Item>
@@ -61,8 +61,12 @@ export const Dropdown = (props: DropdownProps) => {
                     }
 
                     return (
-                        // eslint-disable-next-line
-                        <Menu.Item as={Fragment} key={index} disabled={item.disabled}>
+                        <Menu.Item
+                            as={Fragment}
+                            // eslint-disable-next-line
+                            key={`dropdown-key-${index}`}
+                            disabled={item.disabled}
+                        >
                             {content}
                         </Menu.Item>
                     );
