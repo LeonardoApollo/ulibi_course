@@ -1,7 +1,6 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Page } from '@/widgets/Page/Page';
-import { RaitingCard } from '@/entities/Raiting';
 
 const Main = memo(() => {
     const { t } = useTranslation('main');
@@ -9,7 +8,6 @@ const Main = memo(() => {
     return (
         <Page>
             {t('Главная страница')}
-            <RaitingCard hasFeedback />
         </Page>
     );
 });

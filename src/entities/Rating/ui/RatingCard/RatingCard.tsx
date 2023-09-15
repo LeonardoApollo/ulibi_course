@@ -3,37 +3,38 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { classNames } from '@/shared/libs/classNames/classNames';
 import { Card } from '@/shared/ui/Card/Card';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/Text/Text';
-import { StarRaiting } from '@/shared/ui/StarRaiting/StarRaiting';
+import { StarRating } from '@/shared/ui/StarRating/StarRating';
 import { Modal } from '@/shared/ui/Modal/Modal';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/Button/Button';
 import { Drawer } from '@/shared/ui/Drawer/Drawer';
 
-interface RaitingCardProps {
+interface RatingCardProps {
     className?: string;
     title?: string;
     feedbackTitle?: string;
     hasFeedback?: boolean;
     onCancel?: (starsCount: number) => void;
     onAccept?: (starsCount: number, feedback?: string) => void;
+    rate?: number;
 }
 
-export const RaitingCard = memo((props: RaitingCardProps) => {
+export const RatingCard = memo((props: RatingCardProps) => {
     const {
         className,
         title,
         feedbackTitle,
         hasFeedback,
+        rate = 0,
         onCancel,
         onAccept,
     } = props;
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [starsCount, setStarsCount] = useState(0);
+    const [starsCount, setStarsCount] = useState(rate);
     const [feedback, setFeedback] = useState('');
     const [isClosing, setIsClosing] = useState(false);
     const [validationError, setValidationError] = useState('');
@@ -86,10 +87,10 @@ export const RaitingCard = memo((props: RaitingCardProps) => {
     );
 
     return (
-        <Card className={classNames('', {}, [className])}>
+        <Card className={className} max>
             <VStack align="center" gap="8">
-                <Text title={title} />
-                <StarRaiting size={40} onSelect={onSelectStars} />
+                <Text title={starsCount ? t('Спасибо за оценку!') : title} />
+                <StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
             </VStack>
             <BrowserView>
                 {isModalOpen && (

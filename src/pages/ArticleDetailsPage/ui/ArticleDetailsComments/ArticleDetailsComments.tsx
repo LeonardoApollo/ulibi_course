@@ -12,6 +12,7 @@ import { getArticleComments } from '../../modal/slices/ArticleDetailsCommentsSli
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { addCommentForArticle } from '../../modal/services/addCommentFormArticle/addNewCommentForAricle';
 import { fetchCommentsByArticleId } from '../../modal/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 
 interface ArticleDetailsCommentsProps {
     className?: string;
@@ -33,7 +34,12 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
     }, [id]);
 
     return (
-        <VStack max className={classNames('', {}, [className])}>
+        <VStack max>
+            <Text
+                size={TextSize.L}
+                className={className}
+                title={t('Комментарии')}
+            />
             <Suspense fallback={<Loader />}>
                 <AddNewCommentForm onSendComment={onSendComment} />
             </Suspense>
