@@ -59,7 +59,7 @@ module.exports = {
                     'role',
                     'as',
                     'direction',
-                    'refName',
+                    'border',
                 ],
             },
         ],

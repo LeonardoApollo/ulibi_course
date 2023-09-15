@@ -14,6 +14,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
     };
     config?.resolve?.modules?.push(paths.src);
     config?.resolve?.extensions?.push('.ts', '.tsx');
+    config.resolve!.alias = { '@': paths.src };
 
     // eslint-disable-next-line no-param-reassign
     config!.module!.rules = config?.module?.rules?.map((rule: webpack.RuleSetRule | '...') => {
@@ -32,7 +33,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
     config?.plugins?.push(new DefinePlugin({
         __IS_DEV__: JSON.stringify(true),
-        __API__: JSON.stringify('http://localhost:3000'),
+        __API__: JSON.stringify('http://localhost:8000'),
         __PROJECT__: JSON.stringify('storybook'),
     }));
 

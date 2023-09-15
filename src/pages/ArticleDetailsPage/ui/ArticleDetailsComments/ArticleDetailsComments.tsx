@@ -1,17 +1,18 @@
 import { Suspense, memo, useCallback } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { AddNewCommentForm } from 'features/addNewComment';
-import { CommentList } from 'entities/Comment';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { useInitialEffect } from 'shared/hooks/useInitialEffect';
-import { VStack } from 'shared/ui/Stack';
-import { Loader } from 'shared/ui/Loader/Loader';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { AddNewCommentForm } from '@/features/addNewComment';
+import { CommentList } from '@/entities/Comment';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
+import { VStack } from '@/shared/ui/Stack';
+import { Loader } from '@/shared/ui/Loader/Loader';
 import { getArticleComments } from '../../modal/slices/ArticleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { addCommentForArticle } from '../../modal/services/addCommentFormArticle/addNewCommentForAricle';
 import { fetchCommentsByArticleId } from '../../modal/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
 
 interface ArticleDetailsCommentsProps {
     className?: string;
@@ -33,7 +34,12 @@ export const ArticleDetailsComments = memo(({ className, id }: ArticleDetailsCom
     }, [id]);
 
     return (
-        <VStack max className={classNames('', {}, [className])}>
+        <VStack max>
+            <Text
+                size={TextSize.L}
+                className={className}
+                title={t('Комментарии')}
+            />
             <Suspense fallback={<Loader />}>
                 <AddNewCommentForm onSendComment={onSendComment} />
             </Suspense>

@@ -1,21 +1,7 @@
-.Dropdown {
-    position: relative;
-}
-
-.btn {
-    background: none;
-    outline-color: transparent;
-    margin: 0;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-}
-
 .menu {
     background: var(--card-bg);
     position: absolute;
     z-index: 10000;
-    border-radius: 8px;
     border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column;
@@ -46,21 +32,11 @@
     width: 100%;
     border: none;
     background: none;
-    outline-color: transparent;
+    outline: none;
     color: var(--primary-color);
     cursor: pointer;
-
-    &:first-child {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-    }
-
-    &:last-child {
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
 }
 
 .active {
-    background-color: var(--inverted-primary-color);
+    background: var(--inverted-primary-color);
 }

@@ -1,24 +1,36 @@
 {
-  "posts": [
+  "notifications": [
     {
       "id": "1",
-      "title": "json-server",
-      "author": "Mikle"
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
     },
     {
       "id": "2",
-      "title": "json-server 1",
-      "author": "Mikle"
+      "title": "Уведомление 2",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "/admin"
     },
     {
       "id": "3",
-      "title": "json-server 2",
-      "author": "Mikle"
+      "title": "Уведомление 3",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "/admin"
     },
     {
       "id": "4",
-      "title": "json-server 3",
-      "author": "Mikle"
+      "title": "Уведомление 4",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "2"
     }
   ],
   "articles": [
@@ -506,6 +518,66 @@
       "city": "Cheboksary",
       "username": "User",
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
+    }
+  ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feetback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 3,
+      "feetback": "Неплохая статья",
+      "userId": "2",
+      "articleId": "1"
+    },
+    {
+      "id": "3",
+      "rate": 5,
+      "feetback": "Отличная статья",
+      "userId": "1",
+      "articleId": "2"
+    },
+    {
+      "id": "4",
+      "rate": 5,
+      "feetback": "Отличная статья",
+      "userId": "2",
+      "articleId": "2"
+    },
+    {
+      "userId": "2",
+      "articleId": "3",
+      "rate": 2,
+      "feedback": "WTF",
+      "id": "sT_xtbH"
+    },
+    {
+      "userId": "1",
+      "articleId": "3",
+      "rate": 5,
+      "feedback": "WOW!",
+      "id": "q92hFmK"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feetback": "Хороший человек",
+      "userId": "1",
+      "profileId": "2"
+    },
+    {
+      "id": "2",
+      "rate": 5,
+      "feetback": "Отличная человек",
+      "userId": "2",
+      "profileId": "1"
     }
   ]
 }

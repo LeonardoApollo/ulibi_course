@@ -1,10 +1,10 @@
 import { Fragment, ReactNode } from 'react';
-import { classNames } from 'shared/libs/classNames/classNames';
-import { useTranslation } from 'react-i18next';
 import { Menu } from '@headlessui/react';
-import { DropDownDirection } from 'shared/types/ui';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { DropDownDirection } from '@/shared/types/ui';
+import { AppLink } from '../../../AppLink/AppLink';
 import cls from './Dropdown.module.scss';
-import { AppLink } from '../AppLink/AppLink';
+import popupCls from '../../styles/popup.module.scss';
 
 export interface DropdownItem {
     disabled?: boolean;
@@ -27,11 +27,10 @@ export const Dropdown = (props: DropdownProps) => {
         trigger,
         direction = 'bottomLeft',
     } = props;
-    const { t } = useTranslation();
 
     return (
-        <Menu as="div" className={classNames(cls.Dropdown, {}, [className])}>
-            <Menu.Button className={cls.btn}>
+        <Menu as="div" className={classNames(popupCls.popup, {}, [className])}>
+            <Menu.Button as="div" className={popupCls.trigger}>
                 {trigger}
             </Menu.Button>
             <Menu.Items className={classNames(cls.menu, {}, [cls[direction]])}>
@@ -54,7 +53,7 @@ export const Dropdown = (props: DropdownProps) => {
                                 to={item.href}
                                 disabled={item.disabled}
                                 // eslint-disable-next-line
-                                key={index}
+                                key={`dropdown-key-${index}`}
                             >
                                 {content}
                             </Menu.Item>
@@ -62,8 +61,12 @@ export const Dropdown = (props: DropdownProps) => {
                     }
 
                     return (
-                        // eslint-disable-next-line
-                        <Menu.Item as={Fragment} key={index} disabled={item.disabled}>
+                        <Menu.Item
+                            as={Fragment}
+                            // eslint-disable-next-line
+                            key={`dropdown-key-${index}`}
+                            disabled={item.disabled}
+                        >
                             {content}
                         </Menu.Item>
                     );
