@@ -46,6 +46,7 @@ Normal.parameters = {
                 { ...notification, id: '2' },
                 { ...notification, id: '3' },
             ],
+            delay: 2000,
         },
     ],
 };
