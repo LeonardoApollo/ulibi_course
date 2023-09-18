@@ -3,7 +3,7 @@ import { getUserAuthData } from '@/entities/User';
 import MainIcon from '@/shared/assets/icons/Home.svg';
 import AbotIcon from '@/shared/assets/icons/About.svg';
 import ArticlesIcon from '@/shared/assets/icons/Articles.svg';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import { SidebarItemType } from '../types/sidebar';
 
 export const getSidebarItems = createSelector(
