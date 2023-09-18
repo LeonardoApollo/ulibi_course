@@ -39,7 +39,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 'warn',
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
-        'import/no-extraneous-dependencies': 'warn',
+        'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
             'error',
@@ -71,6 +71,13 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'ulib-tv-course-plugin/path-checker': ['error', { alias: '@' }],
+        'ulib-tv-course-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFiles: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,

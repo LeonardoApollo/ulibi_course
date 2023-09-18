@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { Page } from '@/widgets/Page/Page';
+import { Page } from '@/widgets/Page';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage';
 import {
