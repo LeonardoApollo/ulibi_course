@@ -2,7 +2,7 @@ import {
     ReactNode,
 } from 'react';
 import { Mods, classNames } from '@/shared/libs/classNames/classNames';
-import { useTheme } from '@/app/providers/ThemeProvider';
+import { useTheme } from '@/shared/hooks/useTheme';
 import { useModal } from '@/shared/hooks/useModal';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';

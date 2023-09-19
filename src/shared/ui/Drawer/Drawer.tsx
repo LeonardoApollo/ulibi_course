@@ -2,7 +2,7 @@ import {
     memo, ReactNode, useCallback, useEffect,
 } from 'react';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { useTheme } from '@/app/providers/ThemeProvider';
+import { useTheme } from '@/shared/hooks/useTheme';
 import { AnimationProvider, useAnimationModules } from '@/shared/libs/components/AnimationProvider';
 import { Overlay } from '../Overlay/Overlay';
 import cls from './Drawer.module.scss';
