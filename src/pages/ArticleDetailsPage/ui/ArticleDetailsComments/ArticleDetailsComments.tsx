@@ -7,12 +7,12 @@ import { CommentList } from '@/entities/Comment';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { VStack } from '@/shared/ui/Stack';
-import { Loader } from '@/shared/ui/Loader/Loader';
+import { Loader } from '@/shared/ui/Loader';
 import { getArticleComments } from '../../modal/slices/ArticleDetailsCommentsSlice';
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { addCommentForArticle } from '../../modal/services/addCommentFormArticle/addNewCommentForAricle';
 import { fetchCommentsByArticleId } from '../../modal/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { Text, TextSize } from '@/shared/ui/Text';
 
 interface ArticleDetailsCommentsProps {
     className?: string;

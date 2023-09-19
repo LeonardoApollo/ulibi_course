@@ -11,8 +11,8 @@ import {
     ArticleTypeTabs,
 } from '@/entities/Article';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { Card } from '@/shared/ui/Card/Card';
-import { Input } from '@/shared/ui/Input/Input';
+import { Card } from '@/shared/ui/Card';
+import { Input } from '@/shared/ui/Input';
 
 import { SortOrder } from '@/shared/types';
 import { useDebounce } from '@/shared/hooks/useDebounce';
