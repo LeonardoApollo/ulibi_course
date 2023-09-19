@@ -1,29 +1,32 @@
 import { useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text';
-import { Skeleton } from '@/shared/ui/Skeleton';
-import { Avatar } from '@/shared/ui/Avatar';
-import { Icon } from '@/shared/ui/Icon';
-import EyeIcon from '@/shared/assets/icons/Eye.svg';
-import CalendarIcon from '@/shared/assets/icons/Calendar.svg';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { articleDetailsReducer } from '../../model/slice/ArticleDetailsSlice';
+
+import { ArticleBlockType } from '../../model/consts/consts';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading,
 } from '../../model/selectors/articleDetails';
 import { fetcArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
-import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { articleDetailsReducer } from '../../model/slice/ArticleDetailsSlice';
 import { ArticleBlock } from '../../model/types/article';
-import { ArticleBlockType } from '../../model/consts/consts';
-import cls from './ArticleDetails.module.scss';
-import { ArticleImageBlockComponent } from '../ArtilceImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ArticleImageBlockComponent } from '../ArtilceImageBlockComponent/ArticleImageBlockComponent';
+
+import CalendarIcon from '@/shared/assets/icons/Calendar.svg';
+import EyeIcon from '@/shared/assets/icons/Eye.svg';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Icon } from '@/shared/ui/Icon';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Text, TextAlign, TextSize } from '@/shared/ui/Text';
+
+import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
     className?: string;

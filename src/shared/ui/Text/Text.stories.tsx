@@ -1,8 +1,10 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
+
+import { Text, TextSize, TextTheme } from './Text';
+
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
-import { Text, TextSize, TextTheme } from './Text';
 
 export default {
     title: 'shared/Text',

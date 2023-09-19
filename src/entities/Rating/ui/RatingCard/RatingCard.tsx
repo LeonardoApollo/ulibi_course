@@ -1,16 +1,17 @@
 import {
     MutableRefObject, memo, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { useTranslation } from 'react-i18next';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { Card } from '@/shared/ui/Card';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
-import { StarRating } from '@/shared/ui/StarRating';
-import { Modal } from '@/shared/ui/Modal';
-import { Input } from '@/shared/ui/Input';
+import { useTranslation } from 'react-i18next';
+
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
 import { Drawer } from '@/shared/ui/Drawer';
+import { Input } from '@/shared/ui/Input';
+import { Modal } from '@/shared/ui/Modal';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { StarRating } from '@/shared/ui/StarRating';
+import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
 
 interface RatingCardProps {
     className?: string;
@@ -117,7 +118,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
             </BrowserView>
             <MobileView>
                 {isModalOpen && (
-                    <Drawer isOpen={isModalOpen} lazy onClose={cancelHandler}>
+                    <Drawer isOpen={isModalOpen} onClose={cancelHandler}>
                         {isClosing
                             ? <Text align={TextAlign.CENTER} title={t('Спасибо за отзыв!')} />
                             : (

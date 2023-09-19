@@ -1,8 +1,10 @@
-import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
-import { Currency } from '@/entities/Currency';
-import { Country } from '@/entities/Country';
-import { updateProfileData } from './updateProfileData';
 import { ValidateProfileError } from '../../consts/consts';
+
+import { updateProfileData } from './updateProfileData';
+
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
 
 const data = {
     id: '1',

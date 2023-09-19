@@ -23,10 +23,13 @@ module.exports = {
         'i18next',
         'react-hooks',
         'ulib-tv-course-plugin',
+        'unused-imports',
+        'import',
     ],
     rules: {
         'react/react-in-jsx-scope': 'off',
         'react/jsx-uses-react': 'off',
+        'unused-imports/no-unused-imports': 'error',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         indent: [2, 4],
@@ -70,6 +73,28 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'import/order': [
+            'error',
+            {
+                pathGroups: [
+                    {
+                        pattern: '@/**',
+                        group: 'internal',
+                        position: 'after',
+                    },
+                    {
+                        pattern: './**.module.*',
+                        group: 'internal',
+                        position: 'after',
+                    },
+                ],
+                'newlines-between': 'always',
+                alphabetize: {
+                    order: 'asc',
+                    caseInsensitive: false,
+                },
+            },
+        ],
         'ulib-tv-course-plugin/path-checker': ['error', { alias: '@' }],
         'ulib-tv-course-plugin/public-api-imports': [
             'error',
@@ -83,7 +108,7 @@ module.exports = {
             {
                 alias: '@',
                 ignoreImportPatterns: [
-                    '**/StoreProvider', 
+                    '**/StoreProvider',
                     '**/testing',
                 ],
             },

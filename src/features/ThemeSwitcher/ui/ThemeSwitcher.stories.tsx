@@ -1,8 +1,10 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
+
+import { ThemeSwithcer } from './ThemeSwithcer';
+
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
-import { ThemeSwithcer } from './ThemeSwithcer';
 
 export default {
     title: 'widget/ThemeSwithcer',

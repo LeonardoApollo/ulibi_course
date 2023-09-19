@@ -1,5 +1,3 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import {
     getArticlesPageError,
     getArticlesPageHasMore,
@@ -13,6 +11,9 @@ import {
     getArticlesPageType,
     getArticlesPageView,
 } from './getArticlesPage';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 
 describe('ArticlesPage.test', () => {
     test('should return error', () => {

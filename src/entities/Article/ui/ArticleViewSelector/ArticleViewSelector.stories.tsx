@@ -1,8 +1,9 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
+
+import { ArticleViewSelector } from './ArticleViewSelector';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleViewSelector } from './ArticleViewSelector';
 
 export default {
     title: 'entities/Article/ArticleViewSelector',

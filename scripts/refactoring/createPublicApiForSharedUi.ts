@@ -1,4 +1,5 @@
 import path from 'path';
+
 import { Project } from 'ts-morph';
 
 const project = new Project({});
@@ -68,4 +69,4 @@ files.forEach((source) => {
 });
 
 // eslint-disable-next-line no-console
-project.save().then(() => console.log('Done! If you export types export them manualy'));
+project.save().then(() => console.log('Done! If you export any types export them manualy'));

@@ -1,7 +1,8 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 
 import { Text } from '../Text/Text';
+
 import { Card } from './Card';
 
 export default {

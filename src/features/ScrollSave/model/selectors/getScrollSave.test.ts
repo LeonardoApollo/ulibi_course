@@ -1,5 +1,6 @@
-import { StateSchema } from '@/app/providers/StoreProvider';
 import { getScrollSave, getScrollSaveByPath } from './getScrollSave';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 describe('ScrollSave.test', () => {
     test('should return scroll', () => {

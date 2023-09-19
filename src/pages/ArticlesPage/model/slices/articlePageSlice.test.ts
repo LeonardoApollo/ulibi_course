@@ -1,7 +1,9 @@
-import { ArticleSortField, ArticleView, ArticleType } from '@/entities/Article';
-import { ArticlesPageSchema } from '../types/articlePageSchema';
-import { articlesPageSliceActions, articlesPageSliceReducer } from './articlePageSlice';
 import { fetchArticlesList } from '../services/fetchArticlesList';
+import { ArticlesPageSchema } from '../types/articlePageSchema';
+
+import { articlesPageSliceActions, articlesPageSliceReducer } from './articlePageSlice';
+
+import { ArticleSortField, ArticleView, ArticleType } from '@/entities/Article';
 
 const data = [{
     id: '1',
