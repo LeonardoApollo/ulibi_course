@@ -14,12 +14,12 @@ import { articlesPageSliceActions } from '../../model/slices/articlePageSlice';
 
 import {
     ArticleView,
-    ArticleViewSelector,
-    ArticleSortSelector,
     ArticleSortField,
     ArticleType,
-    ArticleTypeTabs,
 } from '@/entities/Article';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
+import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { classNames } from '@/shared/libs/classNames/classNames';

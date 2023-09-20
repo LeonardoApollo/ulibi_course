@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
-import { ArticleView } from '../../model/consts/consts';
-
+import { ArticleView } from '@/entities/Article';
 import GridIcon from '@/shared/assets/icons/Articles_Grid.svg';
 import ListIcon from '@/shared/assets/icons/Articles_List.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';

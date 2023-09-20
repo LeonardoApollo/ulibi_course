@@ -6,7 +6,7 @@ import { ArticleViewSelector } from './ArticleViewSelector';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'entities/Article/ArticleViewSelector',
+    title: 'features/ArticleViewSelector',
     component: ArticleViewSelector,
     argTypes: {
         backgroundColor: { control: 'color' },
