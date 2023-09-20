@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCanEditArticle } from '../../modal/selectors/getArticleCanChange/getCanEditArticle';
 
 import { getArticleDetailsData } from '@/entities/Article';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Button, ThemeButton } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
@@ -22,12 +22,14 @@ export const ArticlesDetailsPageHeader = memo(({ className }: ArticlesDetailsPag
     const article = useSelector(getArticleDetailsData);
 
     const onBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
+        navigate(getRouteArticles());
     }, [navigate]);
 
     const onEditArticle = useCallback(() => {
-        navigate(`${RoutePath.article_details}${article?.id}/edit`);
-    }, [navigate, article?.id]);
+        if (article) {
+            navigate(getRouteArticleEdit(article.id));
+        }
+    }, [navigate, article]);
 
     return (
         <HStack justify="between" max className={classNames('', {}, [className])}>
