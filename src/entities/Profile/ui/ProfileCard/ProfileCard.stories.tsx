@@ -1,8 +1,10 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Currency } from '@/entities/Currency';
-import { Country } from '@/entities/Country';
+import React from 'react';
+
 import { ProfileCard } from './ProfileCard';
+
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
 
 export default {
     title: 'entities/ProfileCard',

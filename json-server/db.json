@@ -562,6 +562,13 @@
       "rate": 5,
       "feedback": "WOW!",
       "id": "q92hFmK"
+    },
+    {
+      "userId": "2",
+      "articleId": "6",
+      "rate": 3,
+      "feedback": "RateFromMobile",
+      "id": "rI6ALly"
     }
   ],
   "profile-ratings": [

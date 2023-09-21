@@ -1,11 +1,12 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import React from 'react';
 import withMock from 'storybook-addon-mock';
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
 import ArticleRating from './ArticleRating';
-import { UserRole } from '@/entities/User';
+
 import { Rating } from '@/entities/Rating';
+import { UserRole } from '@/entities/User';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
     title: 'features/ArticleRating',

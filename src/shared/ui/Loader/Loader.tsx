@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { classNames } from '@/shared/libs/classNames/classNames';
 import './Loader.scss';
 

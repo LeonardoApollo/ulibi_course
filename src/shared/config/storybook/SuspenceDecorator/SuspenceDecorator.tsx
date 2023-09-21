@@ -1,6 +1,7 @@
 import { Story } from '@storybook/react';
 import { Suspense } from 'react';
-import { Loader } from '@/shared/ui/Loader/Loader';
+
+import { Loader } from '@/shared/ui/Loader';
 
 export const SuspenceDecorator = (StoryComponent: Story) => (
     <Suspense fallback={<Loader />}>

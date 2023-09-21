@@ -1,7 +1,8 @@
-import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
-import { ArticleSortField, ArticleType } from '@/entities/Article';
-import { fetchNextArticlesPage } from './fetchNextArticlesPage';
 import { fetchArticlesList } from './fetchArticlesList';
+import { fetchNextArticlesPage } from './fetchNextArticlesPage';
+
+import { ArticleSortField, ArticleType } from '@/entities/Article';
+import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
 
 jest.mock('./fetchArticlesList');
 

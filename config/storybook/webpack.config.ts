@@ -1,5 +1,7 @@
-import webpack, { DefinePlugin } from 'webpack';
 import path from 'path';
+
+import webpack, { DefinePlugin } from 'webpack';
+
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { BuildPaths } from '../build/types/config';
 
@@ -14,7 +16,10 @@ export default ({ config }: { config: webpack.Configuration }) => {
     };
     config?.resolve?.modules?.push(paths.src);
     config?.resolve?.extensions?.push('.ts', '.tsx');
-    config.resolve!.alias = { '@': paths.src };
+    config.resolve!.alias = {
+        ...config!.resolve!.alias,
+        '@': paths.src,
+    };
 
     // eslint-disable-next-line no-param-reassign
     config!.module!.rules = config?.module?.rules?.map((rule: webpack.RuleSetRule | '...') => {

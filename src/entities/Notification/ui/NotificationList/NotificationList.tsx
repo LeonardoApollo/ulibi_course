@@ -1,13 +1,16 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/libs/classNames/classNames';
-import { VStack } from '@/shared/ui/Stack';
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
-import { getUserAuthData } from '@/entities/User';
-import { Text } from '@/shared/ui/Text/Text';
+
 import { useNotifications } from '../../api/notificationApi';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
+
+import { getUserAuthData } from '@/entities/User';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { VStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text';
+
 import cls from './NotificationList.module.scss';
 
 interface NotificationListProps {
