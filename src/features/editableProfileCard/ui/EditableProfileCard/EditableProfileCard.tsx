@@ -31,7 +31,7 @@ interface EditableProfileCardProps {
 
 export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const { className, id } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
     const form = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
@@ -42,10 +42,10 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка'),
         [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t('Неккоректное имя или фамилия'),
-        [ValidateProfileError.INCORRECT_AGE]: t('Неккоректный возраст'),
-        [ValidateProfileError.INCORRECT_CITY]: t('Неккоректный город'),
-        [ValidateProfileError.INCORRECT_USERNAME]: t('Неккоректный псевдоним'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Некоректное имя или фамилия'),
+        [ValidateProfileError.INCORRECT_AGE]: t('Некоректный возраст'),
+        [ValidateProfileError.INCORRECT_CITY]: t('Некоректный город'),
+        [ValidateProfileError.INCORRECT_USERNAME]: t('Некоректный псевдоним'),
     };
 
     useInitialEffect(() => {

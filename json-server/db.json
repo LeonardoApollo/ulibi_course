@@ -489,7 +489,7 @@
     {
       "id": "3",
       "username": "Manager",
-      "password": "345",
+      "password": "567",
       "roles": [
         "MANAGER"
       ],
@@ -517,6 +517,17 @@
       "country": "Russia",
       "city": "Cheboksary",
       "username": "User",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
+    },
+    {
+      "id": "3",
+      "firstname": "Петя",
+      "lastname": "Пупкин",
+      "age": 61,
+      "currency": "RUB",
+      "country": "Russia",
+      "city": "Cheboksary",
+      "username": "Manager",
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
     }
   ],

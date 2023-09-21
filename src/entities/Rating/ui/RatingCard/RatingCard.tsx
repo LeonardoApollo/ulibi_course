@@ -33,7 +33,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
         onCancel,
         onAccept,
     } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('article');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [starsCount, setStarsCount] = useState(rate);
     const [feedback, setFeedback] = useState('');
@@ -69,7 +69,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 setIsClosing(false);
             }, 1000);
         } else {
-            setValidationError(t('Отзыв должен состоять минимум 3 символа'));
+            setValidationError(t('Отзыв должен иметь минимум 3 символа'));
         }
     }, [feedback, acceptHandler, t]);
 

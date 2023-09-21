@@ -12,7 +12,6 @@ import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Button, ThemeButton } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text';
 
 interface EditableProfileCardHeaderProps {
     className?: string;
@@ -40,7 +39,6 @@ export const EditableProfileCardHeader = memo(({ className }: EditableProfileCar
 
     return (
         <HStack max justify="between" className={classNames('', {}, [className])}>
-            <Text title={t('Профиль')} />
             {canEdit && (
                 // eslint-disable-next-line
                 <>
