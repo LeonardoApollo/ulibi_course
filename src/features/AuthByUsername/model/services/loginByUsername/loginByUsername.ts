@@ -22,7 +22,9 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, Thun
             dispatch(userActions.setAuthData(response.data));
             return response.data;
         } catch (error) {
-            console.log(error);
+            if (__PROJECT__ !== 'jest') {
+                console.log(error);
+            }
             return rejectWithValue('error');
         }
     },

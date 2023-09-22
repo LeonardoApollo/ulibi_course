@@ -20,7 +20,9 @@ export const fetcArticleById = createAsyncThunk<Article, string, ThunkConfig<str
 
             return response.data;
         } catch (error) {
-            console.log(error);
+            if (__PROJECT__ !== 'jest') {
+                console.log(error);
+            }
             return rejectWithValue('error');
         }
     },
