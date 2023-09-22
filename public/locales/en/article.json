@@ -26,5 +26,7 @@
     "Ваш отзыв": "Your feedback",
     "Спасибо за отзыв!": "Thanks for the feedback!",
     "Закрыть": "Close",
-    "Отправить": "Send"
+    "Отправить": "Send",
+    "Статья не существует или была удалена": "Article does not exist or has been deleted",
+    "Ошибка загрузки изображения": "Error loading image"
 }

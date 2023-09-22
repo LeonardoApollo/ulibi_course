@@ -23,13 +23,13 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
         userId: userData?.id ?? '',
     });
 
-    const [rateProfileMutatin] = useRateProfile();
+    const [rateProfileMutation] = useRateProfile();
 
     const rating = data?.[0];
 
     const handleRateProfile = useCallback((starsCount: number, feedback?: string) => {
         try {
-            rateProfileMutatin({
+            rateProfileMutation({
                 userId: userData?.id ?? '',
                 profileId: profileId ?? '',
                 rate: starsCount,
@@ -38,7 +38,7 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
         } catch (e) {
             console.log(e);
         }
-    }, [rateProfileMutatin, profileId, userData?.id]);
+    }, [rateProfileMutation, profileId, userData?.id]);
 
     const onCancel = useCallback((starsCount: number) => {
         handleRateProfile(starsCount);
