@@ -494,6 +494,15 @@
         "MANAGER"
       ],
       "avatar": ""
+    },
+    {
+      "id": "4",
+      "username": "Cypress",
+      "password": "000",
+      "roles": [
+        "ADMIN", "USER", "MANAGER"
+      ],
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
     }
   ],
   "profile": [
@@ -529,6 +538,17 @@
       "city": "Cheboksary",
       "username": "Manager",
       "avatar": ""
+    },
+    {
+      "id": "4",
+      "firstname": "Cypress",
+      "lastname": "Test",
+      "age": 100500,
+      "currency": "USD",
+      "country": "Kazakhstan",
+      "city": "Internet",
+      "username": "Cypress",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
     }
   ],
   "article-ratings": [
