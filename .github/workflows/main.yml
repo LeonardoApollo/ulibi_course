@@ -48,7 +48,7 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 jobs:
-  build-and-ui-testing:
+  build-and-ui*/unit-testing:
     runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref }}
     environment:
