@@ -33,9 +33,9 @@ jobs:
       - name: unit tests
         run: npm run test:unit
         if: always()
-      # - name: ui tests 
-      #   uses: chromaui/action@v1
-      #   with: 
-      #     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      #     onlyChanged: true
-      #   if: always()
+      - name: ui tests 
+        uses: chromaui/action@v1
+        with: 
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          onlyChanged: true
+        if: always()
