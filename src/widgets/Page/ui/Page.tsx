@@ -11,10 +11,11 @@ import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { useThrottle } from '@/shared/hooks/useThrottle';
 import { classNames } from '@/shared/libs/classNames/classNames';
+import { TestProps } from '@/shared/types/tests';
 
 import cls from './Page.module.scss';
 
-interface PageProps {
+interface PageProps extends TestProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
@@ -57,6 +58,8 @@ export const Page = (props: PageProps) => {
             className={classNames(cls.Page, {}, [className])}
             onScroll={onScroll}
             id={PAGE_ID}
+            // eslint-disable-next-line
+            data-testid={props['data-testid'] ?? 'Page'}
         >
             {children}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}

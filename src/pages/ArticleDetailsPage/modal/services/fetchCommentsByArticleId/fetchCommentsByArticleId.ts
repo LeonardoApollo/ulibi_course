@@ -24,7 +24,7 @@ export const fetchCommentsByArticleId = createAsyncThunk<Comment[], string | und
 
             return response.data;
         } catch (error) {
-            if (__PROJECT__ !== 'jest') {
+            if (__PROJECT__ === 'frontend') {
                 console.log(error);
             }
             return rejectWithValue('error');

@@ -15,7 +15,7 @@ export const fetchProfileData = createAsyncThunk<Profile, string, ThunkConfig<st
 
             return response.data;
         } catch (error) {
-            if (__PROJECT__ !== 'jest') {
+            if (__PROJECT__ === 'frontend') {
                 console.log(error);
             }
             return rejectWithValue('error');
