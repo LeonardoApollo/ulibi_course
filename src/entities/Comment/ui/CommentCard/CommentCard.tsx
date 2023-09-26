@@ -16,6 +16,7 @@ interface CommentCardProps {
     className?: string;
     comment?: Comment;
     isLoading?: boolean;
+    'data-testid'?: string;
 }
 
 export const CommentCard = memo((props: CommentCardProps) => {
@@ -38,7 +39,7 @@ export const CommentCard = memo((props: CommentCardProps) => {
     }
 
     return (
-        <VStack gap="8" max className={classNames(cls.CommentCard, {}, [className])}>
+        <VStack data-testid={props['data-testid']} gap="8" max className={classNames(cls.CommentCard, {}, [className])}>
             <AppLink to={getRouteProfile(comment.user.id)} className={cls.header}>
                 {comment.user.avatar ? <Avatar size={30} src={comment.user.avatar} /> : null}
                 <Text title={comment.user.username} />

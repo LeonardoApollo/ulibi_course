@@ -500,7 +500,9 @@
       "username": "Cypress",
       "password": "000",
       "roles": [
-        "ADMIN", "USER", "MANAGER"
+        "ADMIN",
+        "USER",
+        "MANAGER"
       ],
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
     }

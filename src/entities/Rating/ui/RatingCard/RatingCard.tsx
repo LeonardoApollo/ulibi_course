@@ -21,6 +21,7 @@ interface RatingCardProps {
     onCancel?: (starsCount: number) => void;
     onAccept?: (starsCount: number, feedback?: string) => void;
     rate?: number;
+    'data-testid'?: string;
 }
 
 export const RatingCard = memo((props: RatingCardProps) => {
@@ -83,12 +84,17 @@ export const RatingCard = memo((props: RatingCardProps) => {
                 <Text text={validationError} theme={TextTheme.ERROR} />
             )}
             <Text title={feedbackTitle} />
-            <Input value={feedback} onChange={setFeedback} placeholder={t('Ваш отзыв')} />
+            <Input
+                value={feedback}
+                onChange={setFeedback}
+                placeholder={t('Ваш отзыв')}
+                data-testid="RatingCard.Input"
+            />
         </>
     );
 
     return (
-        <Card className={className} max>
+        <Card data-testid={props['data-testid']} className={className} max>
             <VStack align="center" gap="8">
                 <Text title={starsCount ? t('Спасибо за оценку!') : title} />
                 <StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
@@ -103,10 +109,14 @@ export const RatingCard = memo((props: RatingCardProps) => {
                                     {modalContent}
                                     <VStack max gap="32">
                                         <HStack gap="16" max justify="end">
-                                            <Button theme={ThemeButton.OUTLINE_RED} onClick={cancelHandler}>
+                                            <Button
+                                                theme={ThemeButton.OUTLINE_RED}
+                                                onClick={cancelHandler}
+                                                data-testid="RatingCard.Close"
+                                            >
                                                 {t('Закрыть')}
                                             </Button>
-                                            <Button onClick={closeAcceptDelay}>
+                                            <Button onClick={closeAcceptDelay} data-testid="RatingCard.Send">
                                                 {t('Отправить')}
                                             </Button>
                                         </HStack>
@@ -125,7 +135,12 @@ export const RatingCard = memo((props: RatingCardProps) => {
                                 <>
                                     {modalContent}
                                     <VStack gap="32">
-                                        <Button fullWidth size={SizeButton.L} onClick={closeAcceptDelay}>
+                                        <Button
+                                            fullWidth
+                                            size={SizeButton.L}
+                                            onClick={closeAcceptDelay}
+                                            data-testid="RatingCard.Send"
+                                        >
                                             {t('Отправить')}
                                         </Button>
                                     </VStack>

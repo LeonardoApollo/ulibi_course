@@ -19,6 +19,7 @@ interface SelectProps<T extends string> {
     value?: T;
     onChange?: (value: T) => void;
     readonly?: boolean;
+    'data-testid'?: string;
 }
 
 export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
@@ -59,6 +60,7 @@ export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
                 value={value}
                 onChange={onChangeHandler}
                 disabled={readonly}
+                data-testid={props['data-testid']}
             >
                 {optionsList}
             </select>

@@ -16,6 +16,7 @@ export interface TabsProps {
     tabs: TabItem[];
     value: string;
     onTabClick: (tab: TabItem) => void;
+    'data-testid'?: string;
 }
 
 export const Tabs = memo((props: TabsProps) => {
@@ -38,6 +39,7 @@ export const Tabs = memo((props: TabsProps) => {
                     key={tab.value}
                     theme={tab.value === value ? ThemeCard.NORMAL : ThemeCard.OUTLINED}
                     onClick={clickHandle(tab)}
+                    data-testid={`${props['data-testid']}.${tab.value}`}
                 >
                     {tab.content}
                 </Card>

@@ -97,12 +97,14 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
                     onChange={onChangeSearch}
                     value={search}
                     placeholder={t('Поиск')}
+                    data-testid="ArtilesFilter.search"
                 />
             </Card>
             <ArticleTypeTabs
                 value={type}
                 onChangeType={onChangeType}
                 className={cls.tabs}
+                data-testid="ArtilesFilter.tabs"
             />
         </div>
     );
