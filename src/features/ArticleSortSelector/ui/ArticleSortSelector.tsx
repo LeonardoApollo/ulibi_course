@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ArticleSortField } from '@/entities/Article';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { SortOrder } from '@/shared/types';
+import { SortOrder } from '@/shared/types/sort';
 import { Select, SelectOptions } from '@/shared/ui/Select';
 
 import cls from './ArticleSortSelector.module.scss';
@@ -59,6 +59,7 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
                 label={t('Сортировать по')}
                 value={sort}
                 onChange={onChangeSort}
+                data-testid="ArtilesFilter.sort"
             />
             <Select
                 options={orderOptions}
@@ -66,6 +67,7 @@ export const ArticleSortSelector = memo((props: ArticleSortSelectorProps) => {
                 value={order}
                 onChange={onChangeOrder}
                 className={cls.order}
+                data-testid="ArtilesFilter.order"
             />
         </div>
     );

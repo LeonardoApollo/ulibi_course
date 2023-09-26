@@ -21,7 +21,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
         '@': paths.src,
     };
 
-    // eslint-disable-next-line no-param-reassign
+    // @ts-ignore
     config!.module!.rules = config?.module?.rules?.map((rule: webpack.RuleSetRule | '...') => {
         if (rule !== '...' && /svg/.test(rule.test as string)) {
             return { ...rule, exclude: /\.svg$/i };

@@ -1,9 +1,10 @@
 import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { AppRouter } from './providers/routers/index';
 
 import { getUserInited, userActions } from '@/entities/User';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
@@ -11,7 +12,7 @@ import { Sidebar } from '@/widgets/Sidebar';
 
 function App() {
     const { theme } = useTheme();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const inited = useSelector(getUserInited);
 
     useEffect(() => {

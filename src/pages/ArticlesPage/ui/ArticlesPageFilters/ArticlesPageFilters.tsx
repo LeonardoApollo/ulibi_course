@@ -23,7 +23,7 @@ import { ArticleViewSelector } from '@/features/ArticleViewSelector';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { SortOrder } from '@/shared/types';
+import { SortOrder } from '@/shared/types/sort';
 import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 
@@ -97,12 +97,14 @@ export const ArticlesPageFilters = memo(({ className }: ArticlesPageFiltersProps
                     onChange={onChangeSearch}
                     value={search}
                     placeholder={t('Поиск')}
+                    data-testid="ArtilesFilter.search"
                 />
             </Card>
             <ArticleTypeTabs
                 value={type}
                 onChangeType={onChangeType}
                 className={cls.tabs}
+                data-testid="ArtilesFilter.tabs"
             />
         </div>
     );

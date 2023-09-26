@@ -9,10 +9,12 @@ interface ArticleTypeTabsProps {
     className?: string;
     value: ArticleType;
     onChangeType: (type: ArticleType) => void;
+    'data-testid'?: string;
 }
 
-export const ArticleTypeTabs = memo(({ className, value, onChangeType }: ArticleTypeTabsProps) => {
-    const { t } = useTranslation();
+export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
+    const { className, value, onChangeType } = props;
+    const { t } = useTranslation('article');
 
     const typeTabs = useMemo<TabItem[]>(() => [
         {
@@ -43,6 +45,7 @@ export const ArticleTypeTabs = memo(({ className, value, onChangeType }: Article
             tabs={typeTabs}
             onTabClick={onTabClick}
             className={classNames('', {}, [className])}
+            data-testid={props['data-testid']}
         />
     );
 });

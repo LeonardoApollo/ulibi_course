@@ -20,11 +20,13 @@ import EyeIcon from '@/shared/assets/icons/Eye.svg';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Avatar } from '@/shared/ui/Avatar';
+import { AppImage } from '@/shared/ui/AppImage';
 import { Icon } from '@/shared/ui/Icon';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text, TextAlign, TextSize } from '@/shared/ui/Text';
+import {
+    Text, TextAlign, TextSize, TextTheme,
+} from '@/shared/ui/Text';
 
 import cls from './ArticleDetails.module.scss';
 
@@ -69,7 +71,7 @@ const renderBlock = (block: ArticleBlock) => {
 };
 
 export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticleDetailsIsLoading);
     const article = useSelector(getArticleDetailsData);
@@ -104,13 +106,23 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         content = (
             <>
                 <HStack justify="center" max className={cls.avatarWrapper}>
-                    <Avatar
+                    <AppImage
+                        errorFallback={(
+                            <Text
+                                align={TextAlign.CENTER}
+                                theme={TextTheme.ERROR}
+                                text={t('Ошибка загрузки изображения')}
+                                className={cls.Error}
+                            />
+                        )}
+                        fallback={<Skeleton width={200} height={200} border="50%" />}
+                        border="50%"
                         size={200}
                         src={article?.img}
                         className={cls.avatar}
                     />
                 </HStack>
-                <VStack gap="4">
+                <VStack gap="4" max data-testid="ArticleDetails.Info">
                     <Text
                         head="h1"
                         title={article?.title}

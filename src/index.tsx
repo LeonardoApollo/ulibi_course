@@ -29,5 +29,3 @@ root.render(
         </StoreProvider>
     </BrowserRouter>,
 );
-
-// notice

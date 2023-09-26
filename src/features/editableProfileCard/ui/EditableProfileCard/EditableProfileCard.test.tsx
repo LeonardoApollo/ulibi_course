@@ -42,7 +42,9 @@ const options: any = {
 describe('features/EditableProfileCard', () => {
     test('readonly state should switch', async () => {
         componentRender(<EditableProfileCard id="1" />, options);
+
         await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
+
         expect(screen.getByTestId('EditableProfileCardHeader.CancelButton')).toBeInTheDocument();
     });
 
@@ -67,6 +69,7 @@ describe('features/EditableProfileCard', () => {
 
     test('should return validation error', async () => {
         componentRender(<EditableProfileCard id="1" />, options);
+
         await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
         await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
@@ -77,11 +80,13 @@ describe('features/EditableProfileCard', () => {
     });
 
     test('should send PUT request to server', async () => {
-        const mockPutReq = jest.spyOn($api, 'put');
+        const mockPutReq = jest.spyOn($api, 'put').mockResolvedValue('');
         componentRender(<EditableProfileCard id="1" />, options);
+
         await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
         await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
+
         await userEvent.type(screen.getByTestId('ProfileCard.firstname'), 'user');
 
         await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
