@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Button } from '@/shared/ui/Button';
+
 import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
 import { counterActions } from '../model/slice/counterSlice';
-
-import { Button } from '@/shared/ui/Button';
 
 export const Counter = () => {
     const dispatch = useDispatch();
@@ -18,19 +18,16 @@ export const Counter = () => {
 
     return (
         <div>
-            <h1 data-testid="value-title" style={{ marginTop: '20px', marginBottom: '20px' }}>
+            <h1
+                data-testid="value-title"
+                style={{ marginTop: '20px', marginBottom: '20px' }}
+            >
                 {counterValue}
             </h1>
-            <Button
-                onClick={increment}
-                data-testid="increment-btn"
-            >
+            <Button onClick={increment} data-testid="increment-btn">
                 +
             </Button>
-            <Button
-                onClick={decrement}
-                data-testid="decrement-btn"
-            >
+            <Button onClick={decrement} data-testid="decrement-btn">
                 -
             </Button>
         </div>

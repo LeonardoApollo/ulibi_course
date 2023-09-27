@@ -1,15 +1,15 @@
 import { memo, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getSidebarItems } from '../../model/selectors/getSidebarItems';
-import { SideBarItem } from '../SideBarItem/SideBarItem';
-
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwithcer } from '@/features/ThemeSwitcher';
+
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/Button';
 import { VStack } from '@/shared/ui/Stack';
 
+import { getSidebarItems } from '../../model/selectors/getSidebarItems';
+import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -24,18 +24,24 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         setCollapsed((prev) => !prev);
     };
 
-    const itemsList = useMemo(() => sidebarItemsList.map((item) => (
-        <SideBarItem
-            item={item}
-            collapsed={collapsed}
-            key={item.path}
-        />
-    )), [collapsed, sidebarItemsList]);
+    const itemsList = useMemo(
+        () =>
+            sidebarItemsList.map((item) => (
+                <SideBarItem
+                    item={item}
+                    collapsed={collapsed}
+                    key={item.path}
+                />
+            )),
+        [collapsed, sidebarItemsList],
+    );
 
     return (
         <section
             data-testid="sidebar"
-            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+            className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
+                className,
+            ])}
         >
             <Button
                 data-testid="sidebar-toggle"
@@ -53,10 +59,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             </VStack>
             <div className={cls.swithcers}>
                 <ThemeSwithcer />
-                <LangSwitcher
-                    short={collapsed}
-                    className={cls.lang}
-                />
+                <LangSwitcher short={collapsed} className={cls.lang} />
             </div>
         </section>
     );

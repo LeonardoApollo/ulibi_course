@@ -2,16 +2,24 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { getAddCommentFormError, getAddCommentFormText } from '../../model/selectors/addCommentFormSelectors';
-import { addNewCommentFormActions, addNewCommentFormReducer } from '../../model/slices/addNewCommentSlice';
-
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Button, ThemeButton } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { HStack } from '@/shared/ui/Stack';
 
+import {
+    getAddCommentFormError,
+    getAddCommentFormText,
+} from '../../model/selectors/addCommentFormSelectors';
+import {
+    addNewCommentFormActions,
+    addNewCommentFormReducer,
+} from '../../model/slices/addNewCommentSlice';
 import cls from './AddNewCommentForm.module.scss';
 
 interface AddNewCommentFormProps {
@@ -23,47 +31,53 @@ const reducers: ReducersList = {
     addNewCommentForm: addNewCommentFormReducer,
 };
 
-const AddNewCommentForm = memo(({ className, onSendComment }: AddNewCommentFormProps) => {
-    const { t } = useTranslation();
-    const text = useSelector(getAddCommentFormText);
-    const error = useSelector(getAddCommentFormError);
-    const dispatch = useAppDispatch();
+const AddNewCommentForm = memo(
+    ({ className, onSendComment }: AddNewCommentFormProps) => {
+        const { t } = useTranslation();
+        const text = useSelector(getAddCommentFormText);
+        const error = useSelector(getAddCommentFormError);
+        const dispatch = useAppDispatch();
 
-    const onCommentTextChange = useCallback((value: string) => {
-        dispatch(addNewCommentFormActions.setText(value));
-    }, [dispatch]);
+        const onCommentTextChange = useCallback(
+            (value: string) => {
+                dispatch(addNewCommentFormActions.setText(value));
+            },
+            [dispatch],
+        );
 
-    const onSendHandler = useCallback(() => {
-        onSendComment(text || '');
-        onCommentTextChange('');
-    }, [onCommentTextChange, onSendComment, text]);
+        const onSendHandler = useCallback(() => {
+            onSendComment(text || '');
+            onCommentTextChange('');
+        }, [onCommentTextChange, onSendComment, text]);
 
-    return (
-        <DynamicModuleLoader reducers={reducers}>
-            <HStack
-                gap="16"
-                max
-                className={classNames(cls.AddNewCommentForm, {}, [className])}
-                data-testid="ArticleDetails.CommentForm"
-            >
-                <Input
-                    className={cls.input}
-                    placeholder={t('Введите текст комментария')}
-                    value={text}
-                    onChange={onCommentTextChange}
-                    data-testid="ArticleDetails.CommentForm.Input"
-                />
-                <Button
-                    theme={ThemeButton.OUTLINE}
-                    onClick={onSendHandler}
-                    data-testid="ArticleDetails.CommentForm.Send"
+        return (
+            <DynamicModuleLoader reducers={reducers}>
+                <HStack
+                    gap="16"
+                    max
+                    className={classNames(cls.AddNewCommentForm, {}, [
+                        className,
+                    ])}
+                    data-testid="ArticleDetails.CommentForm"
                 >
-                    {t('Отправить')}
-
-                </Button>
-            </HStack>
-        </DynamicModuleLoader>
-    );
-});
+                    <Input
+                        className={cls.input}
+                        placeholder={t('Введите текст комментария')}
+                        value={text}
+                        onChange={onCommentTextChange}
+                        data-testid="ArticleDetails.CommentForm.Input"
+                    />
+                    <Button
+                        theme={ThemeButton.OUTLINE}
+                        onClick={onSendHandler}
+                        data-testid="ArticleDetails.CommentForm.Send"
+                    >
+                        {t('Отправить')}
+                    </Button>
+                </HStack>
+            </DynamicModuleLoader>
+        );
+    },
+);
 
 export default AddNewCommentForm;

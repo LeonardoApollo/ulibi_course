@@ -7,11 +7,7 @@
         "views": 2077,
         "createdAt": "07.07.2077",
         "userId": "1",
-        "type": [
-            "IT",
-            "ECONOMIC",
-            "SCIENCE"
-        ],
+        "type": ["IT", "ECONOMIC", "SCIENCE"],
         "blocks": [
             {
                 "id": "1",
@@ -28,9 +24,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -42,10 +36,7 @@
         "views": 100500,
         "createdAt": "10.05.2019",
         "userId": "1",
-        "type": [
-            "ECONOMIC",
-            "SCIENCE"
-        ],
+        "type": ["ECONOMIC", "SCIENCE"],
         "blocks": [
             {
                 "id": "1",
@@ -62,9 +53,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -76,10 +65,7 @@
         "views": 1023,
         "createdAt": "16.01.2023",
         "userId": "1",
-        "type": [
-            "IT",
-            "SCIENCE"
-        ],
+        "type": ["IT", "SCIENCE"],
         "blocks": [
             {
                 "id": "1",
@@ -96,9 +82,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -110,10 +94,7 @@
         "views": 228,
         "createdAt": "22.08.2023",
         "userId": "1",
-        "type": [
-            "IT",
-            "ECONOMIC"
-        ],
+        "type": ["IT", "ECONOMIC"],
         "blocks": [
             {
                 "id": "1",
@@ -130,9 +111,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -144,11 +123,7 @@
         "views": 1,
         "createdAt": "23.08.2023",
         "userId": "1",
-        "type": [
-            "IT",
-            "ECONOMIC",
-            "SCIENCE"
-        ],
+        "type": ["IT", "ECONOMIC", "SCIENCE"],
         "blocks": [
             {
                 "id": "1",
@@ -165,9 +140,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -179,9 +152,7 @@
         "views": 2023,
         "createdAt": "26.02.2022",
         "userId": "1",
-        "type": [
-            "IT"
-        ],
+        "type": ["IT"],
         "blocks": [
             {
                 "id": "1",
@@ -246,9 +217,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -260,9 +229,7 @@
         "views": 2023,
         "createdAt": "26.02.2022",
         "userId": "1",
-        "type": [
-            "SCIENCE"
-        ],
+        "type": ["SCIENCE"],
         "blocks": [
             {
                 "id": "1",
@@ -279,9 +246,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -293,9 +258,7 @@
         "views": 2023,
         "createdAt": "26.02.2022",
         "userId": "1",
-        "type": [
-            "ECONOMIC"
-        ],
+        "type": ["ECONOMIC"],
         "blocks": [
             {
                 "id": "1",
@@ -312,9 +275,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     },
@@ -326,9 +287,7 @@
         "views": 2,
         "createdAt": "26.02.2022",
         "userId": "1",
-        "type": [
-            "IT"
-        ],
+        "type": ["IT"],
         "blocks": [
             {
                 "id": "1",
@@ -345,9 +304,7 @@
             "id": "1",
             "username": "Admin",
             "password": "123",
-            "roles": [
-                "ADMIN"
-            ],
+            "roles": ["ADMIN"],
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         }
     }

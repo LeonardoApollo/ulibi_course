@@ -1,10 +1,11 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import ArticleDetailsPage from './ArticleDetailsPage';
-
 import { ArticleBlockType, ArticleType } from '@/entities/Article';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import ArticleDetailsPage from './ArticleDetailsPage';
 
 export default {
     title: 'pages/ArticleDetails/ArticleDetailsPage',
@@ -20,7 +21,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleDetailsPage>;
 
-const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => <ArticleDetailsPage {...args} />;
+const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => (
+    <ArticleDetailsPage {...args} />
+);
 
 const article = {
     id: '1',
@@ -62,27 +65,29 @@ const article = {
 
 export const Primary = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-    articleDetailsPage: {
-        comments: {
-            isLoading: false,
-            error: undefined,
-            ids: ['1', '2'],
-            entities: {
-                1: {
-                    id: '1',
-                    text: 'some comment 1',
-                    user: { id: '1', username: 'Admin' },
-                },
-                2: {
-                    id: '2',
-                    text: 'some comment 2',
-                    user: { id: '2', username: 'User' },
+Primary.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+        articleDetailsPage: {
+            comments: {
+                isLoading: false,
+                error: undefined,
+                ids: ['1', '2'],
+                entities: {
+                    1: {
+                        id: '1',
+                        text: 'some comment 1',
+                        user: { id: '1', username: 'Admin' },
+                    },
+                    2: {
+                        id: '2',
+                        text: 'some comment 2',
+                        user: { id: '2', username: 'User' },
+                    },
                 },
             },
         },
-    },
-})];
+    }),
+];

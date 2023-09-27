@@ -1,3 +1,7 @@
+import { StateSchema } from '@/app/providers/StoreProvider';
+
+import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
+
 import {
     getArticlesPageError,
     getArticlesPageHasMore,
@@ -11,9 +15,6 @@ import {
     getArticlesPageType,
     getArticlesPageView,
 } from './getArticlesPage';
-
-import { StateSchema } from '@/app/providers/StoreProvider';
-import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 
 describe('ArticlesPage.test', () => {
     test('should return error', () => {
@@ -46,11 +47,15 @@ describe('ArticlesPage.test', () => {
                 view: ArticleView.LIST,
             },
         };
-        expect(getArticlesPageView(state as StateSchema)).toEqual(ArticleView.LIST);
+        expect(getArticlesPageView(state as StateSchema)).toEqual(
+            ArticleView.LIST,
+        );
     });
     test('should work with empty state view', () => {
         const state: DeepPartial<StateSchema> = {};
-        expect(getArticlesPageView(state as StateSchema)).toEqual(ArticleView.GRID);
+        expect(getArticlesPageView(state as StateSchema)).toEqual(
+            ArticleView.GRID,
+        );
     });
     test('should return page', () => {
         const state: DeepPartial<StateSchema> = {
@@ -118,11 +123,15 @@ describe('ArticlesPage.test', () => {
                 sort: ArticleSortField.VIEWS,
             },
         };
-        expect(getArticlesPageSort(state as StateSchema)).toEqual(ArticleSortField.VIEWS);
+        expect(getArticlesPageSort(state as StateSchema)).toEqual(
+            ArticleSortField.VIEWS,
+        );
     });
     test('should work with empty state sort', () => {
         const state: DeepPartial<StateSchema> = {};
-        expect(getArticlesPageSort(state as StateSchema)).toEqual(ArticleSortField.CREATED);
+        expect(getArticlesPageSort(state as StateSchema)).toEqual(
+            ArticleSortField.CREATED,
+        );
     });
     test('should return search', () => {
         const state: DeepPartial<StateSchema> = {
@@ -142,10 +151,14 @@ describe('ArticlesPage.test', () => {
                 type: ArticleType.IT,
             },
         };
-        expect(getArticlesPageType(state as StateSchema)).toEqual(ArticleType.IT);
+        expect(getArticlesPageType(state as StateSchema)).toEqual(
+            ArticleType.IT,
+        );
     });
     test('should work with empty state type', () => {
         const state: DeepPartial<StateSchema> = {};
-        expect(getArticlesPageType(state as StateSchema)).toEqual(ArticleType.ALL);
+        expect(getArticlesPageType(state as StateSchema)).toEqual(
+            ArticleType.ALL,
+        );
     });
 });

@@ -1,14 +1,16 @@
 import { Suspense, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { AppRouter } from './providers/routers/index';
+import { Navbar } from '@/widgets/Navbar';
+import { Sidebar } from '@/widgets/Sidebar';
 
 import { getUserInited, userActions } from '@/entities/User';
+
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Navbar } from '@/widgets/Navbar';
-import { Sidebar } from '@/widgets/Sidebar';
+
+import { AppRouter } from './providers/routers/index';
 
 function App() {
     const { theme } = useTheme();
@@ -25,9 +27,7 @@ function App() {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    {inited && (
-                        <AppRouter />
-                    )}
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>

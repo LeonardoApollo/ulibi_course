@@ -2,13 +2,14 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { useProfileRating, useRateProfile } from '../api/profileRatingApi';
-
 import { RatingCard } from '@/entities/Rating';
 import { getUserAuthData } from '@/entities/User';
+
 import { Card } from '@/shared/ui/Card';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/Text';
+
+import { useProfileRating, useRateProfile } from '../api/profileRatingApi';
 
 export interface ProfileRatingProps {
     className?: string;
@@ -27,26 +28,35 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
 
     const rating = data?.[0];
 
-    const handleRateProfile = useCallback((starsCount: number, feedback?: string) => {
-        try {
-            rateProfileMutation({
-                userId: userData?.id ?? '',
-                profileId: profileId ?? '',
-                rate: starsCount,
-                feedback,
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    }, [rateProfileMutation, profileId, userData?.id]);
+    const handleRateProfile = useCallback(
+        (starsCount: number, feedback?: string) => {
+            try {
+                rateProfileMutation({
+                    userId: userData?.id ?? '',
+                    profileId: profileId ?? '',
+                    rate: starsCount,
+                    feedback,
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        },
+        [rateProfileMutation, profileId, userData?.id],
+    );
 
-    const onCancel = useCallback((starsCount: number) => {
-        handleRateProfile(starsCount);
-    }, [handleRateProfile]);
+    const onCancel = useCallback(
+        (starsCount: number) => {
+            handleRateProfile(starsCount);
+        },
+        [handleRateProfile],
+    );
 
-    const onAccept = useCallback((starsCount: number, feedback?: string) => {
-        handleRateProfile(starsCount, feedback);
-    }, [handleRateProfile]);
+    const onAccept = useCallback(
+        (starsCount: number, feedback?: string) => {
+            handleRateProfile(starsCount, feedback);
+        },
+        [handleRateProfile],
+    );
 
     if (isLoading) {
         return <Skeleton width="100%" height={120} />;
@@ -70,7 +80,10 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
     if (profileId === userData?.id) {
         return (
             <Card max>
-                <Text align={TextAlign.CENTER} title={t('Вы не можете оценить свой профиль')} />
+                <Text
+                    align={TextAlign.CENTER}
+                    title={t('Вы не можете оценить свой профиль')}
+                />
             </Card>
         );
     }

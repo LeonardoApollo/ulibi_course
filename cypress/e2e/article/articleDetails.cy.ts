@@ -32,7 +32,9 @@ describe('User enters ArticleDetailsPage', () => {
     });
     // Пример использования фикстуры
     it('User rate article', () => {
-        cy.intercept('GET', '**/articles/*', { fixture: 'articleDetails.json' });
+        cy.intercept('GET', '**/articles/*', {
+            fixture: 'articleDetails.json',
+        });
         cy.getbyTestId('ArticleDetails.Info').should('exist');
         cy.getbyTestId('ArticleDetails.RatingCard').scrollIntoView();
         cy.setRating(5);

@@ -3,7 +3,6 @@ import React from 'react';
 
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
-
 import { ArticleList } from './ArticleList';
 
 export default {
@@ -14,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleList>;
 
-const Template: ComponentStory<typeof ArticleList> = (args) => <ArticleList {...args} />;
+const Template: ComponentStory<typeof ArticleList> = (args) => (
+    <ArticleList {...args} />
+);
 
 const article = {
     id: '1',
@@ -28,12 +29,7 @@ const article = {
         username: 'Ulbi tv',
         avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
     },
-    type: [
-        'IT',
-        'SCIENCE',
-        'POLITICS',
-        'ECONOMICS',
-    ],
+    type: ['IT', 'SCIENCE', 'POLITICS', 'ECONOMICS'],
     blocks: [
         {
             id: '1',
@@ -112,24 +108,20 @@ LoadingGrid.args = {
 
 export const ListGrid = Template.bind({});
 ListGrid.args = {
-    articles: new Array(9)
-        .fill(0)
-        .map((item, index) => ({
-            ...article,
-            id: String(index),
-        })),
+    articles: new Array(9).fill(0).map((item, index) => ({
+        ...article,
+        id: String(index),
+    })),
     isLoading: false,
     view: ArticleView.GRID,
 };
 
 export const ListList = Template.bind({});
 ListList.args = {
-    articles: new Array(9)
-        .fill(0)
-        .map((item, index) => ({
-            ...article,
-            id: String(index),
-        })),
+    articles: new Array(9).fill(0).map((item, index) => ({
+        ...article,
+        id: String(index),
+    })),
     isLoading: false,
     view: ArticleView.LIST,
 };

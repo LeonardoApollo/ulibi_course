@@ -2,6 +2,18 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import { ProfileCard } from '@/entities/Profile';
+
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { Text, TextTheme } from '@/shared/ui/Text';
+
 import { ValidateProfileError } from '../../model/consts/consts';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm';
@@ -11,14 +23,6 @@ import { getProfileValidateErrors } from '../../model/selectors/getProfileValida
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slice/profileSlice';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
-
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
-import { ProfileCard } from '@/entities/Profile';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
-import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text, TextTheme } from '@/shared/ui/Text';
 
 const reducers: ReducersList = {
     profile: profileReducer,
@@ -42,7 +46,9 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка'),
         [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t('Некоректное имя или фамилия'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t(
+            'Некоректное имя или фамилия',
+        ),
         [ValidateProfileError.INCORRECT_AGE]: t('Некоректный возраст'),
         [ValidateProfileError.INCORRECT_CITY]: t('Некоректный город'),
         [ValidateProfileError.INCORRECT_USERNAME]: t('Некоректный псевдоним'),
@@ -54,50 +60,79 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }
     }, [id]);
 
-    const onChangeFirstname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ firstname: value || '' }));
-    }, [dispatch]);
+    const onChangeFirstname = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ firstname: value || '' }));
+        },
+        [dispatch],
+    );
 
-    const onChangeLastname = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ lastname: value || '' }));
-    }, [dispatch]);
+    const onChangeLastname = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ lastname: value || '' }));
+        },
+        [dispatch],
+    );
 
-    const onChangeAge = useCallback((value?: string) => {
-        const validateValue = value?.replace(/\D+/gm, '');
-        dispatch(profileActions.updateProfile({ age: Number(validateValue || 0) }));
-    }, [dispatch]);
+    const onChangeAge = useCallback(
+        (value?: string) => {
+            const validateValue = value?.replace(/\D+/gm, '');
+            dispatch(
+                profileActions.updateProfile({
+                    age: Number(validateValue || 0),
+                }),
+            );
+        },
+        [dispatch],
+    );
 
-    const onChangeCity = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ city: value || '' }));
-    }, [dispatch]);
+    const onChangeCity = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ city: value || '' }));
+        },
+        [dispatch],
+    );
 
-    const onChangeAvatar = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ avatar: value || '' }));
-    }, [dispatch]);
+    const onChangeAvatar = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ avatar: value || '' }));
+        },
+        [dispatch],
+    );
 
-    const onChangeUsername = useCallback((value?: string) => {
-        dispatch(profileActions.updateProfile({ username: value || '' }));
-    }, [dispatch]);
+    const onChangeUsername = useCallback(
+        (value?: string) => {
+            dispatch(profileActions.updateProfile({ username: value || '' }));
+        },
+        [dispatch],
+    );
 
-    const onChangeCurrency = useCallback((currency?: Currency) => {
-        dispatch(profileActions.updateProfile({ currency }));
-    }, [dispatch]);
+    const onChangeCurrency = useCallback(
+        (currency?: Currency) => {
+            dispatch(profileActions.updateProfile({ currency }));
+        },
+        [dispatch],
+    );
 
-    const onChangeCountry = useCallback((country?: Country) => {
-        dispatch(profileActions.updateProfile({ country }));
-    }, [dispatch]);
+    const onChangeCountry = useCallback(
+        (country?: Country) => {
+            dispatch(profileActions.updateProfile({ country }));
+        },
+        [dispatch],
+    );
 
     return (
         <DynamicModuleLoader reducers={reducers}>
             <EditableProfileCardHeader />
-            {validateErrors?.length && validateErrors.map((error) => (
-                <Text
-                    key={error}
-                    theme={TextTheme.ERROR}
-                    text={validateErrorTranslates[error]}
-                    data-testid="EditableProfileCard.Error"
-                />
-            ))}
+            {validateErrors?.length &&
+                validateErrors.map((error) => (
+                    <Text
+                        key={error}
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[error]}
+                        data-testid="EditableProfileCard.Error"
+                    />
+                ))}
             <ProfileCard
                 data={form}
                 isLoading={isLoading}

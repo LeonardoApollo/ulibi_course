@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { CommentCard } from './CommentCard';
@@ -11,14 +11,20 @@ export default {
     },
 } as ComponentMeta<typeof CommentCard>;
 
-const Template: ComponentStory<typeof CommentCard> = (args) => <CommentCard {...args} />;
+const Template: ComponentStory<typeof CommentCard> = (args) => (
+    <CommentCard {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
     comment: {
         id: '1',
         text: 'hello world',
-        user: { id: '1', username: 'Admin', avatar: 'https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg' },
+        user: {
+            id: '1',
+            username: 'Admin',
+            avatar: 'https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg',
+        },
     },
 };
 

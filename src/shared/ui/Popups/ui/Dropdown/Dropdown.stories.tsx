@@ -1,8 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { Button } from '../../../Button/Button';
-
 import { Dropdown } from './Dropdown';
 
 export default {
@@ -12,11 +11,17 @@ export default {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => <div style={{ padding: 220 }}><Story /></div>,
+        (Story) => (
+            <div style={{ padding: 220 }}>
+                <Story />
+            </div>
+        ),
     ],
 } as ComponentMeta<typeof Dropdown>;
 
-const Template: ComponentStory<typeof Dropdown> = (args) => <Dropdown {...args} />;
+const Template: ComponentStory<typeof Dropdown> = (args) => (
+    <Dropdown {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {

@@ -1,6 +1,20 @@
-import { useEffect, memo } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+
+import CalendarIcon from '@/shared/assets/icons/Calendar.svg';
+import EyeIcon from '@/shared/assets/icons/Eye.svg';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { classNames } from '@/shared/libs/classNames/classNames';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Icon } from '@/shared/ui/Icon';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/Text';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import {
@@ -14,20 +28,6 @@ import { ArticleBlock } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { ArticleImageBlockComponent } from '../ArtilceImageBlockComponent/ArticleImageBlockComponent';
-
-import CalendarIcon from '@/shared/assets/icons/Calendar.svg';
-import EyeIcon from '@/shared/assets/icons/Eye.svg';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { classNames } from '@/shared/libs/classNames/classNames';
-import { DynamicModuleLoader, ReducersList } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { AppImage } from '@/shared/ui/AppImage';
-import { Icon } from '@/shared/ui/Icon';
-import { Skeleton } from '@/shared/ui/Skeleton';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import {
-    Text, TextAlign, TextSize, TextTheme,
-} from '@/shared/ui/Text';
-
 import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
@@ -41,32 +41,32 @@ const reducers: ReducersList = {
 
 const renderBlock = (block: ArticleBlock) => {
     switch (block.type) {
-    case ArticleBlockType.CODE:
-        return (
-            <ArticleCodeBlockComponent
-                key={block.id}
-                className={cls.block}
-                block={block}
-            />
-        );
-    case ArticleBlockType.IMAGE:
-        return (
-            <ArticleImageBlockComponent
-                key={block.id}
-                className={cls.block}
-                block={block}
-            />
-        );
-    case ArticleBlockType.TEXT:
-        return (
-            <ArticleTextBlockComponent
-                key={block.id}
-                className={cls.block}
-                block={block}
-            />
-        );
-    default:
-        return null;
+        case ArticleBlockType.CODE:
+            return (
+                <ArticleCodeBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
+        case ArticleBlockType.IMAGE:
+            return (
+                <ArticleImageBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
+        case ArticleBlockType.TEXT:
+            return (
+                <ArticleTextBlockComponent
+                    key={block.id}
+                    className={cls.block}
+                    block={block}
+                />
+            );
+        default:
+            return null;
     }
 };
 
@@ -88,7 +88,12 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     if (isLoading) {
         content = (
             <VStack gap="32" max>
-                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+                <Skeleton
+                    className={cls.avatar}
+                    width={200}
+                    height={200}
+                    border="50%"
+                />
                 <Skeleton className={cls.title} width={300} height={24} />
                 <Skeleton className={cls.skeleton} width={600} height={24} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
@@ -107,15 +112,17 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
             <>
                 <HStack justify="center" max className={cls.avatarWrapper}>
                     <AppImage
-                        errorFallback={(
+                        errorFallback={
                             <Text
                                 align={TextAlign.CENTER}
                                 theme={TextTheme.ERROR}
                                 text={t('Ошибка загрузки изображения')}
                                 className={cls.Error}
                             />
-                        )}
-                        fallback={<Skeleton width={200} height={200} border="50%" />}
+                        }
+                        fallback={
+                            <Skeleton width={200} height={200} border="50%" />
+                        }
                         border="50%"
                         size={200}
                         src={article?.img}
@@ -138,7 +145,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
                         <Text text={article?.createdAt} />
                     </HStack>
                 </VStack>
-                {article?.blocks.map((renderBlock))}
+                {article?.blocks.map(renderBlock)}
             </>
         );
     }
@@ -146,7 +153,11 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <article>
-                <VStack gap="16" max className={classNames(cls.ArticleDetails, {}, [className])}>
+                <VStack
+                    gap="16"
+                    max
+                    className={classNames(cls.ArticleDetails, {}, [className])}
+                >
                     {content}
                 </VStack>
             </article>

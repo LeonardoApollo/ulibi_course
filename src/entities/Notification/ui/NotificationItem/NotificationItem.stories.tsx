@@ -1,8 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { Notification } from '../../model/types/types';
-
 import { NotificationItem } from './NotificationItem';
 
 export default {
@@ -13,7 +12,9 @@ export default {
     },
 } as ComponentMeta<typeof NotificationItem>;
 
-const Template: ComponentStory<typeof NotificationItem> = (args) => <NotificationItem {...args} />;
+const Template: ComponentStory<typeof NotificationItem> = (args) => (
+    <NotificationItem {...args} />
+);
 
 const notification: Notification = {
     id: '1',

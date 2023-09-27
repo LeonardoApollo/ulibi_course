@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
 import { ArticleView } from '@/entities/Article';
+
 import GridIcon from '@/shared/assets/icons/Articles_Grid.svg';
 import ListIcon from '@/shared/assets/icons/Articles_List.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
@@ -11,7 +12,7 @@ import cls from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {
     className?: string;
-    view: ArticleView,
+    view: ArticleView;
     onViewClick?: (view: ArticleView) => void;
 }
 
@@ -43,7 +44,9 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                 >
                     <Icon
                         Svg={viewType.icon}
-                        className={classNames('', { [cls.notSelected]: viewType.view !== view })}
+                        className={classNames('', {
+                            [cls.notSelected]: viewType.view !== view,
+                        })}
                     />
                 </Button>
             ))}

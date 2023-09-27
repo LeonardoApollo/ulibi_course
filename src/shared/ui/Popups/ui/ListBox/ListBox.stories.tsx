@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { ListBox } from './ListBox';
@@ -10,11 +10,17 @@ export default {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => <div style={{ padding: 220 }}><Story /></div>,
+        (Story) => (
+            <div style={{ padding: 220 }}>
+                <Story />
+            </div>
+        ),
     ],
 } as ComponentMeta<typeof ListBox>;
 
-const Template: ComponentStory<typeof ListBox> = (args) => <ListBox {...args} />;
+const Template: ComponentStory<typeof ListBox> = (args) => (
+    <ListBox {...args} />
+);
 
 const options = [
     { value: '1', content: 'Lorem ipsum very long fish text' },

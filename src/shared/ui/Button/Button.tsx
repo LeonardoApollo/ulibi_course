@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 
-import { classNames, Mods } from '@/shared/libs/classNames/classNames';
+import { Mods, classNames } from '@/shared/libs/classNames/classNames';
 
 import cls from './Button.module.scss';
 
@@ -10,7 +10,7 @@ export enum ThemeButton {
     OUTLINE = 'outline',
     OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
-    BACKGROUND_INVERTED = 'backgroundInverted'
+    BACKGROUND_INVERTED = 'backgroundInverted',
 }
 
 export enum SizeButton {
@@ -50,7 +50,11 @@ export const Button = memo((props: ButtonProps) => {
     return (
         <button
             type="button"
-            className={classNames(cls.Button, mods, [className, cls[theme], cls[size]])}
+            className={classNames(cls.Button, mods, [
+                className,
+                cls[theme],
+                cls[size],
+            ])}
             disabled={disabled}
             {...otherProps}
         >

@@ -1,11 +1,10 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { Notification } from '../../model/types/types';
-
-import { NotificationList } from './NotificationList';
-
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import { Notification } from '../../model/types/types';
+import { NotificationList } from './NotificationList';
 
 export default {
     title: 'entities/Notification/NotificationList',
@@ -15,7 +14,9 @@ export default {
     },
 } as ComponentMeta<typeof NotificationList>;
 
-const Template: ComponentStory<typeof NotificationList> = (args) => <NotificationList {...args} />;
+const Template: ComponentStory<typeof NotificationList> = (args) => (
+    <NotificationList {...args} />
+);
 
 const notification: Notification = {
     id: '1',
@@ -31,11 +32,13 @@ const authData = {
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [StoreDecorator({
-    user: {
-        authData,
-    },
-})];
+Normal.decorators = [
+    StoreDecorator({
+        user: {
+            authData,
+        },
+    }),
+];
 Normal.parameters = {
     mockData: [
         {

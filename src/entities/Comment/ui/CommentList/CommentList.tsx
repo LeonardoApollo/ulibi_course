@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Comment } from '../../modal/types/comment';
-import { CommentCard } from '../CommentCard/CommentCard';
-
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
+
+import { Comment } from '../../modal/types/comment';
+import { CommentCard } from '../CommentCard/CommentCard';
 
 interface CommentListProps {
     className?: string;
@@ -28,8 +28,8 @@ export const CommentList = memo((props: CommentListProps) => {
 
     return (
         <VStack gap="16" max className={classNames('', {}, [className])}>
-            {comments?.length
-                ? comments.map((comment) => (
+            {comments?.length ? (
+                comments.map((comment) => (
                     <CommentCard
                         data-testid={`ArticleDetails.Comment.${comment.text}`}
                         key={comment.id}
@@ -37,7 +37,9 @@ export const CommentList = memo((props: CommentListProps) => {
                         comment={comment}
                     />
                 ))
-                : <Text text={t('Комментарии отсутсвуют')} />}
+            ) : (
+                <Text text={t('Комментарии отсутсвуют')} />
+            )}
         </VStack>
     );
 });

@@ -12,18 +12,22 @@ const testArticle = {
     blocks: [],
 };
 
-export const createArticle = (article?: Article) => cy.request({
-    method: 'POST',
-    url: 'http://localhost:8000/articles',
-    headers: { Authorization: 'any' },
-    body: article ?? testArticle,
-}).then((resp) => resp.body);
+export const createArticle = (article?: Article) =>
+    cy
+        .request({
+            method: 'POST',
+            url: 'http://localhost:8000/articles',
+            headers: { Authorization: 'any' },
+            body: article ?? testArticle,
+        })
+        .then((resp) => resp.body);
 
-export const removeArticle = (articleId: string) => cy.request({
-    method: 'DELETE',
-    url: `http://localhost:8000/articles/${articleId}`,
-    headers: { Authorization: 'any' },
-});
+export const removeArticle = (articleId: string) =>
+    cy.request({
+        method: 'DELETE',
+        url: `http://localhost:8000/articles/${articleId}`,
+        headers: { Authorization: 'any' },
+    });
 
 declare global {
     namespace Cypress {

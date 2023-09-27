@@ -8,6 +8,7 @@ module.exports = {
         'plugin:react/recommended',
         'airbnb',
         'plugin:i18next/recommended',
+        'prettier',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -30,10 +31,14 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react/jsx-uses-react': 'off',
         'unused-imports/no-unused-imports': 'error',
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
-        indent: [2, 4],
-        'react/jsx-filename-extension': [2, { extensions: ['.js', 'jsx', 'tsx'] }],
+        // Настройка отступов и пробелов через ESlint
+        // 'react/jsx-indent': [2, 4],
+        // 'react/jsx-indent-props': [2, 4],
+        // indent: [2, 4],
+        'react/jsx-filename-extension': [
+            2,
+            { extensions: ['.js', 'jsx', 'tsx'] },
+        ],
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
         'import/prefer-default-export': 'off',
@@ -74,46 +79,49 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
-        'import/order': [
-            'error',
-            {
-                pathGroups: [
-                    {
-                        pattern: '@/**',
-                        group: 'internal',
-                        position: 'after',
-                    },
-                    {
-                        pattern: './**.module.*',
-                        group: 'internal',
-                        position: 'after',
-                    },
-                ],
-                'newlines-between': 'always',
-                alphabetize: {
-                    order: 'asc',
-                    caseInsensitive: false,
-                },
-            },
-        ],
+        // Настрока порядка импортов через ESlint
+        // 'import/order': [
+        //     'error',
+        //     {
+        //         pathGroups: [
+        //             {
+        //                 pattern: '@/**',
+        //                 group: 'internal',
+        //                 position: 'after',
+        //             },
+        //             {
+        //                 pattern: './**.module.*',
+        //                 group: 'internal',
+        //                 position: 'after',
+        //             },
+        //         ],
+        //         'newlines-between': 'always',
+        //         alphabetize: {
+        //             order: 'asc',
+        //             caseInsensitive: false,
+        //         },
+        //     },
+        // ],
         'ulib-tv-course-plugin/path-checker': ['error', { alias: '@' }],
         'ulib-tv-course-plugin/public-api-imports': [
             'error',
             {
                 alias: '@',
-                testFiles: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+                testFiles: [
+                    '**/*.test.*',
+                    '**/*.story.*',
+                    '**/StoreDecorator.tsx',
+                ],
             },
         ],
         'ulib-tv-course-plugin/layer-imports': [
             'error',
             {
                 alias: '@',
-                ignoreImportPatterns: [
-                    '**/StoreProvider',
-                    '**/testing',
-                ],
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     },
     globals: {
         __IS_DEV__: true,

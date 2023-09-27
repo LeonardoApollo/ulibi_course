@@ -1,13 +1,12 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-
-import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
-
-import { ArticleDetails } from './ArticleDetails';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
+
+import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
+import { ArticleDetails } from './ArticleDetails';
 
 export default {
     title: 'entities/ArticleDetails',
@@ -17,7 +16,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleDetails>;
 
-const Template: ComponentStory<typeof ArticleDetails> = (args) => <ArticleDetails {...args} />;
+const Template: ComponentStory<typeof ArticleDetails> = (args) => (
+    <ArticleDetails {...args} />
+);
 
 const article = {
     id: '1',
@@ -54,32 +55,41 @@ const article = {
 
 export const Primary = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];
+Primary.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+    }),
+];
 
 export const Loading = Template.bind({});
 Loading.args = {};
-Loading.decorators = [StoreDecorator({
-    articleDetails: {
-        isLoading: true,
-    },
-})];
+Loading.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            isLoading: true,
+        },
+    }),
+];
 
 export const Error = Template.bind({});
 Error.args = {};
-Error.decorators = [StoreDecorator({
-    articleDetails: {
-        error: 'error',
-    },
-})];
+Error.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            error: 'error',
+        },
+    }),
+];
 
 export const Dark = Template.bind({});
 Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];
+Dark.decorators = [
+    ThemeDecorator(Theme.DARK),
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+    }),
+];

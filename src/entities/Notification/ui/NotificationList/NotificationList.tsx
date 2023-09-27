@@ -2,15 +2,15 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { useNotifications } from '../../api/notificationApi';
-import { NotificationItem } from '../NotificationItem/NotificationItem';
-
 import { getUserAuthData } from '@/entities/User';
+
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 
+import { useNotifications } from '../../api/notificationApi';
+import { NotificationItem } from '../NotificationItem/NotificationItem';
 import cls from './NotificationList.module.scss';
 
 interface NotificationListProps {
@@ -26,9 +26,7 @@ export const NotificationList = memo(({ className }: NotificationListProps) => {
     if (error) {
         // @ts-ignore
         const message = error?.status;
-        return (
-            <Text title={t('Ошибка загрузки оповещений')} text={message} />
-        );
+        return <Text title={t('Ошибка загрузки оповещений')} text={message} />;
     }
 
     if (isLoading) {
@@ -52,9 +50,7 @@ export const NotificationList = memo(({ className }: NotificationListProps) => {
         >
             {data?.map((item) => {
                 if (userId?.id === item.userId) {
-                    return (
-                        <NotificationItem key={item.id} item={item} />
-                    );
+                    return <NotificationItem key={item.id} item={item} />;
                 }
                 return null;
             })}

@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from '@/shared/libs/classNames/classNames';
 import { Page } from '@/widgets/Page';
+
+import { classNames } from '@/shared/libs/classNames/classNames';
 
 import cls from './ForbiddenPage.module.scss';
 
@@ -14,7 +15,10 @@ const ForbiddenPage = ({ className }: ForbiddenPageProps) => {
     const { t } = useTranslation('forbidden');
 
     return (
-        <Page data-testid="ForbiddenPage" className={classNames(cls.ForbiddenPage, {}, [className])}>
+        <Page
+            data-testid="ForbiddenPage"
+            className={classNames(cls.ForbiddenPage, {}, [className])}
+        >
             {t('У вас нет доступа к этой странице')}
         </Page>
     );

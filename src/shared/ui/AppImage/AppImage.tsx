@@ -1,5 +1,11 @@
 import {
-    CSSProperties, ImgHTMLAttributes, ReactElement, memo, useLayoutEffect, useMemo, useState,
+    CSSProperties,
+    ImgHTMLAttributes,
+    ReactElement,
+    memo,
+    useLayoutEffect,
+    useMemo,
+    useState,
 } from 'react';
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -38,11 +44,14 @@ export const AppImage = memo((props: AppImageProps) => {
         };
     }, [src]);
 
-    const styles = useMemo<CSSProperties>(() => ({
-        width: size || '100%',
-        height: size || '100%',
-        borderRadius: border,
-    }), [size, border]);
+    const styles = useMemo<CSSProperties>(
+        () => ({
+            width: size || '100%',
+            height: size || '100%',
+            borderRadius: border,
+        }),
+        [size, border],
+    );
 
     if (isLoading && fallback) {
         return fallback;
