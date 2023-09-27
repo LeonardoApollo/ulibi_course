@@ -4,7 +4,14 @@ describe('User enters ArticlesPage', () => {
             cy.visit('articles');
         });
     });
+    // Пример пропуска теста
+    it.skip('ArticlesPage is loaded', () => {
+        cy.getbyTestId('ArticlesList').should('exist');
+        cy.getbyTestId('ArticlesListItem.GRID').should('have.length.greaterThan', 3);
+    });
+    // Пример использования стаба(~фикстуры)
     it('ArticlesPage is loaded', () => {
+        cy.intercept('GET', '**/articles?*', { fixture: 'articles.json' });
         cy.getbyTestId('ArticlesList').should('exist');
         cy.getbyTestId('ArticlesListItem.GRID').should('have.length.greaterThan', 3);
     });
