@@ -1,5 +1,4 @@
 import path from 'path';
-
 import webpack, { DefinePlugin } from 'webpack';
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
@@ -22,12 +21,14 @@ export default ({ config }: { config: webpack.Configuration }) => {
     };
 
     // @ts-ignore
-    config!.module!.rules = config?.module?.rules?.map((rule: webpack.RuleSetRule | '...') => {
-        if (rule !== '...' && /svg/.test(rule.test as string)) {
-            return { ...rule, exclude: /\.svg$/i };
-        }
-        return rule;
-    });
+    config!.module!.rules = config?.module?.rules?.map(
+        (rule: webpack.RuleSetRule | '...') => {
+            if (rule !== '...' && /svg/.test(rule.test as string)) {
+                return { ...rule, exclude: /\.svg$/i };
+            }
+            return rule;
+        },
+    );
 
     config?.module?.rules?.push({
         test: /\.svg$/,
@@ -36,11 +37,13 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
     config?.module?.rules?.push(buildCssLoader(true));
 
-    config?.plugins?.push(new DefinePlugin({
-        __IS_DEV__: JSON.stringify(true),
-        __API__: JSON.stringify('http://localhost:8000'),
-        __PROJECT__: JSON.stringify('storybook'),
-    }));
+    config?.plugins?.push(
+        new DefinePlugin({
+            __IS_DEV__: JSON.stringify(true),
+            __API__: JSON.stringify('http://localhost:8000'),
+            __PROJECT__: JSON.stringify('storybook'),
+        }),
+    );
 
     return config;
 };

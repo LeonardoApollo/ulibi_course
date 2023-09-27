@@ -61,12 +61,7 @@ export const Text = memo((props: TextProps) => {
 
     const HeaderTag = head ? mapHeadTagH1[head] : mapSizeToHeaderTag[size];
 
-    const aditionals = [
-        className,
-        cls[theme],
-        cls[align],
-        cls[size],
-    ];
+    const aditionals = [className, cls[theme], cls[align], cls[size]];
 
     return (
         <div className={classNames(cls.Text, {}, aditionals)}>
@@ -78,7 +73,11 @@ export const Text = memo((props: TextProps) => {
                     {title}
                 </HeaderTag>
             )}
-            {text && (<p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>{text}</p>)}
+            {text && (
+                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
+                    {text}
+                </p>
+            )}
         </div>
     );
 });

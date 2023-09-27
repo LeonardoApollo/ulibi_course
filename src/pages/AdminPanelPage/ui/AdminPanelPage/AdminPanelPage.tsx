@@ -1,8 +1,9 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { classNames } from '@/shared/libs/classNames/classNames';
 import { Page } from '@/widgets/Page';
+
+import { classNames } from '@/shared/libs/classNames/classNames';
 
 import cls from './AdminPanelPage.module.scss';
 
@@ -15,7 +16,10 @@ const AdminPanelPage = (props: AdminPanelPageProps) => {
     const { t } = useTranslation('admin');
 
     return (
-        <Page data-testid="AdminPanelPage" className={classNames(cls.AdminPanelPage, {}, [className])}>
+        <Page
+            data-testid="AdminPanelPage"
+            className={classNames(cls.AdminPanelPage, {}, [className])}
+        >
             {t('Админ панель')}
         </Page>
     );

@@ -22,25 +22,27 @@ interface AppLinkProps extends LinkProps {
     target?: HTMLAttributeAnchorTarget;
 }
 
-export const AppLink = forwardRef((props: AppLinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
-    const {
-        to,
-        className,
-        children,
-        theme = AppLinkTheme.PRIMARY,
-        target,
-        ...otherProps
-    } = props;
+export const AppLink = forwardRef(
+    (props: AppLinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
+        const {
+            to,
+            className,
+            children,
+            theme = AppLinkTheme.PRIMARY,
+            target,
+            ...otherProps
+        } = props;
 
-    return (
-        <Link
-            to={to}
-            ref={ref}
-            target={target}
-            className={classNames(cls.AppLink, {}, [className, cls[theme]])}
-            {...otherProps}
-        >
-            {children}
-        </Link>
-    );
-});
+        return (
+            <Link
+                to={to}
+                ref={ref}
+                target={target}
+                className={classNames(cls.AppLink, {}, [className, cls[theme]])}
+                {...otherProps}
+            >
+                {children}
+            </Link>
+        );
+    },
+);

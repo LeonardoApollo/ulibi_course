@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/shared/ui/Button';
 
@@ -16,10 +16,6 @@ export const BugButton = () => {
 
     return (
         // eslint-disable i18next/no-literal-string
-        <Button
-            onClick={onThrow}
-        >
-            404
-        </Button>
+        <Button onClick={onThrow}>404</Button>
     );
 };

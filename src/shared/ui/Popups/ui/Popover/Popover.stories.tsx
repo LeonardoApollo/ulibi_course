@@ -1,8 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { Button } from '../../../Button/Button';
-
 import { Popover } from './Popover';
 
 export default {
@@ -12,11 +11,17 @@ export default {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => <div style={{ padding: 220 }}><Story /></div>,
+        (Story) => (
+            <div style={{ padding: 220 }}>
+                <Story />
+            </div>
+        ),
     ],
 } as ComponentMeta<typeof Popover>;
 
-const Template: ComponentStory<typeof Popover> = (args) => <Popover {...args} />;
+const Template: ComponentStory<typeof Popover> = (args) => (
+    <Popover {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {

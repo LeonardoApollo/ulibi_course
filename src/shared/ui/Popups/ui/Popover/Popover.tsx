@@ -1,11 +1,10 @@
 import { Popover as HPopover } from '@headlessui/react';
 import { ReactNode } from 'react';
 
-import popupCls from '../../styles/popup.module.scss';
-
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DropDownDirection } from '@/shared/types/ui';
 
+import popupCls from '../../styles/popup.module.scss';
 import cls from './Popover.module.scss';
 
 interface PopoverProps {
@@ -16,15 +15,9 @@ interface PopoverProps {
 }
 
 export const Popover = (props: PopoverProps) => {
-    const {
-        className,
-        trigger,
-        direction = 'bottomLeft',
-        children,
-    } = props;
+    const { className, trigger, direction = 'bottomLeft', children } = props;
     return (
         <HPopover className={classNames(popupCls.popup, {}, [className])}>
-
             <HPopover.Button as="div" className={popupCls.trigger}>
                 {trigger}
             </HPopover.Button>
@@ -36,7 +29,6 @@ export const Popover = (props: PopoverProps) => {
             >
                 {children}
             </HPopover.Panel>
-
         </HPopover>
     );
 };

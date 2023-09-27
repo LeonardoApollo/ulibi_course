@@ -1,11 +1,12 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-
-import ProfileRating from './ProfileRating';
 
 import { Rating } from '@/entities/Rating';
 import { UserRole } from '@/entities/User';
+
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import ProfileRating from './ProfileRating';
 
 export default {
     title: 'features/ProfileRating',
@@ -15,7 +16,9 @@ export default {
     },
 } as ComponentMeta<typeof ProfileRating>;
 
-const Template: ComponentStory<typeof ProfileRating> = (args) => <ProfileRating {...args} />;
+const Template: ComponentStory<typeof ProfileRating> = (args) => (
+    <ProfileRating {...args} />
+);
 
 const articleRating: Rating = {
     rate: 0,
@@ -26,15 +29,17 @@ export const Rated = Template.bind({});
 Rated.args = {
     profileId: '1',
 };
-Rated.decorators = [StoreDecorator({
-    user: {
-        authData: {
-            id: '2',
-            username: 'User',
-            roles: [UserRole.USER],
+Rated.decorators = [
+    StoreDecorator({
+        user: {
+            authData: {
+                id: '2',
+                username: 'User',
+                roles: [UserRole.USER],
+            },
         },
-    },
-})];
+    }),
+];
 Rated.parameters = {
     mockData: [
         {
@@ -56,15 +61,17 @@ export const NotRated = Template.bind({});
 NotRated.args = {
     profileId: '1',
 };
-NotRated.decorators = [StoreDecorator({
-    user: {
-        authData: {
-            id: '2',
-            username: 'User',
-            roles: [UserRole.USER],
+NotRated.decorators = [
+    StoreDecorator({
+        user: {
+            authData: {
+                id: '2',
+                username: 'User',
+                roles: [UserRole.USER],
+            },
         },
-    },
-})];
+    }),
+];
 NotRated.parameters = {
     mockData: [
         {
@@ -86,15 +93,17 @@ export const OwnProfile = Template.bind({});
 OwnProfile.args = {
     profileId: '2',
 };
-OwnProfile.decorators = [StoreDecorator({
-    user: {
-        authData: {
-            id: '2',
-            username: 'User',
-            roles: [UserRole.USER],
+OwnProfile.decorators = [
+    StoreDecorator({
+        user: {
+            authData: {
+                id: '2',
+                username: 'User',
+                roles: [UserRole.USER],
+            },
         },
-    },
-})];
+    }),
+];
 OwnProfile.parameters = {
     mockData: [
         {

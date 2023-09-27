@@ -16,7 +16,13 @@ describe('User enters ProfilePage', () => {
     });
     it('Editing ProfileCard', () => {
         cy.updateProfile('new firstname', 'new lastname');
-        cy.getbyTestId('ProfileCard.firstname').should('have.value', 'new firstname');
-        cy.getbyTestId('ProfileCard.lastname').should('have.value', 'new lastname');
+        cy.getbyTestId('ProfileCard.firstname').should(
+            'have.value',
+            'new firstname',
+        );
+        cy.getbyTestId('ProfileCard.lastname').should(
+            'have.value',
+            'new lastname',
+        );
     });
 });

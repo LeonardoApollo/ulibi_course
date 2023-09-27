@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { ArticlesPageFilters } from './ArticlesPageFilters';
-
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import { ArticlesPageFilters } from './ArticlesPageFilters';
 
 export default {
     title: 'pages/Article/ArticlesPageFilters',
@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticlesPageFilters>;
 
-const Template: ComponentStory<typeof ArticlesPageFilters> = (args) => <ArticlesPageFilters {...args} />;
+const Template: ComponentStory<typeof ArticlesPageFilters> = (args) => (
+    <ArticlesPageFilters {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

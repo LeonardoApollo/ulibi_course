@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { StarRating } from './StarRating';
@@ -11,7 +11,9 @@ export default {
     },
 } as ComponentMeta<typeof StarRating>;
 
-const Template: ComponentStory<typeof StarRating> = (args) => <StarRating {...args} />;
+const Template: ComponentStory<typeof StarRating> = (args) => (
+    <StarRating {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {};

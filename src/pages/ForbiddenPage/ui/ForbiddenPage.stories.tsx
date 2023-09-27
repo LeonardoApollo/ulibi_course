@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import ForbiddenPage from './ForbiddenPage';
-
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+
+import ForbiddenPage from './ForbiddenPage';
 
 export default {
     title: 'pages/ForbiddenPage',
@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ForbiddenPage>;
 
-const Template: ComponentStory<typeof ForbiddenPage> = (args) => <ForbiddenPage {...args} />;
+const Template: ComponentStory<typeof ForbiddenPage> = (args) => (
+    <ForbiddenPage {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

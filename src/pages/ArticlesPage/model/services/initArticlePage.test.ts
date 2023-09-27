@@ -1,12 +1,15 @@
+import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
+
 import { fetchArticlesList } from './fetchArticlesList';
 import { initArticlePage } from './initArticlePage';
-
-import { TestAsyncThunk } from '@/shared/libs/tests/TestAsyncThunk/TestAsyncThunk';
 
 jest.mock('./fetchArticlesList');
 
 const urlParams = new URLSearchParams({
-    order: '', search: '', sort: '', type: '',
+    order: '',
+    search: '',
+    sort: '',
+    type: '',
 });
 
 describe('fetchNextArticlesPage.test', () => {

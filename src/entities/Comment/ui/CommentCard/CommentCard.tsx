@@ -1,7 +1,5 @@
 import { memo } from 'react';
 
-import { Comment } from '../../modal/types/comment';
-
 import { getRouteProfile } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { AppLink } from '@/shared/ui/AppLink';
@@ -10,6 +8,7 @@ import { Skeleton } from '@/shared/ui/Skeleton';
 import { VStack } from '@/shared/ui/Stack';
 import { Text } from '@/shared/ui/Text';
 
+import { Comment } from '../../modal/types/comment';
 import cls from './CommentCard.module.scss';
 
 interface CommentCardProps {
@@ -24,7 +23,14 @@ export const CommentCard = memo((props: CommentCardProps) => {
 
     if (isLoading) {
         return (
-            <VStack gap="8" max className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
+            <VStack
+                gap="8"
+                max
+                className={classNames(cls.CommentCard, {}, [
+                    className,
+                    cls.loading,
+                ])}
+            >
                 <div className={cls.header}>
                     <Skeleton width={30} height={30} border="50%" />
                     <Skeleton height={16} width={100} />
@@ -39,9 +45,19 @@ export const CommentCard = memo((props: CommentCardProps) => {
     }
 
     return (
-        <VStack data-testid={props['data-testid']} gap="8" max className={classNames(cls.CommentCard, {}, [className])}>
-            <AppLink to={getRouteProfile(comment.user.id)} className={cls.header}>
-                {comment.user.avatar ? <Avatar size={30} src={comment.user.avatar} /> : null}
+        <VStack
+            data-testid={props['data-testid']}
+            gap="8"
+            max
+            className={classNames(cls.CommentCard, {}, [className])}
+        >
+            <AppLink
+                to={getRouteProfile(comment.user.id)}
+                className={cls.header}
+            >
+                {comment.user.avatar ? (
+                    <Avatar size={30} src={comment.user.avatar} />
+                ) : null}
                 <Text title={comment.user.username} />
             </AppLink>
             <Text text={comment?.text} />

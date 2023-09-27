@@ -1,5 +1,10 @@
 import {
-    MutableRefObject, memo, useCallback, useEffect, useRef, useState,
+    MutableRefObject,
+    memo,
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
 } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
@@ -41,16 +46,21 @@ export const RatingCard = memo((props: RatingCardProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const [validationError, setValidationError] = useState('');
 
-    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+    const timerRef = useRef() as MutableRefObject<
+        ReturnType<typeof setTimeout>
+    >;
 
-    const onSelectStars = useCallback((selectedStarsCount: number) => {
-        setStarsCount(selectedStarsCount);
-        if (hasFeedback) {
-            setIsModalOpen(true);
-        } else {
-            onAccept?.(selectedStarsCount);
-        }
-    }, [onAccept, hasFeedback]);
+    const onSelectStars = useCallback(
+        (selectedStarsCount: number) => {
+            setStarsCount(selectedStarsCount);
+            if (hasFeedback) {
+                setIsModalOpen(true);
+            } else {
+                onAccept?.(selectedStarsCount);
+            }
+        },
+        [onAccept, hasFeedback],
+    );
 
     const acceptHandler = useCallback(() => {
         setIsModalOpen(false);
@@ -74,9 +84,12 @@ export const RatingCard = memo((props: RatingCardProps) => {
         }
     }, [feedback, acceptHandler, t]);
 
-    useEffect(() => () => {
-        clearTimeout(timerRef.current);
-    }, [isModalOpen]);
+    useEffect(
+        () => () => {
+            clearTimeout(timerRef.current);
+        },
+        [isModalOpen],
+    );
 
     const modalContent = (
         <>
@@ -97,55 +110,68 @@ export const RatingCard = memo((props: RatingCardProps) => {
         <Card data-testid={props['data-testid']} className={className} max>
             <VStack align="center" gap="8">
                 <Text title={starsCount ? t('Спасибо за оценку!') : title} />
-                <StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
+                <StarRating
+                    selectedStars={starsCount}
+                    size={40}
+                    onSelect={onSelectStars}
+                />
             </VStack>
             <BrowserView>
                 {isModalOpen && (
                     <Modal isOpen={isModalOpen} lazy onClose={cancelHandler}>
-                        {isClosing
-                            ? <Text align={TextAlign.CENTER} title={t('Спасибо за отзыв!')} />
-                            : (
-                                <>
-                                    {modalContent}
-                                    <VStack max gap="32">
-                                        <HStack gap="16" max justify="end">
-                                            <Button
-                                                theme={ThemeButton.OUTLINE_RED}
-                                                onClick={cancelHandler}
-                                                data-testid="RatingCard.Close"
-                                            >
-                                                {t('Закрыть')}
-                                            </Button>
-                                            <Button onClick={closeAcceptDelay} data-testid="RatingCard.Send">
-                                                {t('Отправить')}
-                                            </Button>
-                                        </HStack>
-                                    </VStack>
-                                </>
-                            )}
+                        {isClosing ? (
+                            <Text
+                                align={TextAlign.CENTER}
+                                title={t('Спасибо за отзыв!')}
+                            />
+                        ) : (
+                            <>
+                                {modalContent}
+                                <VStack max gap="32">
+                                    <HStack gap="16" max justify="end">
+                                        <Button
+                                            theme={ThemeButton.OUTLINE_RED}
+                                            onClick={cancelHandler}
+                                            data-testid="RatingCard.Close"
+                                        >
+                                            {t('Закрыть')}
+                                        </Button>
+                                        <Button
+                                            onClick={closeAcceptDelay}
+                                            data-testid="RatingCard.Send"
+                                        >
+                                            {t('Отправить')}
+                                        </Button>
+                                    </HStack>
+                                </VStack>
+                            </>
+                        )}
                     </Modal>
                 )}
             </BrowserView>
             <MobileView>
                 {isModalOpen && (
                     <Drawer isOpen={isModalOpen} onClose={cancelHandler}>
-                        {isClosing
-                            ? <Text align={TextAlign.CENTER} title={t('Спасибо за отзыв!')} />
-                            : (
-                                <>
-                                    {modalContent}
-                                    <VStack gap="32">
-                                        <Button
-                                            fullWidth
-                                            size={SizeButton.L}
-                                            onClick={closeAcceptDelay}
-                                            data-testid="RatingCard.Send"
-                                        >
-                                            {t('Отправить')}
-                                        </Button>
-                                    </VStack>
-                                </>
-                            )}
+                        {isClosing ? (
+                            <Text
+                                align={TextAlign.CENTER}
+                                title={t('Спасибо за отзыв!')}
+                            />
+                        ) : (
+                            <>
+                                {modalContent}
+                                <VStack gap="32">
+                                    <Button
+                                        fullWidth
+                                        size={SizeButton.L}
+                                        onClick={closeAcceptDelay}
+                                        data-testid="RatingCard.Send"
+                                    >
+                                        {t('Отправить')}
+                                    </Button>
+                                </VStack>
+                            </>
+                        )}
                     </Drawer>
                 )}
             </MobileView>

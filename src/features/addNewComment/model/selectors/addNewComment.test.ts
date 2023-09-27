@@ -1,6 +1,9 @@
-import { getAddCommentFormText, getAddCommentFormError } from './addCommentFormSelectors';
-
 import { StateSchema } from '@/app/providers/StoreProvider';
+
+import {
+    getAddCommentFormError,
+    getAddCommentFormText,
+} from './addCommentFormSelectors';
 
 describe('addCommentSelector.test', () => {
     test('should return error', () => {
@@ -21,7 +24,9 @@ describe('addCommentSelector.test', () => {
                 text: 'lorem ipsum',
             },
         };
-        expect(getAddCommentFormText(state as StateSchema)).toEqual('lorem ipsum');
+        expect(getAddCommentFormText(state as StateSchema)).toEqual(
+            'lorem ipsum',
+        );
     });
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};

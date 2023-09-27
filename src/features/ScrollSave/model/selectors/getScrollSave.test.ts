@@ -1,6 +1,6 @@
-import { getScrollSave, getScrollSaveByPath } from './getScrollSave';
-
 import { StateSchema } from '@/app/providers/StoreProvider';
+
+import { getScrollSave, getScrollSaveByPath } from './getScrollSave';
 
 describe('ScrollSave.test', () => {
     test('should return scroll', () => {
@@ -29,6 +29,8 @@ describe('ScrollSave.test', () => {
                 },
             },
         };
-        expect(getScrollSaveByPath(state as StateSchema, '/about')).toEqual(500);
+        expect(getScrollSaveByPath(state as StateSchema, '/about')).toEqual(
+            500,
+        );
     });
 });

@@ -15,7 +15,6 @@ export const ThemeSwithcer = memo(({ className }: ThemeSwitcherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-
         <Button
             theme={ThemeButton.CLEAR}
             className={classNames('', {}, [className])}

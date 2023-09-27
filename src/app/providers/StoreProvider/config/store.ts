@@ -1,15 +1,20 @@
 import {
-    CombinedState, Reducer, ReducersMapObject, configureStore,
+    CombinedState,
+    Reducer,
+    ReducersMapObject,
+    configureStore,
 } from '@reduxjs/toolkit';
 
-import { StateSchema, ThunkExtraArg } from './StateSchema';
-import { createReducerManager } from './reducerManager';
+import { ScrollSaveReducer } from '@/features/ScrollSave';
 
 import { counterReducer } from '@/entities/Counter';
 import { userReducer } from '@/entities/User';
-import { ScrollSaveReducer } from '@/features/ScrollSave';
+
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
+
+import { StateSchema, ThunkExtraArg } from './StateSchema';
+import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -33,11 +38,12 @@ export function createReduxStore(
         reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            thunk: {
-                extraArgument: extraArg,
-            },
-        }).concat(rtkApi.middleware),
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore
