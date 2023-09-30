@@ -8,6 +8,10 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
         open: true,
         historyApiFallback: true,
         liveReload: true,
-        allowedHosts: ['all'],
+        allowedHosts: 'auto',
+        client: {
+           webSocketTransport: 'sockjs',
+        },
+        webSocketServer: 'sockjs',
     };
 }
