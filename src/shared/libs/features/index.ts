@@ -3,3 +3,5 @@ export {
     getFeatureFlag,
     featureFlags,
 } from './setGetFeatures';
+
+export { toggleFeatures } from './toggleFeatures';

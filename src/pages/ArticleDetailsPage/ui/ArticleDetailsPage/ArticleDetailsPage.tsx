@@ -15,7 +15,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { getFeatureFlag } from '@/shared/libs/features';
+import { getFeatureFlag, toggleFeatures } from '@/shared/libs/features';
 import { VStack } from '@/shared/ui/Stack';
 
 import { articleDetailsPageReducer } from '../../modal/slices';
@@ -34,9 +34,8 @@ const reducers: ReducersList = {
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
     const { t } = useTranslation('article');
     const { id } = useParams<{ id: string }>();
+    // Захардкоженный флаг который не меняется рефакторингом
     const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
-    const isCounterEnabeld = getFeatureFlag('isCounterEnabled');
-
     if (!id) {
         return (
             <div
@@ -46,6 +45,14 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
             </div>
         );
     }
+    // Динамический флаг который можно изменить рефакторингом, предпочтителен
+    const counter = toggleFeatures({
+        name: 'isCounterEnabled',
+        // eslint-disable-next-line
+        on: () => <div>{t('new Counter')}</div>,
+        // eslint-disable-next-line
+        off: () => <Counter />,
+    });
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -62,7 +69,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
                         className={cls.commentTitle}
                         id={id}
                     />
-                    {isCounterEnabeld && <Counter />}
+                    {counter}
                 </VStack>
             </Page>
         </DynamicModuleLoader>
