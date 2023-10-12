@@ -437,6 +437,10 @@
             "username": "Admin",
             "password": "123",
             "roles": ["ADMIN"],
+            "features": {
+                "isArticleRatingEnabled": true,
+                "isCounterEnabled": true
+            },
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         },
         {
@@ -444,6 +448,10 @@
             "username": "User",
             "password": "345",
             "roles": ["USER"],
+            "features": {
+                "isArticleRatingEnabled": false,
+                "isCounterEnabled": false
+            },
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
         },
         {
@@ -451,6 +459,10 @@
             "username": "Manager",
             "password": "567",
             "roles": ["MANAGER"],
+            "features": {
+                "isArticleRatingEnabled": true,
+                "isCounterEnabled": false
+            },
             "avatar": ""
         },
         {

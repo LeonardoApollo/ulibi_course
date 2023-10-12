@@ -8,12 +8,14 @@ import { ArticleRating } from '@/features/articleRating';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 
 import { ArticleDetails } from '@/entities/Article';
+import { Counter } from '@/entities/Counter';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
+import { getFeatureFlag } from '@/shared/libs/features';
 import { VStack } from '@/shared/ui/Stack';
 
 import { articleDetailsPageReducer } from '../../modal/slices';
@@ -32,6 +34,8 @@ const reducers: ReducersList = {
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
     const { t } = useTranslation('article');
     const { id } = useParams<{ id: string }>();
+    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled');
+    const isCounterEnabeld = getFeatureFlag('isCounterEnabled');
 
     if (!id) {
         return (
@@ -52,12 +56,13 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
                 <VStack gap="16" max>
                     <ArticlesDetailsPageHeader />
                     <ArticleDetails id={id} />
-                    <ArticleRating articleId={id} />
+                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
                     <ArticleRecommendationsList />
                     <ArticleDetailsComments
                         className={cls.commentTitle}
                         id={id}
                     />
+                    {isCounterEnabeld && <Counter />}
                 </VStack>
             </Page>
         </DynamicModuleLoader>
