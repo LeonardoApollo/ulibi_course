@@ -45,7 +45,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
             </div>
         );
     }
-    // Динамический флаг который можно изменить рефакторингом, предпочтителен
+    // Захардкоженный флаг который можно изменить рефакторингом, предпочтителен
     const counter = toggleFeatures({
         name: 'isCounterEnabled',
         // eslint-disable-next-line
