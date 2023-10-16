@@ -444,7 +444,8 @@
             "jsonSettings": {
                 "theme": "app_orange_theme",
                 "isFirstVisit": true,
-                "settingsPageHasBeenOpen": false
+                "settingsPageHasBeenOpen": false,
+                "isArticlesPageWasOpend": true
             },
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         },
@@ -460,7 +461,8 @@
             "jsonSettings": {
                 "theme": "app_dark_theme",
                 "isFirstVisit": true,
-                "settingsPageHasBeenOpen": false
+                "settingsPageHasBeenOpen": false,
+                "isArticlesPageWasOpend": false
             },
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
         },
@@ -476,7 +478,8 @@
             "jsonSettings": {
                 "theme": "app_dark_theme",
                 "isFirstVisit": true,
-                "settingsPageHasBeenOpen": false
+                "settingsPageHasBeenOpen": false,
+                "isArticlesPageWasOpend": false
             },
             "avatar": ""
         },
