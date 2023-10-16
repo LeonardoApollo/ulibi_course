@@ -69,6 +69,7 @@ module.exports = {
                     'direction',
                     'border',
                     'size',
+                    'feature',
                 ],
             },
         ],
