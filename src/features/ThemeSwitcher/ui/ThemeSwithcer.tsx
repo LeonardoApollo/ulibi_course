@@ -7,8 +7,8 @@ import ThemeIcon from '@/shared/assets/icons/theme-light.svg';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Button, ThemeButton } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 
 interface ThemeSwitcherProps {
     className?: string;

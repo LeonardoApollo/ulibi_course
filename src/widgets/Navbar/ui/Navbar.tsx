@@ -11,10 +11,10 @@ import { getUserAuthData } from '@/entities/User';
 import { getRouteArticleCreate } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
-import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink';
-import { Button, ThemeButton } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import cls from './Navbar.module.scss';
 

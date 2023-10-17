@@ -6,9 +6,9 @@ import { ThemeSwithcer } from '@/features/ThemeSwitcher';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
-import { AppLogo } from '@/shared/ui/AppLogo';
-import { Button, SizeButton, ThemeButton } from '@/shared/ui/Button';
 import { VStack } from '@/shared/ui/Stack';
+import { Button, SizeButton, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { SideBarItem } from '../SideBarItem/SideBarItem';

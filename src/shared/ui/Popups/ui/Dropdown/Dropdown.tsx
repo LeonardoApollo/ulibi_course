@@ -4,7 +4,7 @@ import { Fragment, ReactNode } from 'react';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DropDownDirection } from '@/shared/types/ui';
 
-import { AppLink } from '../../../AppLink/AppLink';
+import { AppLink } from '../../../deprecated/AppLink/AppLink';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './Dropdown.module.scss';
 
@@ -22,6 +22,10 @@ interface DropdownProps {
     direction?: DropDownDirection;
 }
 
+/**
+ * Устарел, используем компоненты из папки redesigned
+ * @deprecated
+ */
 export const Dropdown = (props: DropdownProps) => {
     const { className, items, trigger, direction = 'bottomLeft' } = props;
 

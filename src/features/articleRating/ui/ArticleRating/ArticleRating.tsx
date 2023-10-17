@@ -6,9 +6,9 @@ import { getArticleDetailsData } from '@/entities/Article';
 import { RatingCard } from '@/entities/Rating';
 import { getUserAuthData } from '@/entities/User';
 
-import { Card } from '@/shared/ui/Card';
-import { Skeleton } from '@/shared/ui/Skeleton';
-import { Text, TextAlign } from '@/shared/ui/Text';
+import { Card } from '@/shared/ui/deprecated/Card';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Text, TextAlign } from '@/shared/ui/deprecated/Text';
 
 import { useArticleRating, useRateArticle } from '../../api/articleRatingApi';
 

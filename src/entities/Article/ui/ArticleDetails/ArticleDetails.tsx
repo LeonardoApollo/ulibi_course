@@ -10,11 +10,16 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { AppImage } from '@/shared/ui/AppImage';
-import { Icon } from '@/shared/ui/Icon';
-import { Skeleton } from '@/shared/ui/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Text, TextAlign, TextSize, TextTheme } from '@/shared/ui/Text';
+import { AppImage } from '@/shared/ui/deprecated/AppImage';
+import { Icon } from '@/shared/ui/deprecated/Icon';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import {
+    Text,
+    TextAlign,
+    TextSize,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import {

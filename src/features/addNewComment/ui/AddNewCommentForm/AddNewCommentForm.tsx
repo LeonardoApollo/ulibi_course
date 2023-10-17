@@ -8,9 +8,9 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Button, ThemeButton } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
 import { HStack } from '@/shared/ui/Stack';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { Input } from '@/shared/ui/deprecated/Input';
 
 import {
     getAddCommentFormError,

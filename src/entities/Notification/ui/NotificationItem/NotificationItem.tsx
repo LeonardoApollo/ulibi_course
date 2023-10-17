@@ -1,9 +1,9 @@
 import { memo } from 'react';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { AppLink } from '@/shared/ui/AppLink';
-import { Card, ThemeCard } from '@/shared/ui/Card';
-import { Text } from '@/shared/ui/Text';
+import { AppLink } from '@/shared/ui/deprecated/AppLink';
+import { Card, ThemeCard } from '@/shared/ui/deprecated/Card';
+import { Text } from '@/shared/ui/deprecated/Text';
 
 import { Notification } from '../../model/types/types';
 import cls from './NotificationItem.module.scss';

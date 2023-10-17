@@ -7,8 +7,8 @@ import { getArticleDetailsData } from '@/entities/Article';
 
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Button, ThemeButton } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
 
 import { getCanEditArticle } from '../../modal/selectors/getArticleCanChange/getCanEditArticle';
 
