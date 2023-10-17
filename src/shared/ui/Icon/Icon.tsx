@@ -8,14 +8,18 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
     className?: string;
     Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
     inverted?: boolean;
+    NoTheme?: boolean;
 }
 
 export const Icon = memo(
-    ({ className, Svg, inverted, ...otherProps }: IconProps) => (
+    ({ className, Svg, inverted, NoTheme, ...otherProps }: IconProps) => (
         <Svg
-            className={classNames(inverted ? cls.inverted : cls.Icon, {}, [
-                className,
-            ])}
+            className={classNames(
+                // eslint-disable-next-line
+                NoTheme ? '' : inverted ? cls.inverted : cls.Icon,
+                {},
+                [className],
+            )}
             {...otherProps}
         />
     ),

@@ -4,6 +4,7 @@ import AppSvg from '@/shared/assets/icons/AppLogo.svg';
 import AppSvgSmall from '@/shared/assets/icons/AppLogoSmall.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
 
+import { Icon } from '../Icon';
 import { HStack } from '../Stack';
 import cls from './AppLogo.module.scss';
 
@@ -27,7 +28,14 @@ export const AppLogo = memo(({ className, collapsed }: AppLogoProps) => (
             >
                 <div className={cls.gradientBig} />
                 <div className={cls.gradientSmall} />
-                <AppSvgSmall className={cls.appLogo} />
+                <Icon
+                    Svg={AppSvgSmall}
+                    width={60}
+                    color="#000"
+                    height={50}
+                    className={cls.appLogo}
+                    NoTheme
+                />
             </HStack>
         ) : (
             <HStack
@@ -37,7 +45,14 @@ export const AppLogo = memo(({ className, collapsed }: AppLogoProps) => (
             >
                 <div className={cls.gradientBig} />
                 <div className={cls.gradientSmall} />
-                <AppSvg className={cls.appLogo} />
+                <Icon
+                    Svg={AppSvg}
+                    width={190}
+                    color="#000"
+                    height={50}
+                    className={cls.appLogo}
+                    NoTheme
+                />
             </HStack>
         )}
     </>
