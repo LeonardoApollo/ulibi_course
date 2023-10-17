@@ -9,7 +9,9 @@ import { getUserInited, initAuthData } from '@/entities/User';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
+import { MainLayout } from '@/shared/layout';
 import { classNames } from '@/shared/libs/classNames/classNames';
+import { ToggleFeatures } from '@/shared/libs/features';
 
 import { AppRouter } from './providers/routers/index';
 
@@ -27,15 +29,31 @@ function App() {
     }
 
     return (
-        <div className={classNames('app', {}, [theme])}>
-            <Suspense fallback="">
-                <Navbar />
-                <div className="content-page">
-                    <Sidebar />
-                    {inited && <AppRouter />}
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            off={
+                <div className={classNames('app', {}, [theme])}>
+                    <Suspense fallback="">
+                        <Navbar />
+                        <div className="content-page">
+                            <Sidebar />
+                            <AppRouter />
+                        </div>
+                    </Suspense>
                 </div>
-            </Suspense>
-        </div>
+            }
+            on={
+                <div className={classNames('app_redesigned', {}, [theme])}>
+                    <Suspense fallback="">
+                        <MainLayout
+                            header={<Navbar />}
+                            content={<AppRouter />}
+                            sidebar={<Sidebar />}
+                        />
+                    </Suspense>
+                </div>
+            }
+        />
     );
 }
 

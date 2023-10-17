@@ -43,3 +43,16 @@
         }
     }
 }
+
+.SidebarRedesigned {
+    background: var(--light-bg-redesigned);
+    width: 220px;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 32px;
+}
+
+.appLogo {
+    padding: 50px 5px;
+}

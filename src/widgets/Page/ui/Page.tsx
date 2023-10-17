@@ -11,6 +11,7 @@ import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { useThrottle } from '@/shared/hooks/useThrottle';
 import { classNames } from '@/shared/libs/classNames/classNames';
+import { toggleFeatures } from '@/shared/libs/features';
 import { TestProps } from '@/shared/types/tests';
 
 import cls from './Page.module.scss';
@@ -55,7 +56,15 @@ export const Page = (props: PageProps) => {
     return (
         <main
             ref={wrapperRef}
-            className={classNames(cls.Page, {}, [className])}
+            className={classNames(
+                toggleFeatures({
+                    name: 'isAppRedesigned',
+                    on: () => cls.PageRedesigned,
+                    off: () => cls.Page,
+                }),
+                {},
+                [className],
+            )}
             onScroll={onScroll}
             id={PAGE_ID}
             // eslint-disable-next-line
