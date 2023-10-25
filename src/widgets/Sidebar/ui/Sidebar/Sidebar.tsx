@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwithcer } from '@/features/ThemeSwitcher';
 
+import ArrowIcon from '@/shared/assets/icons/ArrowRight.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
 import { VStack } from '@/shared/ui/Stack';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/deprecated/Button';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { SideBarItem } from '../SideBarItem/SideBarItem';
@@ -46,11 +48,27 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                     data-testid="sidebar"
                     className={classNames(
                         cls.SidebarRedesigned,
-                        { [cls.collapsed]: collapsed },
+                        { [cls.collapsedRedesigned]: collapsed },
                         [className],
                     )}
                 >
                     <AppLogo collapsed={collapsed} className={cls.appLogo} />
+                    <VStack role="navigation" gap="8" className={cls.items}>
+                        {itemsList}
+                    </VStack>
+                    <Icon
+                        data-testid="sidebar-toggle"
+                        onClick={onToggle}
+                        className={cls.collapseBtn}
+                        Svg={ArrowIcon}
+                        width={22}
+                        height={10}
+                        clickable
+                    />
+                    <div className={cls.swithcers}>
+                        <ThemeSwithcer />
+                        <LangSwitcher short={collapsed} className={cls.lang} />
+                    </div>
                 </section>
             }
             off={

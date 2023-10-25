@@ -30,7 +30,7 @@ export const AppLogo = memo(({ className, collapsed }: AppLogoProps) => (
                 <div className={cls.gradientSmall} />
                 <Icon
                     Svg={AppSvgSmall}
-                    width={60}
+                    width={30}
                     color="#000"
                     height={50}
                     className={cls.appLogo}

@@ -11,6 +11,10 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
     NoTheme?: boolean;
 }
 
+/**
+ * Устарел, используем компоненты из папки redesigned
+ * @deprecated
+ */
 export const Icon = memo(
     ({ className, Svg, inverted, NoTheme, ...otherProps }: IconProps) => (
         <Svg
