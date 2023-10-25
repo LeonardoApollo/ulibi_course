@@ -16,7 +16,7 @@ import {
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ToggleFeatures, getFeatureFlag } from '@/shared/libs/features';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import { articleDetailsPageReducer } from '../../modal/slices';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';

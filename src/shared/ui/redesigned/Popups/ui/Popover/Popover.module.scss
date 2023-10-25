@@ -1,0 +1,31 @@
+.panel {
+    background: var(--dark-bg-redesigned);
+    position: absolute;
+    z-index: 10000;
+    border-radius: 18px;
+    padding: 15px;
+
+    &.topRight {
+        bottom: 100%;
+        left: 0;
+    }
+
+    &.topLeft {
+        right: 0;
+        bottom: 100%;
+    }
+
+    &.bottomRight {
+        top: 100%;
+        left: 0;
+    }
+
+    &.bottomLeft {
+        top: 100%;
+        right: 0;
+    }
+}
+
+.active {
+    background: var(--accent-redesigned);
+}

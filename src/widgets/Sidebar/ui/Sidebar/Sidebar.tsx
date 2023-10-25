@@ -7,10 +7,10 @@ import { ThemeSwithcer } from '@/features/ThemeSwitcher';
 import ArrowIcon from '@/shared/assets/icons/ArrowRight.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
-import { VStack } from '@/shared/ui/Stack';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/deprecated/Button';
 import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 import { Icon } from '@/shared/ui/redesigned/Icon';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 import { SideBarItem } from '../SideBarItem/SideBarItem';

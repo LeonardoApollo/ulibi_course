@@ -7,7 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { Button } from './Button';
 
 export default {
-    title: 'shared/Button',
+    title: 'shared/redesigned/Button',
     component: Button,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -62,21 +62,18 @@ BackgroundTheme.args = {
 
 export const Square = Template.bind({});
 Square.args = {
-    children: '>',
     variant: 'background',
     square: true,
 };
 
 export const SquareM = Template.bind({});
 SquareM.args = {
-    children: '>',
     variant: 'background',
     square: true,
 };
 
 export const SquareL = Template.bind({});
 SquareL.args = {
-    children: '>',
     variant: 'background',
     square: true,
     size: 'size_l',
@@ -84,7 +81,6 @@ SquareL.args = {
 
 export const SquareXL = Template.bind({});
 SquareXL.args = {
-    children: '>',
     variant: 'background',
     square: true,
     size: 'size_xl',
@@ -92,7 +88,6 @@ SquareXL.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-    children: '>',
     variant: 'background',
     disabled: true,
 };
