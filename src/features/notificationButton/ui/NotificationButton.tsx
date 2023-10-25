@@ -3,12 +3,19 @@ import { BrowserView, MobileView } from 'react-device-detect';
 
 import { NotificationList } from '@/entities/Notification';
 
-import Notification from '@/shared/assets/icons/Notification.svg';
+import NotificationDeprecated from '@/shared/assets/icons/Notification.svg';
+import NotificationRedesigned from '@/shared/assets/icons/NotificationRedesigned.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Popover } from '@/shared/ui/Popups';
-import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
-import { Drawer } from '@/shared/ui/deprecated/Drawer';
-import { Icon } from '@/shared/ui/deprecated/Icon';
+import { ToggleFeatures } from '@/shared/libs/features';
+import {
+    Button as ButtonDeprecated,
+    ThemeButton,
+} from '@/shared/ui/deprecated/Button';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
+import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/Popups';
+import { Drawer } from '@/shared/ui/redesigned/Drawer';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Popover } from '@/shared/ui/redesigned/Popups';
 
 import cls from './NotificationButton.module.scss';
 
@@ -29,23 +36,64 @@ export const NotificationButton = memo(
         }, []);
 
         const trigger = (
-            <Button onClick={onOpenDrawer} theme={ThemeButton.CLEAR}>
-                <Icon Svg={Notification} inverted />
-            </Button>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <Icon
+                        Svg={NotificationRedesigned}
+                        clickable
+                        onClick={onOpenDrawer}
+                        width={18}
+                        height={18}
+                    />
+                }
+                off={
+                    <ButtonDeprecated
+                        onClick={onOpenDrawer}
+                        theme={ThemeButton.CLEAR}
+                    >
+                        <IconDeprecated Svg={NotificationDeprecated} inverted />
+                    </ButtonDeprecated>
+                }
+            />
         );
 
         return (
             <>
                 <BrowserView>
-                    <Popover
-                        className={classNames(cls.NotificationButton, {}, [
-                            className,
-                        ])}
-                        direction="bottomLeft"
-                        trigger={trigger}
-                    >
-                        <NotificationList className={cls.notifications} />
-                    </Popover>
+                    <ToggleFeatures
+                        feature="isAppRedesigned"
+                        on={
+                            <Popover
+                                className={classNames(
+                                    cls.NotificationButton,
+                                    {},
+                                    [className],
+                                )}
+                                direction="bottomLeft"
+                                trigger={trigger}
+                            >
+                                <NotificationList
+                                    className={cls.notifications}
+                                />
+                            </Popover>
+                        }
+                        off={
+                            <PopoverDeprecated
+                                className={classNames(
+                                    cls.NotificationButton,
+                                    {},
+                                    [className],
+                                )}
+                                direction="bottomLeft"
+                                trigger={trigger}
+                            >
+                                <NotificationList
+                                    className={cls.notifications}
+                                />
+                            </PopoverDeprecated>
+                        }
+                    />
                 </BrowserView>
                 <MobileView>
                     {trigger}

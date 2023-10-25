@@ -10,8 +10,6 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { HStack, VStack } from '@/shared/ui/Stack';
-import { AppImage } from '@/shared/ui/deprecated/AppImage';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
 import {
@@ -20,6 +18,8 @@ import {
     TextSize,
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
+import { AppImage } from '@/shared/ui/redesigned/AppImage';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import {
