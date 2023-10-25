@@ -9,7 +9,7 @@ import { ProfileRating } from '@/features/profileRating';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text';
+import { Text } from '@/shared/ui/deprecated/Text';
 
 interface ProfilePageProps {
     className?: string;

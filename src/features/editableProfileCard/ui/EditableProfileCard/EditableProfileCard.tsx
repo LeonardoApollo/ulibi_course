@@ -12,7 +12,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { ValidateProfileError } from '../../model/consts/consts';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';

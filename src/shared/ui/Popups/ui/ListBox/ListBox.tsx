@@ -4,8 +4,8 @@ import { Fragment, ReactNode } from 'react';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DropDownDirection } from '@/shared/types/ui';
 
-import { Button } from '../../../Button/Button';
 import { HStack } from '../../../Stack';
+import { Button } from '../../../deprecated/Button/Button';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
 
@@ -26,6 +26,10 @@ interface ListBoxProps {
     direction?: DropDownDirection;
 }
 
+/**
+ * Устарел, используем компоненты из папки redesigned
+ * @deprecated
+ */
 export const ListBox = (props: ListBoxProps) => {
     const {
         className,

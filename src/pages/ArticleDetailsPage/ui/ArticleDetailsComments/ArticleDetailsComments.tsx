@@ -8,9 +8,9 @@ import { CommentList } from '@/entities/Comment';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
-import { Loader } from '@/shared/ui/Loader';
 import { VStack } from '@/shared/ui/Stack';
-import { Text, TextSize } from '@/shared/ui/Text';
+import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { addCommentForArticle } from '../../modal/services/addCommentFormArticle/addNewCommentForAricle';

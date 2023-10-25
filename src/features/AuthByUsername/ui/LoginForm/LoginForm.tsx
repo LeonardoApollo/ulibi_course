@@ -8,9 +8,9 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Button, ThemeButton } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
-import { Text, TextTheme } from '@/shared/ui/Text';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
 
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { getLoginisLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';

@@ -70,6 +70,7 @@ module.exports = {
                     'border',
                     'size',
                     'feature',
+                    'variant',
                 ],
             },
         ],

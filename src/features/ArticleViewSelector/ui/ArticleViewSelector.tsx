@@ -5,8 +5,8 @@ import { ArticleView } from '@/entities/Article';
 import GridIcon from '@/shared/assets/icons/Articles_Grid.svg';
 import ListIcon from '@/shared/assets/icons/Articles_List.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Button, ThemeButton } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 
 import cls from './ArticleViewSelector.module.scss';
 
@@ -44,6 +44,8 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                 >
                     <Icon
                         Svg={viewType.icon}
+                        width={24}
+                        height={24}
                         className={classNames('', {
                             [cls.notSelected]: viewType.view !== view,
                         })}

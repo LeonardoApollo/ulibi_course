@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Skeleton } from '@/shared/ui/Skeleton';
 import { VStack } from '@/shared/ui/Stack';
-import { Text } from '@/shared/ui/Text';
+import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { Text } from '@/shared/ui/deprecated/Text';
 
 import { useNotifications } from '../../api/notificationApi';
 import { NotificationItem } from '../NotificationItem/NotificationItem';

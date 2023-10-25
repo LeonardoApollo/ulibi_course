@@ -25,6 +25,7 @@ export const parameters = {
 };
 
 addDecorator(StyleDecorator);
+// Заменен плагином
 // addDecorator(ThemeDecorator(Theme.LIGHT));
 addDecorator(RouterDecorator);
 addDecorator(SuspenceDecorator);

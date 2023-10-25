@@ -5,7 +5,7 @@ import { ArticleSortField } from '@/entities/Article';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { SortOrder } from '@/shared/types/sort';
-import { Select, SelectOptions } from '@/shared/ui/Select';
+import { Select, SelectOptions } from '@/shared/ui/deprecated/Select';
 
 import cls from './ArticleSortSelector.module.scss';
 

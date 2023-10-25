@@ -14,6 +14,10 @@ interface PopoverProps {
     children: ReactNode;
 }
 
+/**
+ * Устарел, используем компоненты из папки redesigned
+ * @deprecated
+ */
 export const Popover = (props: PopoverProps) => {
     const { className, trigger, direction = 'bottomLeft', children } = props;
     return (
