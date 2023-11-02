@@ -4,7 +4,7 @@ import { Mods, classNames } from '@/shared/libs/classNames/classNames';
 
 import cls from './Button.module.scss';
 
-export type ThemeButton = 'clear' | 'outline' | 'background';
+export type ThemeButton = 'clear' | 'outline' | 'background' | 'filled';
 
 export type SizeButton = 'size_m' | 'size_l' | 'size_xl';
 

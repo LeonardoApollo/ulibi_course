@@ -71,6 +71,7 @@ module.exports = {
                     'size',
                     'feature',
                     'variant',
+                    'borderRadius',
                 ],
             },
         ],
