@@ -34,6 +34,10 @@
     }
 }
 
+.SelectBtn {
+    white-space: nowrap;
+}
+
 .item {
     padding: 10px 20px;
     white-space: nowrap;
@@ -54,5 +58,9 @@
 }
 
 .active {
-    background: var(--inverted-primary-color);
+    background: var(--light-bg-redesigned);
+}
+
+.selected {
+    background: var(--light-bg-redesigned);
 }

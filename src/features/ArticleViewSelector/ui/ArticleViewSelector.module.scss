@@ -1,7 +1,41 @@
 .ArticleViewSelector {
     order: 3;
+
+    .notSelected {
+        fill: var(--secondary-color);
+    }
 }
 
-.notSelected {
-    fill: var(--secondary-color);
+.ArticleViewSelectorRedesigned {
+    min-width: 100px;
+    min-height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .IconConteiner {
+        position: relative;
+    }
+
+    .divider {
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        background-color: var(--light-bg-redesigned);
+        right: 50%;
+    }
+
+    .ViewIcon {
+        &:hover {
+            fill: var(--accent-redesigned);
+        }
+    }
+
+    .notSelected {
+        fill: var(--light-bg-redesigned);
+    }
+
+    .selected {
+        fill: var(--icon-redesigned);
+    }
 }

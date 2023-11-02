@@ -8,6 +8,8 @@ export type ThemeCard = 'normal' | 'outlined' | 'light';
 
 export type PaddingCard = '0' | '8' | '16' | '24';
 
+export type BorderCard = 'round' | 'default';
+
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     children: ReactNode;
@@ -15,6 +17,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     max?: boolean;
     padding?: PaddingCard;
     borderOnlybottom?: boolean;
+    borderRadius?: BorderCard;
 }
 
 const mapPaddingToClass: Record<PaddingCard, string> = {
@@ -31,6 +34,7 @@ export const Card = (props: CardProps) => {
         max,
         padding = '8',
         borderOnlybottom,
+        borderRadius = 'normal',
         ...otherProps
     } = props;
 
@@ -53,6 +57,7 @@ export const Card = (props: CardProps) => {
                 className,
                 cls[variant],
                 cls[peddingClass],
+                cls[borderRadius],
             ])}
             {...otherProps}
         >

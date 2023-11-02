@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { ArticleType } from '@/entities/Article';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { TabItem, Tabs } from '@/shared/ui/deprecated/Tabs';
+import { ToggleFeatures } from '@/shared/libs/features';
+import { TabItem, Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs';
+import { Tabs } from '@/shared/ui/redesigned/Tabs';
 
 interface ArticleTypeTabsProps {
     className?: string;
@@ -47,12 +49,28 @@ export const ArticleTypeTabs = memo((props: ArticleTypeTabsProps) => {
     );
 
     return (
-        <Tabs
-            value={value}
-            tabs={typeTabs}
-            onTabClick={onTabClick}
-            className={classNames('', {}, [className])}
-            data-testid={props['data-testid']}
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={
+                <Tabs
+                    value={value}
+                    gap="8"
+                    direction="column"
+                    tabs={typeTabs}
+                    onTabClick={onTabClick}
+                    className={classNames('', {}, [className])}
+                    data-testid={props['data-testid']}
+                />
+            }
+            off={
+                <TabsDeprecated
+                    value={value}
+                    tabs={typeTabs}
+                    onTabClick={onTabClick}
+                    className={classNames('', {}, [className])}
+                    data-testid={props['data-testid']}
+                />
+            }
         />
     );
 });
