@@ -1,10 +1,12 @@
 import { Listbox as HListBox } from '@headlessui/react';
 import { Fragment, ReactNode, useMemo } from 'react';
 
+import ArrowIcon from '@/shared/assets/icons/ArrowRedesigned.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { DropDownDirection } from '@/shared/types/ui';
 
 import { Button } from '../../../Button/Button';
+import { Icon } from '../../../Icon';
 import { HStack } from '../../../Stack';
 import popupCls from '../../styles/popup.module.scss';
 import cls from './ListBox.module.scss';
@@ -66,8 +68,9 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                         className={cls.SelectBtn}
                         variant="filled"
                         disabled={readonly}
+                        addonRight={<Icon Svg={ArrowIcon} />}
                     >
-                        {`${selectedItem?.content} ⮟` ?? defaultValue}
+                        {selectedItem?.content ?? defaultValue}
                     </Button>
                 </HListBox.Button>
                 <HListBox.Options

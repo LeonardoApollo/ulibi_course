@@ -5,10 +5,12 @@ import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 
 import { ArticleSortField, ArticleType } from '@/entities/Article';
 
+import LoopIcon from '@/shared/assets/icons/LoopRedesigned.svg';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { SortOrder } from '@/shared/types/sort';
-import { Input } from '@/shared/ui/deprecated/Input';
 import { Card } from '@/shared/ui/redesigned/Card';
+import { Icon } from '@/shared/ui/redesigned/Icon';
+import { Input } from '@/shared/ui/redesigned/Input';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import cls from './ArticlesFilters.module.scss';
@@ -50,6 +52,7 @@ export const ArticlesFilters = (props: ArticlesFiltersProps) => {
                     onChange={onChangeSearch}
                     value={search}
                     placeholder={t('Поиск')}
+                    addonLeft={<Icon Svg={LoopIcon} width={14} height={14} />}
                     data-testid="ArtilesFilter.search"
                 />
                 <ArticleTypeTabs
