@@ -50,7 +50,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
             {label && (
                 <span
                     className={classNames('', { [cls.readonly]: readonly })}
-                >{`${label}>`}</span>
+                >{`${label}`}</span>
             )}
             <HListBox
                 as="div"
