@@ -2,7 +2,9 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
+import { ToggleFeatures } from '@/shared/libs/features';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
@@ -58,13 +60,32 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <div
-            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
-            data-testid="ArticlesList"
-        >
-            {articles.length ? articles.map(renderArticle) : null}
-            {isLoading && getSkeletons(view)}
-        </div>
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={
+                <HStack
+                    wrap="wrap"
+                    gap="16"
+                    className={classNames(cls.ArticleListRedesigned, {}, [])}
+                    data-testid="ArticlesList"
+                >
+                    {articles.length ? articles.map(renderArticle) : null}
+                    {isLoading && getSkeletons(view)}
+                </HStack>
+            }
+            off={
+                <div
+                    className={classNames(cls.ArticleList, {}, [
+                        className,
+                        cls[view],
+                    ])}
+                    data-testid="ArticlesList"
+                >
+                    {articles.length ? articles.map(renderArticle) : null}
+                    {isLoading && getSkeletons(view)}
+                </div>
+            }
+        />
     );
 });
 

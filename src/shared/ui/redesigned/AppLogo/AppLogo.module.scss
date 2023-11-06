@@ -4,6 +4,11 @@
     max-height: 43px;
 }
 
+.appLogo {
+    position: relative;
+    z-index: 100;
+}
+
 .gradientBig {
     position: absolute;
     background:
