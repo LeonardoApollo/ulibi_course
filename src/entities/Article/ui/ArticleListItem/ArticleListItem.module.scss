@@ -109,3 +109,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.ArticleListItemRedesigned {
+    &.LIST {
+        width: 100%;
+    }
+
+    &.GRID {
+        width: 240px;
+        height: 350px;
+    }
+}
