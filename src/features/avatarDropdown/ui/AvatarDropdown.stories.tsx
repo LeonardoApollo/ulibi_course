@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import AvatarImg from '@/shared/ui/Avatar/2e2e2125ee53807c2d77b34773f84b5c.jpg';
+import AvatarImg from '@/shared/ui/redesigned/Avatar/2e2e2125ee53807c2d77b34773f84b5c.jpg';
 
 import { AvatarDropdown } from './AvatarDropdown';
 

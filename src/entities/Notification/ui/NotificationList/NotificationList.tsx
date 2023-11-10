@@ -5,9 +5,12 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { toggleFeatures } from '@/shared/libs/features';
+import { Skeleton as SkeletenDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text as TextRedesigned } from '@/shared/ui/redesigned/Text';
 
 import { useNotifications } from '../../api/notificationApi';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
@@ -23,6 +26,20 @@ export const NotificationList = memo(({ className }: NotificationListProps) => {
         pollingInterval: 5000,
     });
     const userId = useSelector(getUserAuthData);
+
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletenDeprecated,
+    });
+
+    const Text = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => TextRedesigned,
+        // @ts-ignore
+        off: () => TextDeprecated,
+    });
+
     if (error) {
         // @ts-ignore
         const message = error?.status;

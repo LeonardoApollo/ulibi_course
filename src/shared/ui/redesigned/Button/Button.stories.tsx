@@ -62,18 +62,21 @@ BackgroundTheme.args = {
 
 export const Square = Template.bind({});
 Square.args = {
+    children: '>',
     variant: 'background',
     square: true,
 };
 
 export const SquareM = Template.bind({});
 SquareM.args = {
+    children: '>',
     variant: 'background',
     square: true,
 };
 
 export const SquareL = Template.bind({});
 SquareL.args = {
+    children: '>',
     variant: 'background',
     square: true,
     size: 'size_l',
@@ -81,6 +84,7 @@ SquareL.args = {
 
 export const SquareXL = Template.bind({});
 SquareXL.args = {
+    children: '>',
     variant: 'background',
     square: true,
     size: 'size_xl',
@@ -88,6 +92,7 @@ SquareXL.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+    children: 'Text',
     variant: 'background',
     disabled: true,
 };

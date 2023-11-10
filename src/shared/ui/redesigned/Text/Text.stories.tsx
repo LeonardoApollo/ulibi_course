@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
@@ -44,7 +45,7 @@ Dark.args = {
     title: 'Title fish text',
     text: 'Text lorem ipsum',
 };
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
 
 export const ErrorDark = Template.bind({});
 ErrorDark.args = {
@@ -52,20 +53,20 @@ ErrorDark.args = {
     text: 'Text lorem ipsum',
     variant: 'error',
 };
-ErrorDark.decorators = [ThemeDecorator(Theme.DARK)];
+ErrorDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
 
 export const DarkOnlyTitle = Template.bind({});
 DarkOnlyTitle.args = {
     title: 'Title fish text',
 };
-DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
 
 export const DarkOnlyText = Template.bind({});
 DarkOnlyText.args = {
     title: 'Title fish text',
     text: 'Text lorem ipsum',
 };
-DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK)];
+DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
 
 export const SizeL = Template.bind({});
 SizeL.args = {

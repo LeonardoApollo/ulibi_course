@@ -22,6 +22,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
 
     // @ts-ignore
     config!.module!.rules = config?.module?.rules?.map(
+        // @ts-ignore
         (rule: webpack.RuleSetRule | '...') => {
             if (rule !== '...' && /svg/.test(rule.test as string)) {
                 return { ...rule, exclude: /\.svg$/i };
