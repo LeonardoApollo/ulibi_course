@@ -7,7 +7,6 @@
     opacity: 0;
     pointer-events: none;
     z-index: -1;
-    color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +15,6 @@
 .content {
     padding: 20px;
     border-radius: 12px;
-    background: var(--bg-color);
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 70%;
@@ -36,5 +34,17 @@
 .isClosing {
     .content {
         transform: scale(0.2);
+    }
+}
+
+.ModalRedesiged {
+    .content {
+        background: var(--light-bg-redesigned);
+    }
+}
+
+.ModalDeprecated {
+    .content {
+        background: var(--bg-color);
     }
 }

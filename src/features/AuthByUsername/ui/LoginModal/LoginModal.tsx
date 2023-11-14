@@ -2,7 +2,7 @@ import { FC, Suspense } from 'react';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Loader } from '@/shared/ui/deprecated/Loader';
-import { Modal } from '@/shared/ui/deprecated/Modal';
+import { Modal } from '@/shared/ui/redesigned/Modal';
 
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 import cls from './LoginModal.module.scss';

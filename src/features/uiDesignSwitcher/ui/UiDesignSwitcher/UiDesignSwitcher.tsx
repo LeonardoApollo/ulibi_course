@@ -5,9 +5,16 @@ import { useSelector } from 'react-redux';
 import { getUserAuthData } from '@/entities/User';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { getFeatureFlag, updateFeatureFlag } from '@/shared/libs/features';
+import {
+    ToggleFeatures,
+    getFeatureFlag,
+    toggleFeatures,
+    updateFeatureFlag,
+} from '@/shared/libs/features';
+import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
-import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
@@ -34,6 +41,12 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
         },
     ];
 
+    const Skeleton = toggleFeatures({
+        name: 'isAppRedesigned',
+        on: () => SkeletonRedesigned,
+        off: () => SkeletonDeprecated,
+    });
+
     const onChange = async (value: string) => {
         if (authData) {
             setIsLoading(true);
@@ -55,11 +68,25 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
             {isLoading ? (
                 <Skeleton width={100} height={40} />
             ) : (
-                <ListBox
-                    onChange={onChange}
-                    items={items}
-                    value={isAppRedesigned ? 'new' : 'old'}
-                    className={className}
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    on={
+                        <ListBox
+                            onChange={onChange}
+                            items={items}
+                            value={isAppRedesigned ? 'new' : 'old'}
+                            className={className}
+                        />
+                    }
+                    off={
+                        <ListBoxDeprecated
+                            defaultValue=""
+                            onChange={onChange}
+                            items={items}
+                            value={isAppRedesigned ? 'new' : 'old'}
+                            className={className}
+                        />
+                    }
                 />
             )}
         </HStack>

@@ -12,10 +12,10 @@ import { useTranslation } from 'react-i18next';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/deprecated/Button';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { Input } from '@/shared/ui/deprecated/Input';
-import { Modal } from '@/shared/ui/deprecated/Modal';
 import { StarRating } from '@/shared/ui/deprecated/StarRating';
 import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Drawer } from '@/shared/ui/redesigned/Drawer';
+import { Modal } from '@/shared/ui/redesigned/Modal';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 
 interface RatingCardProps {
