@@ -28,5 +28,7 @@
     "Закрыть": "Close",
     "Отправить": "Send",
     "Статья не существует или была удалена": "Article does not exist or has been deleted",
-    "Ошибка загрузки изображения": "Error loading image"
+    "Ошибка загрузки изображения": "Error loading image",
+    "просмотров_one": "{{count}} view",
+    "просмотров_other": "{{count}} views"
 }

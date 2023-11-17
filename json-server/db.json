@@ -458,13 +458,13 @@
             "features": {
                 "isArticleRatingEnabled": false,
                 "isCounterEnabled": false,
-                "isAppRedesigned": false
+                "isAppRedesigned": true
             },
             "jsonSettings": {
                 "theme": "app_dark_theme",
                 "isFirstVisit": true,
                 "settingsPageHasBeenOpen": false,
-                "isArticlesPageWasOpend": false
+                "isArticlesPageWasOpend": true
             },
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
         },
