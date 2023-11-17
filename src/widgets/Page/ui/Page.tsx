@@ -45,15 +45,16 @@ export const Page = (props: PageProps) => {
     });
 
     useInitialEffect(() => {
-        if (wrapperRef.current) {
+        if (wrapperRef.current && scrollPosition) {
             wrapperRef.current.scrollTop = scrollPosition;
             return;
         }
 
-        document.body.scrollIntoView({ behavior: 'smooth' });
+        document.body.scrollIntoView({ behavior: 'auto' });
     }, [pathname]);
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+        console.log(e);
         dispatch(
             ScrollSaveActions.setScrollPosition({
                 position: e.currentTarget.scrollTop,
