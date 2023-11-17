@@ -3,14 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { getCanEditArticle } from '@/widgets/ArticleAdditionalInfo';
+
+import { BackToArticlesBtn } from '@/features/backToArticlesBtn';
+
 import { getArticleDetailsData } from '@/entities/Article';
 
-import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
+import { getRouteArticleEdit } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Button, ThemeButton } from '@/shared/ui/deprecated/Button';
 import { HStack } from '@/shared/ui/redesigned/Stack';
-
-import { getCanEditArticle } from '../../modal/selectors/getArticleCanChange/getCanEditArticle';
 
 interface ArticlesDetailsPageHeaderProps {
     className?: string;
@@ -22,10 +24,6 @@ export const ArticlesDetailsPageHeader = memo(
         const navigate = useNavigate();
         const canEdit = useSelector(getCanEditArticle);
         const article = useSelector(getArticleDetailsData);
-
-        const onBackToList = useCallback(() => {
-            navigate(getRouteArticles());
-        }, [navigate]);
 
         const onEditArticle = useCallback(() => {
             if (article) {
@@ -39,13 +37,7 @@ export const ArticlesDetailsPageHeader = memo(
                 max
                 className={classNames('', {}, [className])}
             >
-                <Button
-                    theme={ThemeButton.OUTLINE}
-                    onClick={onBackToList}
-                    data-testid="ArticleDetails.Return"
-                >
-                    {t('Назад к списку')}
-                </Button>
+                <BackToArticlesBtn />
                 {canEdit && (
                     <Button
                         theme={ThemeButton.OUTLINE}

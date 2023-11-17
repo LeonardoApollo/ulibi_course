@@ -8,8 +8,8 @@ import { ArticleRating } from '@/features/articleRating';
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList';
 
 import { ArticleDetails } from '@/entities/Article';
-import { Counter } from '@/entities/Counter';
 
+import { StickyContentLayout } from '@/shared/layout';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import {
     DynamicModuleLoader,
@@ -19,8 +19,10 @@ import { ToggleFeatures, getFeatureFlag } from '@/shared/libs/features';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import { articleDetailsPageReducer } from '../../modal/slices';
+import { AdditionalInfoContainer } from '../AdditionalInfroContainer/AdditionalInfoContainer';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticlesDetailsPageHeader } from '../ArticlesDetailsPageHeader/ArticlesDetailsPageHeader';
+import { DetailsConteiner } from '../DetailsContent/DetailsConteiner';
 import cls from './ArticleDetailsPage.module.scss';
 
 interface ArticleDetailsPageProps {
@@ -56,26 +58,55 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <Page
-                data-testid="ArticleDetailsPage"
-                className={classNames(cls.ArticleDetailsPage, {}, [className])}
-            >
-                <VStack gap="16" max>
-                    <ArticlesDetailsPageHeader />
-                    <ArticleDetails id={id} />
-                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
-                    <ArticleRecommendationsList />
-                    <ArticleDetailsComments
-                        className={cls.commentTitle}
-                        id={id}
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <StickyContentLayout
+                        content={
+                            <Page
+                                data-testid="ArticleDetailsPage"
+                                className={classNames(
+                                    cls.ArticleDetailsPage,
+                                    {},
+                                    [className],
+                                )}
+                            >
+                                <VStack gap="16" max>
+                                    <DetailsConteiner />
+                                    <ArticleRating articleId={id} />
+                                    <ArticleRecommendationsList />
+                                    <ArticleDetailsComments
+                                        className={cls.commentTitle}
+                                        id={id}
+                                    />
+                                </VStack>
+                            </Page>
+                        }
+                        right={<AdditionalInfoContainer />}
                     />
-                    <ToggleFeatures
-                        feature="isCounterEnabled"
-                        on={<div>{t('new Counter')}</div>}
-                        off={<Counter />}
-                    />
-                </VStack>
-            </Page>
+                }
+                off={
+                    <Page
+                        data-testid="ArticleDetailsPage"
+                        className={classNames(cls.ArticleDetailsPage, {}, [
+                            className,
+                        ])}
+                    >
+                        <VStack gap="16" max>
+                            <ArticlesDetailsPageHeader />
+                            <ArticleDetails id={id} />
+                            {isArticleRatingEnabled && (
+                                <ArticleRating articleId={id} />
+                            )}
+                            <ArticleRecommendationsList />
+                            <ArticleDetailsComments
+                                className={cls.commentTitle}
+                                id={id}
+                            />
+                        </VStack>
+                    </Page>
+                }
+            />
         </DynamicModuleLoader>
     );
 };

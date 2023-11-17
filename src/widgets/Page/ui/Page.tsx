@@ -45,8 +45,13 @@ export const Page = (props: PageProps) => {
     });
 
     useInitialEffect(() => {
-        wrapperRef.current.scrollTop = scrollPosition;
-    }, []);
+        if (wrapperRef.current) {
+            wrapperRef.current.scrollTop = scrollPosition;
+            return;
+        }
+
+        document.body.scrollIntoView({ behavior: 'smooth' });
+    }, [pathname]);
 
     const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
         dispatch(
