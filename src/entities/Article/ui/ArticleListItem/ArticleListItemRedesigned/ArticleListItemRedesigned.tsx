@@ -25,7 +25,11 @@ export const ArticleListItemRedesigned = memo(
 
         const userInfo = (
             <>
-                <Avatar size={32} src={article.user.avatar} />
+                <Avatar
+                    className={cls.avatar}
+                    size={32}
+                    src={article.user.avatar}
+                />
                 <Text bold text={article.user.username} />
             </>
         );
@@ -109,7 +113,7 @@ export const ArticleListItemRedesigned = memo(
                     cls[view],
                 ])}
             >
-                <Card className={cls.card} borderRadius="round">
+                <Card className={cls.card} borderRadius="round" padding="0">
                     <AppImage
                         errorFallback={
                             <Text

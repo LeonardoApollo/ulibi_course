@@ -10,16 +10,19 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Icon } from '@/shared/ui/deprecated/Icon';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { ToggleFeatures, toggleFeatures } from '@/shared/libs/features';
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import {
-    Text,
     TextAlign,
+    Text as TextDeprecated,
     TextSize,
     TextTheme,
 } from '@/shared/ui/deprecated/Text';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ArticleBlockType } from '../../model/consts/consts';
 import {
@@ -75,11 +78,88 @@ const renderBlock = (block: ArticleBlock) => {
     }
 };
 
+const Skeleton = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => SkeletonRedesigned,
+    off: () => SkeletonDeprecated,
+});
+
+const Deprecated = () => {
+    const article = useSelector(getArticleDetailsData);
+    const { t } = useTranslation('article');
+    return (
+        <>
+            <HStack justify="center" max className={cls.avatarWrapper}>
+                <AppImage
+                    errorFallback={
+                        <TextDeprecated
+                            align={TextAlign.CENTER}
+                            theme={TextTheme.ERROR}
+                            text={t('Ошибка загрузки изображения')}
+                            className={cls.Error}
+                        />
+                    }
+                    fallback={
+                        <Skeleton width={200} height={200} border="50%" />
+                    }
+                    border="50%"
+                    size={200}
+                    src={article?.img}
+                    className={cls.avatar}
+                />
+            </HStack>
+            <VStack gap="4" max data-testid="ArticleDetails.Info">
+                <TextDeprecated
+                    head="h1"
+                    title={article?.title}
+                    text={article?.subtitle}
+                    size={TextSize.L}
+                />
+                <HStack gap="8" className={cls.articleInfo}>
+                    <IconDeprecated Svg={EyeIcon} className={cls.icon} />
+                    <TextDeprecated text={String(article?.views)} />
+                </HStack>
+                <HStack gap="8" className={cls.articleInfo}>
+                    <IconDeprecated Svg={CalendarIcon} className={cls.icon} />
+                    <TextDeprecated text={article?.createdAt} />
+                </HStack>
+            </VStack>
+            {article?.blocks.map(renderBlock)}
+        </>
+    );
+};
+
+const Redesigned = () => {
+    const article = useSelector(getArticleDetailsData);
+    const { t } = useTranslation('article');
+    return (
+        <>
+            <Text head="h1" title={article?.title} size="size_l" bold />
+            <Text text={article?.subtitle} size="size_l" />
+            <AppImage
+                errorFallback={
+                    <Text
+                        align="center"
+                        variant="error"
+                        text={t('Ошибка загрузки изображения')}
+                        className={cls.Error}
+                    />
+                }
+                fallback={<Skeleton width={200} height={200} border="50%" />}
+                border="16px"
+                width="100%"
+                src={article?.img}
+                className={cls.img}
+            />
+            {article?.blocks.map(renderBlock)}
+        </>
+    );
+};
+
 export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
     const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticleDetailsIsLoading);
-    const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
 
     useEffect(() => {
@@ -114,44 +194,11 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
         );
     } else {
         content = (
-            <>
-                <HStack justify="center" max className={cls.avatarWrapper}>
-                    <AppImage
-                        errorFallback={
-                            <Text
-                                align={TextAlign.CENTER}
-                                theme={TextTheme.ERROR}
-                                text={t('Ошибка загрузки изображения')}
-                                className={cls.Error}
-                            />
-                        }
-                        fallback={
-                            <Skeleton width={200} height={200} border="50%" />
-                        }
-                        border="50%"
-                        size={200}
-                        src={article?.img}
-                        className={cls.avatar}
-                    />
-                </HStack>
-                <VStack gap="4" max data-testid="ArticleDetails.Info">
-                    <Text
-                        head="h1"
-                        title={article?.title}
-                        text={article?.subtitle}
-                        size={TextSize.L}
-                    />
-                    <HStack gap="8" className={cls.articleInfo}>
-                        <Icon Svg={EyeIcon} className={cls.icon} />
-                        <Text text={String(article?.views)} />
-                    </HStack>
-                    <HStack gap="8" className={cls.articleInfo}>
-                        <Icon Svg={CalendarIcon} className={cls.icon} />
-                        <Text text={article?.createdAt} />
-                    </HStack>
-                </VStack>
-                {article?.blocks.map(renderBlock)}
-            </>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={<Redesigned />}
+                off={<Deprecated />}
+            />
         );
     }
 
