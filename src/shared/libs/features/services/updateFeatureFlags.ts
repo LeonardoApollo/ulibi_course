@@ -5,7 +5,7 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
-import { getAllFeatureFlags, setFeatureFlags } from '../lib/setGetFeatures';
+import { getAllFeatureFlags } from '../lib/setGetFeatures';
 
 interface UpdateFeatureFlagOptions {
     userId: string;
@@ -16,7 +16,7 @@ export const updateFeatureFlag = createAsyncThunk<
     void,
     UpdateFeatureFlagOptions,
     ThunkConfig<string>
->('user/saveJsonSettings', async ({ userId, newFeatures }, thunkApi) => {
+>('features/updateFeatureFlag', async ({ userId, newFeatures }, thunkApi) => {
     const { rejectWithValue, dispatch } = thunkApi;
 
     const allFeatures = {
@@ -32,9 +32,9 @@ export const updateFeatureFlag = createAsyncThunk<
         );
 
         // Используется для обновления страницы, без forceUpdate
-        // window.location.reload();
+        window.location.reload();
 
-        setFeatureFlags(allFeatures);
+        // setFeatureFlags(allFeatures);
 
         return undefined;
     } catch (error) {
