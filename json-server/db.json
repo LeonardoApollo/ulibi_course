@@ -461,7 +461,7 @@
                 "isAppRedesigned": true
             },
             "jsonSettings": {
-                "theme": "app_dark_theme",
+                "theme": "app_orange_theme",
                 "isFirstVisit": true,
                 "settingsPageHasBeenOpen": false,
                 "isArticlesPageWasOpend": true
@@ -589,6 +589,13 @@
             "rate": 3,
             "feedback": "RateFromMobile",
             "id": "rI6ALly"
+        },
+        {
+            "userId": "2",
+            "articleId": "9",
+            "rate": 4,
+            "feedback": "Redesigne!",
+            "id": "9v-grgN"
         }
     ],
     "profile-ratings": [

@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import { ArticleList } from '@/entities/Article';
 
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { ToggleFeatures } from '@/shared/libs/features';
+import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 
@@ -28,7 +30,16 @@ export const ArticleRecommendationsList = memo(
                 className={className}
                 data-testid="ArticleDetails.Rec"
             >
-                <Text size={TextSize.L} title={t('Рекоммендуем')} />
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    on={<Text size="size_l" title={t('Рекоммендуем')} />}
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            title={t('Рекоммендуем')}
+                        />
+                    }
+                />
                 <ArticleList articles={data} target="_blank" />
             </VStack>
         );
