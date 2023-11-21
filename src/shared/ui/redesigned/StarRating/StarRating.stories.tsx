@@ -4,7 +4,7 @@ import React from 'react';
 import { StarRating } from './StarRating';
 
 export default {
-    title: 'shared/deprecated/StarRating',
+    title: 'shared/redesigned/StarRating',
     component: StarRating,
     argTypes: {
         backgroundColor: { control: 'color' },

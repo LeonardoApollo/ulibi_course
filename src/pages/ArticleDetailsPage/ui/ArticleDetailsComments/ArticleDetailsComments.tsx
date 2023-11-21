@@ -8,14 +8,17 @@ import { CommentList } from '@/entities/Comment';
 
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
+import { ToggleFeatures } from '@/shared/libs/features';
 import { Loader } from '@/shared/ui/deprecated/Loader';
-import { Text, TextSize } from '@/shared/ui/deprecated/Text';
+import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { getArticleCommentsIsLoading } from '../../modal/selectors/getComments/getComments';
 import { addCommentForArticle } from '../../modal/services/addCommentFormArticle/addNewCommentForAricle';
 import { fetchCommentsByArticleId } from '../../modal/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { getArticleComments } from '../../modal/slices/ArticleDetailsCommentsSlice';
+import cls from './ArticleDetailsComments.module.scss';
 
 interface ArticleDetailsCommentsProps {
     className?: string;
@@ -42,15 +45,28 @@ export const ArticleDetailsComments = memo(
 
         return (
             <VStack max>
-                <Text
-                    size={TextSize.L}
-                    className={className}
-                    title={t('Комментарии')}
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    on={
+                        <Text
+                            size="size_l"
+                            className={className}
+                            title={t('Комментарии')}
+                        />
+                    }
+                    off={
+                        <TextDeprecated
+                            size={TextSize.L}
+                            className={className}
+                            title={t('Комментарии')}
+                        />
+                    }
                 />
                 <Suspense fallback={<Loader />}>
                     <AddNewCommentForm onSendComment={onSendComment} />
                 </Suspense>
                 <CommentList
+                    className={cls.CommentList}
                     isLoading={commentsIsLoading}
                     comments={commnets}
                 />
