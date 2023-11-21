@@ -5,9 +5,17 @@ import { useSelector } from 'react-redux';
 import { RatingCard } from '@/entities/Rating';
 import { getUserAuthData } from '@/entities/User';
 
-import { Card } from '@/shared/ui/deprecated/Card';
-import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
-import { Text, TextAlign, TextTheme } from '@/shared/ui/deprecated/Text';
+import { ToggleFeatures, toggleFeatures } from '@/shared/libs/features';
+import { Card as CardDeprecated } from '@/shared/ui/deprecated/Card';
+import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
+import {
+    TextAlign,
+    Text as TextDeprecated,
+    TextTheme,
+} from '@/shared/ui/deprecated/Text';
+import { Card } from '@/shared/ui/redesigned/Card';
+import { Skeleton as SkeletonRedesigned } from '@/shared/ui/redesigned/Skeleton';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { useProfileRating, useRateProfile } from '../api/profileRatingApi';
 
@@ -15,6 +23,12 @@ export interface ProfileRatingProps {
     className?: string;
     profileId?: string;
 }
+
+const Skeleton = toggleFeatures({
+    name: 'isAppRedesigned',
+    on: () => SkeletonRedesigned,
+    off: () => SkeletonDeprecated,
+});
 
 const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
     const { t } = useTranslation('profile');
@@ -66,25 +80,53 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
         // @ts-ignore
         const message = error?.status;
         return (
-            <Card max>
-                <Text
-                    theme={TextTheme.ERROR}
-                    align={TextAlign.CENTER}
-                    title={t('Ошибка загрузки рейтинга')}
-                    text={message}
-                />
-            </Card>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <Card max borderRadius="round">
+                        <Text
+                            variant="error"
+                            align="center"
+                            title={t('Ошибка загрузки рейтинга')}
+                            text={message}
+                        />
+                    </Card>
+                }
+                off={
+                    <CardDeprecated max>
+                        <TextDeprecated
+                            theme={TextTheme.ERROR}
+                            align={TextAlign.CENTER}
+                            title={t('Ошибка загрузки рейтинга')}
+                            text={message}
+                        />
+                    </CardDeprecated>
+                }
+            />
         );
     }
 
     if (profileId === userData?.id) {
         return (
-            <Card max>
-                <Text
-                    align={TextAlign.CENTER}
-                    title={t('Вы не можете оценить свой профиль')}
-                />
-            </Card>
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <Card max borderRadius="round">
+                        <Text
+                            align="center"
+                            title={t('Вы не можете оценить свой профиль')}
+                        />
+                    </Card>
+                }
+                off={
+                    <CardDeprecated max>
+                        <TextDeprecated
+                            align={TextAlign.CENTER}
+                            title={t('Вы не можете оценить свой профиль')}
+                        />
+                    </CardDeprecated>
+                }
+            />
         );
     }
 

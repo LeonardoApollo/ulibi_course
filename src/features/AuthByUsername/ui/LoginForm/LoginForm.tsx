@@ -17,6 +17,7 @@ import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -66,7 +67,10 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
             <ToggleFeatures
                 feature="isAppRedesigned"
                 on={
-                    <div className={classNames(cls.LoginForm, {}, [className])}>
+                    <VStack
+                        gap="16"
+                        className={classNames(cls.LoginForm, {}, [className])}
+                    >
                         <Text title={t('Форма авторизации')} />
                         {error && (
                             <Text
@@ -99,7 +103,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                         >
                             {t('Войти')}
                         </Button>
-                    </div>
+                    </VStack>
                 }
                 off={
                     <div className={classNames(cls.LoginForm, {}, [className])}>
