@@ -8,6 +8,8 @@ import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
+import cls from './SettingPage.module.scss';
+
 interface SettingPageProps {
     className?: string;
 }
@@ -20,7 +22,7 @@ const SettingPage = memo((props: SettingPageProps) => {
         <Page className={className}>
             <VStack gap="16">
                 <Text title={t('Настройки')} />
-                <UiDesignSwitcher />
+                <UiDesignSwitcher className={cls.Switcher} />
             </VStack>
         </Page>
     );

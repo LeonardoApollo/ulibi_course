@@ -6,6 +6,8 @@ import cls from './Button.module.scss';
 
 export type ThemeButton = 'clear' | 'outline' | 'background' | 'filled';
 
+export type ColorButton = 'success' | 'normal' | 'error';
+
 export type SizeButton = 'size_m' | 'size_l' | 'size_xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,6 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
     addonLeft?: ReactNode;
     addonRight?: ReactNode;
+    colorType?: ColorButton;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -31,6 +34,7 @@ export const Button = memo((props: ButtonProps) => {
         fullWidth,
         addonLeft,
         addonRight,
+        colorType = 'normal',
         ...otherProps
     } = props;
 
@@ -48,6 +52,7 @@ export const Button = memo((props: ButtonProps) => {
                 className,
                 cls[variant],
                 cls[size],
+                cls[colorType],
             ])}
             disabled={disabled}
             {...otherProps}

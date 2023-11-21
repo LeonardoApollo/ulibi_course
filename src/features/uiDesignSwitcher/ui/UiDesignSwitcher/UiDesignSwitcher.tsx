@@ -11,6 +11,7 @@ import {
     toggleFeatures,
     updateFeatureFlag,
 } from '@/shared/libs/features';
+import { useForceUpdate } from '@/shared/render/forceUpdate';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Skeleton as SkeletonDeprecated } from '@/shared/ui/deprecated/Skeleton';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
@@ -29,6 +30,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const dispatch = useAppDispatch();
     const authData = useSelector(getUserAuthData);
     const [isLoading, setIsLoading] = useState(false);
+    const forceUpdate = useForceUpdate();
 
     const items = [
         {
@@ -59,6 +61,7 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                 }),
             ).unwrap();
             setIsLoading(false);
+            forceUpdate();
         }
     };
 
@@ -66,7 +69,12 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
         <HStack>
             <Text text={t('Вариант интерфейса')} />
             {isLoading ? (
-                <Skeleton width={100} height={40} />
+                <Skeleton
+                    width={100}
+                    height={40}
+                    className={className}
+                    border="15%"
+                />
             ) : (
                 <ToggleFeatures
                     feature="isAppRedesigned"

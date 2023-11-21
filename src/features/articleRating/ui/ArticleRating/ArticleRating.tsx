@@ -80,7 +80,7 @@ const ArticleRating = (props: ArticleRatingProps) => {
             <ToggleFeatures
                 feature="isAppRedesigned"
                 on={
-                    <Card max>
+                    <Card max borderRadius="round">
                         <Text
                             align="center"
                             title={t('Вы не можете оценить свою статью')}

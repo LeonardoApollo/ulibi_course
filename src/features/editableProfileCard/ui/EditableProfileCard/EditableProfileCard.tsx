@@ -12,7 +12,9 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { ToggleFeatures } from '@/shared/libs/features';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 import { ValidateProfileError } from '../../model/consts/consts';
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
@@ -126,11 +128,24 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
             <EditableProfileCardHeader />
             {validateErrors?.length &&
                 validateErrors.map((error) => (
-                    <Text
-                        key={error}
-                        theme={TextTheme.ERROR}
-                        text={validateErrorTranslates[error]}
-                        data-testid="EditableProfileCard.Error"
+                    <ToggleFeatures
+                        feature="isAppRedesigned"
+                        on={
+                            <Text
+                                key={error}
+                                variant="error"
+                                text={validateErrorTranslates[error]}
+                                data-testid="EditableProfileCard.Error"
+                            />
+                        }
+                        off={
+                            <TextDeprecated
+                                key={error}
+                                theme={TextTheme.ERROR}
+                                text={validateErrorTranslates[error]}
+                                data-testid="EditableProfileCard.Error"
+                            />
+                        }
                     />
                 ))}
             <ProfileCard

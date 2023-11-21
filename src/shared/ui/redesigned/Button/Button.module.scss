@@ -42,16 +42,51 @@
     border: none;
     outline: none;
     border-radius: 34px;
+
+    &.error {
+        border: 2px solid var(--cancel-redesigned);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &.success {
+        border: 2px solid var(--save-redesigned);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
 }
 
 .outline {
-    border: 2px solid var(--icon-redesigned);
     color: var(--text-redesigned);
     border-radius: 34px;
     background: none;
 
     &:hover {
         border: 2px solid var(--accent-redesigned);
+    }
+
+    &.normal {
+        border: 2px solid var(--icon-redesigned);
+    }
+
+    &.error {
+        border: 2px solid var(--cancel-redesigned);
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &.success {
+        border: 2px solid var(--save-redesigned);
+
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
 

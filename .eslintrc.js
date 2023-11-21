@@ -73,6 +73,7 @@ module.exports = {
                     'variant',
                     'borderRadius',
                     'wrap',
+                    'colorType',
                 ],
             },
         ],

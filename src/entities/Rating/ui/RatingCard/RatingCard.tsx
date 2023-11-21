@@ -148,7 +148,12 @@ export const RatingCard = memo((props: RatingCardProps) => {
     });
 
     return (
-        <Card data-testid={props['data-testid']} className={className} max>
+        <Card
+            data-testid={props['data-testid']}
+            className={className}
+            max
+            borderRadius="round"
+        >
             <VStack align="center" gap="8">
                 <ToggleFeatures
                     feature="isAppRedesigned"

@@ -8,8 +8,10 @@ import { EditableProfileCard } from '@/features/editableProfileCard';
 import { ProfileRating } from '@/features/profileRating';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
-import { Text } from '@/shared/ui/deprecated/Text';
+import { ToggleFeatures } from '@/shared/libs/features';
+import { Text as TextDeprecated } from '@/shared/ui/deprecated/Text';
 import { VStack } from '@/shared/ui/redesigned/Stack';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ProfilePageProps {
     className?: string;
@@ -20,7 +22,15 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const { id } = useParams<{ id: string }>();
 
     if (!id && __PROJECT__ !== 'storybook') {
-        return <Text text={t('Ошибка при получении профиля')} />;
+        return (
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={<Text text={t('Ошибка при получении профиля')} />}
+                off={
+                    <TextDeprecated text={t('Ошибка при получении профиля')} />
+                }
+            />
+        );
     }
 
     return (

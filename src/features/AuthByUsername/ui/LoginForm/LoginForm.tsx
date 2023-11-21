@@ -9,6 +9,7 @@ import {
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ToggleFeatures } from '@/shared/libs/features';
+import { useForceUpdate } from '@/shared/render/forceUpdate';
 import {
     Button as ButtonDeprecated,
     ThemeButton,
@@ -17,6 +18,7 @@ import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -42,6 +44,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginisLoading);
     const error = useSelector(getLoginError);
+    const forceUpdate = useForceUpdate();
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -57,16 +60,22 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         [dispatch],
     );
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, username, password]);
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            forceUpdate();
+        }
+    }, [dispatch, username, password, forceUpdate]);
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initalReducers}>
             <ToggleFeatures
                 feature="isAppRedesigned"
                 on={
-                    <div className={classNames(cls.LoginForm, {}, [className])}>
+                    <VStack
+                        gap="16"
+                        className={classNames(cls.LoginForm, {}, [className])}
+                    >
                         <Text title={t('Форма авторизации')} />
                         {error && (
                             <Text
@@ -99,7 +108,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                         >
                             {t('Войти')}
                         </Button>
-                    </div>
+                    </VStack>
                 }
                 off={
                     <div className={classNames(cls.LoginForm, {}, [className])}>
