@@ -440,10 +440,11 @@
             "features": {
                 "isArticleRatingEnabled": true,
                 "isCounterEnabled": true,
-                "isAppRedesigned": false
+                "isAppRedesigned": true
             },
             "jsonSettings": {
-                "isArticlesPageWasOpend": true
+                "isArticlesPageWasOpend": true,
+                "theme": "app_dark_theme"
             },
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         },

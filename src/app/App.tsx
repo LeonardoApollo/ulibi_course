@@ -10,6 +10,7 @@ import { getUserInited, initAuthData } from '@/entities/User';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { MainLayout } from '@/shared/layout';
+import { AppLoaderLayout } from '@/shared/layout/AppLoaderLayout';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
 
@@ -27,7 +28,20 @@ function App() {
     }, [dispatch, inited]);
 
     if (!inited) {
-        return <PageLoader />;
+        return (
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    <div
+                        id="app"
+                        className={classNames('app_redesigned', {}, [theme])}
+                    >
+                        <AppLoaderLayout />
+                    </div>
+                }
+                off={<PageLoader />}
+            />
+        );
     }
 
     return (
