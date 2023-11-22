@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
@@ -22,6 +22,7 @@ Primary.args = {
     title: 'Title fish text',
     text: 'Text lorem ipsum',
 };
+Primary.decorators = [NewDesignDecorator];
 
 export const Error = Template.bind({});
 Error.args = {
@@ -29,23 +30,26 @@ Error.args = {
     text: 'Text lorem ipsum',
     variant: 'error',
 };
+Error.decorators = [NewDesignDecorator];
 
 export const OnlyTitle = Template.bind({});
 OnlyTitle.args = {
     title: 'Title fish text',
 };
+OnlyTitle.decorators = [NewDesignDecorator];
 
 export const OnlyText = Template.bind({});
 OnlyText.args = {
     text: 'Text lorem ipsum',
 };
+OnlyText.decorators = [NewDesignDecorator];
 
 export const Dark = Template.bind({});
 Dark.args = {
     title: 'Title fish text',
     text: 'Text lorem ipsum',
 };
-Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+Dark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const ErrorDark = Template.bind({});
 ErrorDark.args = {
@@ -53,20 +57,20 @@ ErrorDark.args = {
     text: 'Text lorem ipsum',
     variant: 'error',
 };
-ErrorDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+ErrorDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const DarkOnlyTitle = Template.bind({});
 DarkOnlyTitle.args = {
     title: 'Title fish text',
 };
-DarkOnlyTitle.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+DarkOnlyTitle.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const DarkOnlyText = Template.bind({});
 DarkOnlyText.args = {
     title: 'Title fish text',
     text: 'Text lorem ipsum',
 };
-DarkOnlyText.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+DarkOnlyText.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const SizeL = Template.bind({});
 SizeL.args = {
@@ -74,6 +78,7 @@ SizeL.args = {
     text: 'Text lorem ipsum',
     size: 'size_l',
 };
+SizeL.decorators = [NewDesignDecorator];
 
 export const SizeM = Template.bind({});
 SizeM.args = {
@@ -81,6 +86,7 @@ SizeM.args = {
     text: 'Text lorem ipsum',
     size: 'size_m',
 };
+SizeM.decorators = [NewDesignDecorator];
 
 export const SizeS = Template.bind({});
 SizeS.args = {
@@ -88,3 +94,4 @@ SizeS.args = {
     text: 'Text lorem ipsum',
     size: 'size_s',
 };
+SizeS.decorators = [NewDesignDecorator];

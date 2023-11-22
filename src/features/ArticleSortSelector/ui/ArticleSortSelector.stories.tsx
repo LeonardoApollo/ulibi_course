@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { ArticleSortSelector } from './ArticleSortSelector';
 
 export default {
@@ -17,3 +19,7 @@ const Template: ComponentStory<typeof ArticleSortSelector> = (args) => (
 
 export const Normal = Template.bind({});
 Normal.args = {};
+
+export const NormalRedesinged = Template.bind({});
+NormalRedesinged.args = {};
+NormalRedesinged.decorators = [NewDesignDecorator];

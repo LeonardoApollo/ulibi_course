@@ -3,6 +3,7 @@ import React from 'react';
 
 import { ArticleBlockType, ArticleType, ArticleView } from '@/entities/Article';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import { ArticlesInfiniteList } from './ArticlesInfiniteList';
@@ -113,6 +114,15 @@ const articlesPage = {
 export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [
+    StoreDecorator({
+        articlesPage,
+    }),
+];
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = {};
+NormalRedesigned.decorators = [
+    NewDesignDecorator,
     StoreDecorator({
         articlesPage,
     }),

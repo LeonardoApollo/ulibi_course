@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { ListBox } from './ListBox';
 
 export default {
@@ -36,6 +38,7 @@ topRight.args = {
     label: 'CustomSelect',
     items: options,
 };
+topRight.decorators = [NewDesignDecorator];
 
 export const topLeft = Template.bind({});
 topLeft.args = {
@@ -45,6 +48,7 @@ topLeft.args = {
     label: 'CustomSelect',
     items: options,
 };
+topLeft.decorators = [NewDesignDecorator];
 
 export const bottomRight = Template.bind({});
 bottomRight.args = {
@@ -54,6 +58,7 @@ bottomRight.args = {
     label: 'CustomSelect',
     items: options,
 };
+bottomRight.decorators = [NewDesignDecorator];
 
 export const bottomLeft = Template.bind({});
 bottomLeft.args = {
@@ -63,3 +68,4 @@ bottomLeft.args = {
     label: 'CustomSelect',
     items: options,
 };
+bottomLeft.decorators = [NewDesignDecorator];

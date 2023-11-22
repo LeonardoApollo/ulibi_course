@@ -4,24 +4,24 @@ import React from 'react';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
-import AdminPanelPage from './AdminPanelPage';
+import { ArticlePageGreeting } from './ArticlePageGreeting';
 
 export default {
-    title: 'pages/AdminPanelPage',
-    component: AdminPanelPage,
+    title: 'features/ArticlePageGreeting',
+    component: ArticlePageGreeting,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof AdminPanelPage>;
+} as ComponentMeta<typeof ArticlePageGreeting>;
 
-const Template: ComponentStory<typeof AdminPanelPage> = (args) => (
-    <AdminPanelPage {...args} />
+const Template: ComponentStory<typeof ArticlePageGreeting> = (args) => (
+    <ArticlePageGreeting />
 );
 
 export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [StoreDecorator({})];
 
-export const NormalRedesigned = Template.bind({});
-NormalRedesigned.args = {};
-NormalRedesigned.decorators = [NewDesignDecorator, StoreDecorator({})];
+export const NormalRedesinged = Template.bind({});
+NormalRedesinged.args = {};
+NormalRedesinged.decorators = [NewDesignDecorator, StoreDecorator({})];

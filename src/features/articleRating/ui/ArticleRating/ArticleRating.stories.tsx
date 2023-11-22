@@ -4,6 +4,7 @@ import React from 'react';
 import { Rating } from '@/entities/Rating';
 import { UserRole } from '@/entities/User';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import ArticleRating from './ArticleRating';
@@ -25,30 +26,24 @@ const articleRating: Rating = {
     feedback: 'Хорошая статья',
 };
 
-export const Rated = Template.bind({});
-Rated.args = {
-    articleId: '1',
+const user = {
+    authData: {
+        id: '2',
+        username: 'User',
+        roles: [UserRole.USER],
+    },
 };
-Rated.decorators = [
-    StoreDecorator({
+
+const articleDetails = {
+    data: {
+        id: '1',
         user: {
-            authData: {
-                id: '2',
-                username: 'User',
-                roles: [UserRole.USER],
-            },
+            id: '1',
         },
-        articleDetails: {
-            data: {
-                id: '1',
-                user: {
-                    id: '1',
-                },
-            },
-        },
-    }),
-];
-Rated.parameters = {
+    },
+};
+
+const RatedParams = {
     mockData: [
         {
             url: `${__API__}/article-ratings?userId=2&articleId=1`,
@@ -65,30 +60,7 @@ Rated.parameters = {
     ],
 };
 
-export const NotRated = Template.bind({});
-NotRated.args = {
-    articleId: '1',
-};
-NotRated.decorators = [
-    StoreDecorator({
-        user: {
-            authData: {
-                id: '2',
-                username: 'User',
-                roles: [UserRole.USER],
-            },
-        },
-        articleDetails: {
-            data: {
-                id: '1',
-                user: {
-                    id: '1',
-                },
-            },
-        },
-    }),
-];
-NotRated.parameters = {
+const NotRatedParams = {
     mockData: [
         {
             url: `${__API__}/article-ratings?userId=1&articleId=2`,
@@ -105,27 +77,64 @@ NotRated.parameters = {
     ],
 };
 
+export const Rated = Template.bind({});
+Rated.args = {
+    articleId: '1',
+};
+Rated.decorators = [
+    StoreDecorator({
+        user,
+        articleDetails,
+    }),
+];
+Rated.parameters = RatedParams;
+
+export const RatedRedesigned = Template.bind({});
+RatedRedesigned.args = {
+    articleId: '1',
+};
+RatedRedesigned.decorators = [
+    NewDesignDecorator,
+    StoreDecorator({
+        user,
+        articleDetails,
+    }),
+];
+RatedRedesigned.parameters = RatedParams;
+
+export const NotRated = Template.bind({});
+NotRated.args = {
+    articleId: '1',
+};
+NotRated.decorators = [
+    StoreDecorator({
+        user,
+        articleDetails,
+    }),
+];
+NotRated.parameters = NotRatedParams;
+
+export const NotRatedRedesigned = Template.bind({});
+NotRatedRedesigned.args = {
+    articleId: '1',
+};
+NotRatedRedesigned.decorators = [
+    NewDesignDecorator,
+    StoreDecorator({
+        user,
+        articleDetails,
+    }),
+];
+NotRatedRedesigned.parameters = NotRatedParams;
+
 export const OwnArticle = Template.bind({});
 OwnArticle.args = {
     articleId: '1',
 };
 OwnArticle.decorators = [
     StoreDecorator({
-        user: {
-            authData: {
-                id: '2',
-                username: 'User',
-                roles: [UserRole.USER],
-            },
-        },
-        articleDetails: {
-            data: {
-                id: '1',
-                user: {
-                    id: '2',
-                },
-            },
-        },
+        user,
+        articleDetails,
     }),
 ];
 OwnArticle.parameters = {

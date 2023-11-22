@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import LoginForm from './LoginForm';
@@ -20,6 +21,15 @@ const Template: ComponentStory<typeof LoginForm> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [
+    StoreDecorator({
+        loginForm: { username: '123', password: 'abc' },
+    }),
+];
+
+export const PrimaryRedesigned = Template.bind({});
+PrimaryRedesigned.args = {};
+PrimaryRedesigned.decorators = [
+    NewDesignDecorator,
     StoreDecorator({
         loginForm: { username: '123', password: 'abc' },
     }),

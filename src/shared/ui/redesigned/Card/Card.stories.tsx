@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { Text } from '../Text/Text';
 import { Card } from './Card';
 
@@ -18,3 +20,4 @@ export const Normal = Template.bind({});
 Normal.args = {
     children: <Text title="test" text="text text" />,
 };
+Normal.decorators = [NewDesignDecorator];

@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from './ArticleListItem';
@@ -98,8 +100,22 @@ List.args = {
     article,
 };
 
+export const ListRedesigned = Template.bind({});
+ListRedesigned.args = {
+    view: ArticleView.LIST,
+    article,
+};
+ListRedesigned.decorators = [NewDesignDecorator];
+
 export const Grid = Template.bind({});
 Grid.args = {
     view: ArticleView.GRID,
     article,
 };
+
+export const GridRedesigned = Template.bind({});
+GridRedesigned.args = {
+    view: ArticleView.GRID,
+    article,
+};
+GridRedesigned.decorators = [NewDesignDecorator];

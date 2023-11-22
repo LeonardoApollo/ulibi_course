@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { CurrencySelect } from './CurrencySelect';
 
 export default {
@@ -17,3 +19,7 @@ const Template: ComponentStory<typeof CurrencySelect> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {};
+
+export const PrimaryRedesinged = Template.bind({});
+PrimaryRedesinged.args = {};
+PrimaryRedesinged.decorators = [NewDesignDecorator];

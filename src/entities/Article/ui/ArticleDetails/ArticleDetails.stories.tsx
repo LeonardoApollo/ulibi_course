@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
@@ -56,6 +57,17 @@ const article = {
 export const Primary = Template.bind({});
 Primary.args = {};
 Primary.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+    }),
+];
+
+export const PrimaryRedesigned = Template.bind({});
+PrimaryRedesigned.args = {};
+PrimaryRedesigned.decorators = [
+    NewDesignDecorator,
     StoreDecorator({
         articleDetails: {
             data: article,

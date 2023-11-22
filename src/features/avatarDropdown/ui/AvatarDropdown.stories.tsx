@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import AvatarImg from '@/shared/ui/redesigned/Avatar/2e2e2125ee53807c2d77b34773f84b5c.jpg';
 
@@ -34,6 +35,17 @@ const authData = {
 export const Normal = Template.bind({});
 Normal.args = {};
 Normal.decorators = [
+    StoreDecorator({
+        user: {
+            authData,
+        },
+    }),
+];
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = {};
+NormalRedesigned.decorators = [
+    NewDesignDecorator,
     StoreDecorator({
         user: {
             authData,
