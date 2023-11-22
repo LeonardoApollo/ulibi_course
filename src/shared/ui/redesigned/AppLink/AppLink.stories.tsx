@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
@@ -27,23 +27,25 @@ Primary.args = {
     children: 'Text',
     variant: 'primary',
 };
+Primary.decorators = [NewDesignDecorator];
 
 export const Secondary = Template.bind({});
 Secondary.args = {
     children: 'Text',
     variant: 'secondary',
 };
+Secondary.decorators = [NewDesignDecorator];
 
 export const PrimaryDark = Template.bind({});
 PrimaryDark.args = {
     children: 'Text',
     variant: 'primary',
 };
-PrimaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+PrimaryDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const SecondaryDark = Template.bind({});
 SecondaryDark.args = {
     children: 'Text',
     variant: 'secondary',
 };
-SecondaryDark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
+SecondaryDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];

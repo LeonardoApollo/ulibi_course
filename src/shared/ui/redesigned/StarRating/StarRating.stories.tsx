@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { StarRating } from './StarRating';
 
 export default {
@@ -17,3 +19,4 @@ const Template: ComponentStory<typeof StarRating> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {};
+Primary.decorators = [NewDesignDecorator];

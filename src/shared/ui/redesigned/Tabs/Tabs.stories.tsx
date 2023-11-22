@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { Tabs } from './Tabs';
 
 export default {
@@ -33,3 +35,4 @@ Primary.args = {
     value: 'tab 2',
     onTabClick: action('onTabClick'),
 };
+Primary.decorators = [NewDesignDecorator];

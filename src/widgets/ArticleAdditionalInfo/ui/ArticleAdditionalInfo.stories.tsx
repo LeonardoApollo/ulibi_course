@@ -1,32 +1,26 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
-import { ArticleBlockType, ArticleType } from '@/entities/Article';
+import { Article, ArticleBlockType, ArticleType } from '@/entities/Article';
 
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
-import ArticleDetailsPage from './ArticleDetailsPage';
+import { ArticleAdditionalInfo } from './ArticleAdditionalInfo';
 
 export default {
-    title: 'pages/ArticleDetails/ArticleDetailsPage',
-    component: ArticleDetailsPage,
-    parameters: {
-        router: {
-            path: '/articles/:id',
-            route: '/articles/1',
-        },
-    },
+    title: 'widget/ArticleAdditionalInfo',
+    component: ArticleAdditionalInfo,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ArticleDetailsPage>;
+} as ComponentMeta<typeof ArticleAdditionalInfo>;
 
-const Template: ComponentStory<typeof ArticleDetailsPage> = (args) => (
-    <ArticleDetailsPage {...args} />
+const Template: ComponentStory<typeof ArticleAdditionalInfo> = (args) => (
+    <ArticleAdditionalInfo {...args} />
 );
 
-const article = {
+const article: Article = {
     id: '1',
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год',
@@ -64,45 +58,8 @@ const article = {
     ],
 };
 
-const articleDetailsPageData = {
-    comments: {
-        isLoading: false,
-        error: undefined,
-        ids: ['1', '2'],
-        entities: {
-            1: {
-                id: '1',
-                text: 'some comment 1',
-                user: { id: '1', username: 'Admin' },
-            },
-            2: {
-                id: '2',
-                text: 'some comment 2',
-                user: { id: '2', username: 'User' },
-            },
-        },
-    },
-};
-
 export const Primary = Template.bind({});
-Primary.args = {};
-Primary.decorators = [
-    StoreDecorator({
-        articleDetails: {
-            data: article,
-        },
-        articleDetailsPage: articleDetailsPageData,
-    }),
-];
-
-export const PrimaryRedesigned = Template.bind({});
-PrimaryRedesigned.args = {};
-PrimaryRedesigned.decorators = [
-    NewDesignDecorator,
-    StoreDecorator({
-        articleDetails: {
-            data: article,
-        },
-        articleDetailsPage: articleDetailsPageData,
-    }),
-];
+Primary.args = {
+    article,
+};
+Primary.decorators = [NewDesignDecorator, StoreDecorator({})];

@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { RatingCard } from './RatingCard';
 
 export default {
@@ -21,3 +23,11 @@ Primary.args = {
     feedbackTitle: 'Ваши впечетления',
     title: 'Оставьте отзыв',
 };
+
+export const PrimaryRedesigned = Template.bind({});
+PrimaryRedesigned.args = {
+    hasFeedback: true,
+    feedbackTitle: 'Ваши впечетления',
+    title: 'Оставьте отзыв',
+};
+PrimaryRedesigned.decorators = [NewDesignDecorator];

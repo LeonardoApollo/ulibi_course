@@ -4,6 +4,7 @@ import React from 'react';
 import { Rating } from '@/entities/Rating';
 import { UserRole } from '@/entities/User';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import ProfileRating from './ProfileRating';
@@ -25,22 +26,7 @@ const articleRating: Rating = {
     feedback: 'Хороший человек',
 };
 
-export const Rated = Template.bind({});
-Rated.args = {
-    profileId: '1',
-};
-Rated.decorators = [
-    StoreDecorator({
-        user: {
-            authData: {
-                id: '2',
-                username: 'User',
-                roles: [UserRole.USER],
-            },
-        },
-    }),
-];
-Rated.parameters = {
+const RatedParams = {
     mockData: [
         {
             url: `${__API__}/profile-ratings?userId=2&profileId=1`,
@@ -57,22 +43,7 @@ Rated.parameters = {
     ],
 };
 
-export const NotRated = Template.bind({});
-NotRated.args = {
-    profileId: '1',
-};
-NotRated.decorators = [
-    StoreDecorator({
-        user: {
-            authData: {
-                id: '2',
-                username: 'User',
-                roles: [UserRole.USER],
-            },
-        },
-    }),
-];
-NotRated.parameters = {
+const NotRatedParams = {
     mockData: [
         {
             url: `${__API__}/profile-ratings?userId=2&profileId=1`,
@@ -88,6 +59,60 @@ NotRated.parameters = {
         },
     ],
 };
+
+const user = {
+    authData: {
+        id: '2',
+        username: 'User',
+        roles: [UserRole.USER],
+    },
+};
+
+export const Rated = Template.bind({});
+Rated.args = {
+    profileId: '1',
+};
+Rated.decorators = [
+    StoreDecorator({
+        user,
+    }),
+];
+Rated.parameters = RatedParams;
+
+export const RatedRedesigned = Template.bind({});
+RatedRedesigned.args = {
+    profileId: '1',
+};
+RatedRedesigned.decorators = [
+    NewDesignDecorator,
+    StoreDecorator({
+        user,
+    }),
+];
+RatedRedesigned.parameters = RatedParams;
+
+export const NotRated = Template.bind({});
+NotRated.args = {
+    profileId: '1',
+};
+NotRated.decorators = [
+    StoreDecorator({
+        user,
+    }),
+];
+NotRated.parameters = NotRatedParams;
+
+export const NotRatedRedesigned = Template.bind({});
+NotRatedRedesigned.args = {
+    profileId: '1',
+};
+NotRatedRedesigned.decorators = [
+    NewDesignDecorator,
+    StoreDecorator({
+        user,
+    }),
+];
+NotRatedRedesigned.parameters = NotRatedParams;
 
 export const OwnProfile = Template.bind({});
 OwnProfile.args = {

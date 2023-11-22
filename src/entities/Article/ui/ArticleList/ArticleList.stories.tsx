@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { ArticleView } from '../../model/consts/consts';
 import { Article } from '../../model/types/article';
 import { ArticleList } from './ArticleList';
@@ -116,6 +118,17 @@ ListGrid.args = {
     view: ArticleView.GRID,
 };
 
+export const ListGridRedesigned = Template.bind({});
+ListGridRedesigned.args = {
+    articles: new Array(9).fill(0).map((item, index) => ({
+        ...article,
+        id: String(index),
+    })),
+    isLoading: false,
+    view: ArticleView.GRID,
+};
+ListGridRedesigned.decorators = [NewDesignDecorator];
+
 export const ListList = Template.bind({});
 ListList.args = {
     articles: new Array(9).fill(0).map((item, index) => ({
@@ -125,3 +138,14 @@ ListList.args = {
     isLoading: false,
     view: ArticleView.LIST,
 };
+
+export const ListListRedesigned = Template.bind({});
+ListListRedesigned.args = {
+    articles: new Array(9).fill(0).map((item, index) => ({
+        ...article,
+        id: String(index),
+    })),
+    isLoading: false,
+    view: ArticleView.LIST,
+};
+ListListRedesigned.decorators = [NewDesignDecorator];

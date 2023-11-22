@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { Button } from '../../../Button/Button';
 import { Dropdown } from './Dropdown';
 
@@ -40,3 +42,4 @@ Normal.args = {
         },
     ],
 };
+Normal.decorators = [NewDesignDecorator];

@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { Button } from '../../../Button/Button';
 import { Popover } from './Popover';
 
@@ -29,3 +31,4 @@ Normal.args = {
     direction: 'bottomLeft',
     children: <div>Lorem Ipusm text</div>,
 };
+Normal.decorators = [NewDesignDecorator];

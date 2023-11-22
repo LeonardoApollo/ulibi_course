@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+
 import { Notification } from '../../model/types/types';
 import { NotificationItem } from './NotificationItem';
 
@@ -27,3 +29,9 @@ export const Normal = Template.bind({});
 Normal.args = {
     item: notification,
 };
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = {
+    item: notification,
+};
+NormalRedesigned.decorators = [NewDesignDecorator];

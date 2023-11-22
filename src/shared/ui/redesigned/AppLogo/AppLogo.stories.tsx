@@ -3,21 +3,24 @@ import React from 'react';
 
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
-import { Input } from './Input';
+import { AppLogo } from './AppLogo';
 
 export default {
-    title: 'shared/deprecated/Input',
-    component: Input,
+    title: 'shared/redesigned/AppLogo',
+    component: AppLogo,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof AppLogo>;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof AppLogo> = (args) => (
+    <AppLogo {...args} />
+);
 
 export const Primary = Template.bind({});
-Primary.args = {
-    placeholder: 'Type text',
-    value: '123123',
-};
+Primary.args = {};
 Primary.decorators = [NewDesignDecorator];
+
+export const Small = Template.bind({});
+Small.args = { collapsed: true };
+Small.decorators = [NewDesignDecorator];

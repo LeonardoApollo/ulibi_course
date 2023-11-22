@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/shared/const/theme';
 
@@ -20,18 +21,21 @@ export const Primary = Template.bind({});
 Primary.args = {
     children: 'Text',
 };
+Primary.decorators = [NewDesignDecorator];
 
 export const Clear = Template.bind({});
 Clear.args = {
     children: 'Text',
     variant: 'clear',
 };
+Clear.decorators = [NewDesignDecorator];
 
 export const Outline = Template.bind({});
 Outline.args = {
     children: 'Text',
     variant: 'outline',
 };
+Outline.decorators = [NewDesignDecorator];
 
 export const OutlineSizeL = Template.bind({});
 OutlineSizeL.args = {
@@ -39,6 +43,7 @@ OutlineSizeL.args = {
     variant: 'outline',
     size: 'size_l',
 };
+OutlineSizeL.decorators = [NewDesignDecorator];
 
 export const OutlineSizeXL = Template.bind({});
 OutlineSizeXL.args = {
@@ -46,13 +51,14 @@ OutlineSizeXL.args = {
     variant: 'outline',
     size: 'size_xl',
 };
+OutlineSizeXL.decorators = [NewDesignDecorator];
 
 export const OutlineDark = Template.bind({});
 OutlineDark.args = {
     children: 'Text',
     variant: 'outline',
 };
-OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
+OutlineDark.decorators = [NewDesignDecorator, ThemeDecorator(Theme.DARK)];
 
 export const BackgroundTheme = Template.bind({});
 BackgroundTheme.args = {
@@ -66,6 +72,7 @@ Square.args = {
     variant: 'background',
     square: true,
 };
+Square.decorators = [NewDesignDecorator];
 
 export const SquareM = Template.bind({});
 SquareM.args = {
@@ -73,6 +80,7 @@ SquareM.args = {
     variant: 'background',
     square: true,
 };
+SquareM.decorators = [NewDesignDecorator];
 
 export const SquareL = Template.bind({});
 SquareL.args = {
@@ -81,6 +89,7 @@ SquareL.args = {
     square: true,
     size: 'size_l',
 };
+SquareL.decorators = [NewDesignDecorator];
 
 export const SquareXL = Template.bind({});
 SquareXL.args = {
@@ -89,6 +98,7 @@ SquareXL.args = {
     square: true,
     size: 'size_xl',
 };
+SquareXL.decorators = [NewDesignDecorator];
 
 export const Disabled = Template.bind({});
 Disabled.args = {
@@ -96,3 +106,4 @@ Disabled.args = {
     variant: 'background',
     disabled: true,
 };
+Disabled.decorators = [NewDesignDecorator];
