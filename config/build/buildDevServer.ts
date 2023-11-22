@@ -10,8 +10,8 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
         liveReload: true,
         allowedHosts: 'auto',
         client: {
-           webSocketTransport: 'sockjs',
+           webSocketTransport: 'ws',
         },
-        webSocketServer: 'sockjs',
+        webSocketServer: 'ws',
     };
 }

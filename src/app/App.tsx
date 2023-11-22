@@ -14,12 +14,14 @@ import { AppLoaderLayout } from '@/shared/layout/AppLoaderLayout';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
 
+import { useAppToolbar } from './lib/useAppToolbar';
 import { AppRouter } from './providers/routers/index';
 
 function App() {
     const { theme } = useTheme();
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInited);
+    const toolbar = useAppToolbar();
 
     useEffect(() => {
         if (!inited) {
@@ -68,6 +70,7 @@ function App() {
                             header={<Navbar />}
                             content={<AppRouter />}
                             sidebar={<Sidebar />}
+                            toolbar={toolbar}
                         />
                     </Suspense>
                 </div>
