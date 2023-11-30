@@ -17,6 +17,7 @@ interface ArticleListProps {
     articles: Article[];
     isLoading?: boolean;
     view?: ArticleView;
+    width?: number;
     target: HTMLAttributeAnchorTarget;
 }
 
@@ -32,6 +33,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         articles,
         isLoading,
         view = ArticleView.GRID,
+        width,
         target,
     } = props;
     const { t } = useTranslation('article');
@@ -64,9 +66,12 @@ export const ArticleList = memo((props: ArticleListProps) => {
             feature="isAppRedesigned"
             on={
                 <HStack
+                    style={{ width }}
                     wrap="wrap"
                     gap="16"
-                    className={classNames(cls.ArticleListRedesigned, {}, [])}
+                    className={classNames(cls.ArticleListRedesigned, {}, [
+                        className,
+                    ])}
                     data-testid="ArticlesList"
                 >
                     {articles.length ? articles.map(renderArticle) : null}
