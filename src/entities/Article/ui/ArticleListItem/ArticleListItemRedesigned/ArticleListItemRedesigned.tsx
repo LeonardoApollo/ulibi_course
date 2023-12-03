@@ -43,7 +43,6 @@ export const ArticleListItemRedesigned = memo(
                 <Text text={String(article.views)} className={cls.views} />
             </HStack>
         );
-
         if (view === ArticleView.LIST) {
             const textBlock = article.blocks.find(
                 (block) => block.type === ArticleBlockType.TEXT,
