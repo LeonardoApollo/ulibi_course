@@ -137,7 +137,7 @@
             "type": ["IT", "SCIENCE"],
             "blocks": [
                 {
-                    "id": "1",
+                    "id": "3",
                     "type": "TEXT",
                     "title": "Заголовок этого блока",
                     "paragraphs": [
@@ -155,7 +155,7 @@
             "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
             "views": 228,
             "createdAt": "22.08.2023",
-            "userId": "1",
+            "userId": "2",
             "type": ["IT", "ECONOMIC"],
             "blocks": [
                 {
@@ -194,8 +194,8 @@
         },
         {
             "id": "6",
-            "title": "Rust news",
-            "subtitle": "Что нового в Python за 2022 год",
+            "title": "Rust news Edited",
+            "subtitle": "Что нового в Python за 2023 год!",
             "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png",
             "views": 2077,
             "createdAt": "07.07.2077",
@@ -212,7 +212,23 @@
                         "Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:"
                     ]
                 }
-            ]
+            ],
+            "user": {
+                "id": "1",
+                "username": "Admin",
+                "password": "123",
+                "roles": ["ADMIN"],
+                "features": {
+                    "isArticleRatingEnabled": true,
+                    "isCounterEnabled": true,
+                    "isAppRedesigned": true
+                },
+                "jsonSettings": {
+                    "isArticlesPageWasOpend": true,
+                    "theme": "app_dark_theme"
+                },
+                "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
+            }
         },
         {
             "id": "7",
@@ -462,7 +478,7 @@
                 "theme": "app_orange_theme",
                 "isFirstVisit": true,
                 "settingsPageHasBeenOpen": false,
-                "isArticlesPageWasOpend": false
+                "isArticlesPageWasOpend": true
             },
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU"
         },
