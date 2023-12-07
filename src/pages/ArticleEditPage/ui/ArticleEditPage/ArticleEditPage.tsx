@@ -1,10 +1,13 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Page } from '@/widgets/Page';
 
+import { ArticleEditTags } from '@/features/articleEditTags';
+
+import { ArticleType } from '@/entities/Article';
 import { UserRole, getUserAuthData } from '@/entities/User';
 
 import {
@@ -30,16 +33,18 @@ interface ArticleEditPageProps {
 const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
+    // Используется чтобы остановить кэширование RTK Query
+    const timeStampRef = useRef(Date.now()).current;
     const navigate = useNavigate();
     const userData = useSelector(getUserAuthData);
 
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
     const [img, setImg] = useState('');
+    const [tags, setTags] = useState({});
 
     const [isExitModalOpen, setIsExitModalOpen] = useState(false);
     const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
-
     const onChangeTitle = useCallback((value: string) => {
         setTitle(value);
     }, []);
@@ -68,9 +73,22 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
         setIsExitModalOpen(true);
     }, []);
 
+    const onClickTags = (tags: ArticleType[] | undefined) => {
+        if (tags !== undefined) {
+            setTags({ ...tags });
+        }
+    };
+    // @ts-ignore
+    const TagsArray = Object.keys(tags).map((key) => tags[key] as ArticleType);
+    console.log(TagsArray);
+
     if (id) {
         // eslint-disable-next-line
-        const { data, isLoading, error } = useArticleEditApi(id);
+        const { data, isLoading, error } = useArticleEditApi({
+            id,
+            sessionId: timeStampRef,
+        });
+        console.log(`Server: ${isLoading}`);
 
         if (
             data?.user.id !== userData?.id &&
@@ -100,7 +118,7 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
                         createdAt: data.createdAt,
                         user: data.user,
                         views: data.views,
-                        type: data.type,
+                        type: TagsArray,
                         blocks: data.blocks,
                     });
                     navigate(getRouteArticleDetails(id));
@@ -110,11 +128,20 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
                     setIsSaveModalOpen(false);
                 }
             }
-        }, [data, id, img, navigate, subtitle, title, updateArticle]);
+        }, [
+            data,
+            id,
+            img,
+            navigate,
+            subtitle,
+            title,
+            updateArticle,
+            TagsArray,
+        ]);
 
         // eslint-disable-next-line
         useEffect(() => {
-            if (data) {
+            if (data && !isLoading) {
                 setTitle(data.title);
                 setSubtitle(data.subtitle);
                 setImg(data.img);
@@ -139,17 +166,21 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
                         value={subtitle}
                         onChange={onChangeSubtitle}
                     />
-                    {data?.img && (
+                    {img && (
                         <AppImage
                             className={cls.img}
-                            fallback={<Skeleton width={300} height={100} />}
-                            src={data.img}
+                            fallback={<Skeleton width={300} height={150} />}
+                            src={img}
                         />
                     )}
                     <Input
                         label={t('Иллюстрация')}
                         value={img}
                         onChange={onChangeImg}
+                    />
+                    <ArticleEditTags
+                        initialTags={data?.type}
+                        onClick={onClickTags}
                     />
                     <HStack max justify="between" className={cls.Btns}>
                         <Button colorType="success" onClick={onSaveModalOpen}>
