@@ -44,7 +44,7 @@ export const ArticleRecommendationsList = memo(
                     }
                 />
                 <ArticleList
-                    width={width - 756}
+                    width={width - 756 < 240 ? 240 : width - 756}
                     className={cls.ArticleRecommendation}
                     articles={data}
                     target="_blank"
