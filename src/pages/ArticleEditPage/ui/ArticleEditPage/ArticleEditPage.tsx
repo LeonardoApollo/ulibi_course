@@ -33,7 +33,6 @@ interface ArticleEditPageProps {
 const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
     const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
-    // Используется чтобы остановить кэширование RTK Query
     const timeStampRef = useRef(Date.now()).current;
     const navigate = useNavigate();
     const userData = useSelector(getUserAuthData);
@@ -41,7 +40,7 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
     const [img, setImg] = useState('');
-    const [tags, setTags] = useState({});
+    const [tags, setTags] = useState<ArticleType[]>([]);
 
     const [isExitModalOpen, setIsExitModalOpen] = useState(false);
     const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
@@ -73,22 +72,11 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
         setIsExitModalOpen(true);
     }, []);
 
-    const onClickTags = (tags: ArticleType[] | undefined) => {
-        if (tags !== undefined) {
-            setTags({ ...tags });
-        }
-    };
-    // @ts-ignore
-    const TagsArray = Object.keys(tags).map((key) => tags[key] as ArticleType);
-    console.log(TagsArray);
-
     if (id) {
         // eslint-disable-next-line
-        const { data, isLoading, error } = useArticleEditApi({
-            id,
-            sessionId: timeStampRef,
+        const { data, isLoading, error } = useArticleEditApi(id, {
+            refetchOnReconnect: true,
         });
-        console.log(`Server: ${isLoading}`);
 
         if (
             data?.user.id !== userData?.id &&
@@ -118,26 +106,16 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
                         createdAt: data.createdAt,
                         user: data.user,
                         views: data.views,
-                        type: TagsArray,
+                        type: tags,
                         blocks: data.blocks,
                     });
+                    setIsSaveModalOpen(false);
                     navigate(getRouteArticleDetails(id));
                 } catch (e) {
                     console.log(e);
-                } finally {
-                    setIsSaveModalOpen(false);
                 }
             }
-        }, [
-            data,
-            id,
-            img,
-            navigate,
-            subtitle,
-            title,
-            updateArticle,
-            TagsArray,
-        ]);
+        }, [data, id, img, navigate, subtitle, title, updateArticle, tags]);
 
         // eslint-disable-next-line
         useEffect(() => {
@@ -180,7 +158,8 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
                     />
                     <ArticleEditTags
                         initialTags={data?.type}
-                        onClick={onClickTags}
+                        tags={tags}
+                        setTags={setTags}
                     />
                     <HStack max justify="between" className={cls.Btns}>
                         <Button colorType="success" onClick={onSaveModalOpen}>

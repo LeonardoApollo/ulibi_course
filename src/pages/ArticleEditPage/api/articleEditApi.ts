@@ -2,20 +2,16 @@ import { Article } from '@/entities/Article';
 
 import { rtkApi } from '@/shared/api/rtkApi';
 
-interface getArticleData {
-    id: string;
-    sessionId: number;
-}
-
 const articleEditApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
-        getArticleData: build.query<Article, getArticleData>({
-            query: ({ id, sessionId }) => ({
+        getArticleData: build.query<Article, string>({
+            query: (id) => ({
                 url: `/articles/${id}`,
                 params: {
                     _expand: 'user',
                 },
             }),
+            keepUnusedDataFor: 0,
         }),
         editArticle: build.mutation<void, Article>({
             query: (arg) => ({
