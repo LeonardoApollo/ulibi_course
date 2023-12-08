@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleType } from '@/entities/Article';
@@ -13,67 +13,30 @@ import cls from './ArticleEditTags.module.scss';
 interface ArticleEditTagsProps {
     className?: string;
     initialTags?: ArticleType[];
-    onClick: (tags: ArticleType[] | undefined) => void;
+    tags: ArticleType[];
+    setTags: (tags: ArticleType[]) => void;
 }
-
-let selectedTags: ArticleType[] = [];
 
 export const ArticleEditTags = memo((props: ArticleEditTagsProps) => {
     const { t } = useTranslation();
-    const { className, initialTags, onClick } = props;
-    const [isSelected, setIsSelected] = useState({
-        IT: initialTags?.includes(ArticleType.IT) ?? false,
-        ECONOMIC: initialTags?.includes(ArticleType.ECONOMIC) ?? false,
-        SCIENCE: initialTags?.includes(ArticleType.SCIENCE) ?? false,
-    });
+    const { className, initialTags, tags, setTags } = props;
 
-    const onHandleClick = useCallback(
+    const onClickHandle = useCallback(
         (e: any) => {
-            if (selectedTags.includes(e.target.id)) {
-                selectedTags = selectedTags.filter((el) => el !== e.target.id);
-                switch (e.target.id) {
-                    case 'IT':
-                        setIsSelected({ ...isSelected, IT: false });
-                        break;
-                    case 'ECONOMIC':
-                        setIsSelected({ ...isSelected, ECONOMIC: false });
-                        break;
-                    case 'SCIENCE':
-                        setIsSelected({ ...isSelected, SCIENCE: false });
-                        break;
-                    default:
-                        break;
-                }
-                onClick(selectedTags);
+            if (!tags.includes(e.target.id)) {
+                setTags([...tags, e.target.id]);
             } else {
-                selectedTags.push(e.target.id);
-                switch (e.target.id) {
-                    case 'IT':
-                        setIsSelected({ ...isSelected, IT: true });
-                        break;
-                    case 'ECONOMIC':
-                        setIsSelected({ ...isSelected, ECONOMIC: true });
-                        break;
-                    case 'SCIENCE':
-                        setIsSelected({ ...isSelected, SCIENCE: true });
-                        break;
-                    default:
-                        break;
-                }
-                onClick(selectedTags);
+                setTags(tags.filter((tag) => tag !== e.target.id));
             }
         },
-        [isSelected, onClick],
+        [setTags, tags],
     );
 
     useEffect(() => {
         if (initialTags) {
-            selectedTags = [];
-            selectedTags = selectedTags.concat(initialTags);
-            onClick(selectedTags);
+            setTags([...initialTags]);
         }
-        // eslint-disable-next-line
-    }, [initialTags]);
+    }, [initialTags, setTags]);
 
     return (
         <HStack
@@ -85,27 +48,27 @@ export const ArticleEditTags = memo((props: ArticleEditTagsProps) => {
             <Button
                 id={ArticleType.IT}
                 className={classNames('', {
-                    [cls.isSelected]: isSelected.IT,
+                    [cls.isSelected]: tags.includes(ArticleType.IT),
                 })}
-                onClick={onHandleClick}
+                onClick={onClickHandle}
             >
                 {t('IT')}
             </Button>
             <Button
                 id={ArticleType.ECONOMIC}
                 className={classNames('', {
-                    [cls.isSelected]: isSelected.ECONOMIC,
+                    [cls.isSelected]: tags.includes(ArticleType.ECONOMIC),
                 })}
-                onClick={onHandleClick}
+                onClick={onClickHandle}
             >
                 {t('Наука')}
             </Button>
             <Button
                 id={ArticleType.SCIENCE}
                 className={classNames('', {
-                    [cls.isSelected]: isSelected.SCIENCE,
+                    [cls.isSelected]: tags.includes(ArticleType.SCIENCE),
                 })}
-                onClick={onHandleClick}
+                onClick={onClickHandle}
             >
                 {t('Экономика')}
             </Button>
