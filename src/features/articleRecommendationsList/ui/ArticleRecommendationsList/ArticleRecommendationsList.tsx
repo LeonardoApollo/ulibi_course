@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ArticleList } from '@/entities/Article';
 
+import { useSideBar } from '@/shared/hooks/useSideBar';
 import { useTrackInnerWidth } from '@/shared/hooks/useTrackWindowWidth';
 import { ToggleFeatures } from '@/shared/libs/features';
 import { Text as TextDeprecated, TextSize } from '@/shared/ui/deprecated/Text';
@@ -19,9 +20,16 @@ interface ArticleRecommendationsListProps {
 export const ArticleRecommendationsList = memo(
     (props: ArticleRecommendationsListProps) => {
         const { className } = props;
+        const { SideBarState } = useSideBar();
         const { t } = useTranslation('article');
         const { data, isLoading, error } = useArticleRecommendationsList(3);
         const width = useTrackInnerWidth();
+        const closeSideBarWidth =
+            // eslint-disable-next-line
+            width - 595 > 766 ? 766 : width - 595 < 240 ? 240 : width - 595;
+        const openSideBarWidth =
+            // eslint-disable-next-line
+            width - 756 > 766 ? 766 : width - 756 < 240 ? 240 : width - 756;
 
         if (isLoading || error || !data) {
             return null;
@@ -44,7 +52,11 @@ export const ArticleRecommendationsList = memo(
                     }
                 />
                 <ArticleList
-                    width={width - 756 < 240 ? 240 : width - 756}
+                    width={
+                        SideBarState === 'open'
+                            ? openSideBarWidth
+                            : closeSideBarWidth
+                    }
                     className={cls.ArticleRecommendation}
                     articles={data}
                     target="_blank"

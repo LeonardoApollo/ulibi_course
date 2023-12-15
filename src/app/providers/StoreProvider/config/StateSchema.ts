@@ -13,6 +13,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { LoginSchema } from '@/features/AuthByUsername';
 import { ScrollSaveSchema } from '@/features/ScrollSave';
 import { addCommentFormSchema } from '@/features/addNewComment';
+import { ArticleEditFormSchema } from '@/features/articleEditForm';
 import { ProfileSchema } from '@/features/editableProfileCard';
 
 import { ArticleDetailsSchema } from '@/entities/Article';
@@ -34,6 +35,7 @@ export interface StateSchema {
     articleDetailsPage?: ArticlesDetailsPageSchema;
     addNewCommentForm?: addCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
+    articleEditForm?: ArticleEditFormSchema;
 }
 
 export type StateShchemaKey = keyof StateSchema;

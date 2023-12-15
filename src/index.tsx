@@ -6,6 +6,7 @@ import '@/app/styles/index.scss';
 
 import App from './app/App';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
+import SideBarProvider from './app/providers/ToggleNavbarProvider';
 import './shared/config/i18n/i18n';
 import { ForceUpdateProvider } from './shared/render/forceUpdate';
 
@@ -16,16 +17,17 @@ if (!container) {
         'Контейнер root не найден. НЕ удалось вмонтировать реакт приложение',
     );
 }
-
 const root = createRoot(container);
 
 root.render(
     <BrowserRouter>
         <StoreProvider>
             <ErrorBoundary>
-                <ForceUpdateProvider>
-                    <App />
-                </ForceUpdateProvider>
+                <SideBarProvider>
+                    <ForceUpdateProvider>
+                        <App />
+                    </ForceUpdateProvider>
+                </SideBarProvider>
             </ErrorBoundary>
         </StoreProvider>
     </BrowserRouter>,
