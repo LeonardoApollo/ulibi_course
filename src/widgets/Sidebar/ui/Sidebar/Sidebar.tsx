@@ -3,7 +3,11 @@ import { memo, useMemo, useState } from 'react';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwithcer } from '@/features/ThemeSwitcher';
 
+import { saveJsonSettings } from '@/entities/User';
+
 import ArrowIcon from '@/shared/assets/icons/ArrowRight.svg';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useSideBar } from '@/shared/hooks/useSideBar';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
 import { Button, SizeButton, ThemeButton } from '@/shared/ui/deprecated/Button';
@@ -20,11 +24,15 @@ interface SidebarProps {
 }
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
-    const [collapsed, setCollapsed] = useState(false);
-
+    const { SideBarState, toggleSideBarState } = useSideBar();
+    const [collapsed, setCollapsed] = useState(SideBarState !== 'open');
+    const dispatch = useAppDispatch();
     const sidebarItemsList = useSidebarItems();
     const onToggle = () => {
         setCollapsed((prev) => !prev);
+        toggleSideBarState((newSidebarState) => {
+            dispatch(saveJsonSettings({ sideBarState: newSidebarState }));
+        });
     };
 
     const itemsList = useMemo(

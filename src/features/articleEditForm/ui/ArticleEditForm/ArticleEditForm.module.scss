@@ -1,0 +1,18 @@
+.ArticleEditForm {
+    .Btns {
+        margin-top: 20px;
+    }
+
+    .img {
+        object-fit: contain;
+        max-width: 300px;
+        max-height: 150px;
+    }
+}
+
+.Error {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

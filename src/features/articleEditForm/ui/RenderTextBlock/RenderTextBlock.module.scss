@@ -1,0 +1,10 @@
+.textarea {
+    width: 100%;
+    resize: none;
+    height: 150px;
+
+    &:focus {
+        outline: none;
+        border: 1px solid var(--accent-redesigned);
+    }
+}

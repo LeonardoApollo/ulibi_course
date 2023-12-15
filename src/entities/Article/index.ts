@@ -1,5 +1,11 @@
 export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails';
-export type { Article } from './model/types/article';
+export type {
+    Article,
+    ArticleBlock,
+    ArticleCodeBlock,
+    ArticleImageBlock,
+    ArticleTextBlock,
+} from './model/types/article';
 export {
     ArticleView,
     ArticleSortField,
