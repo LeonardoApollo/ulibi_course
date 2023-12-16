@@ -103,6 +103,7 @@ export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
                         </VStack>
                         <textarea
                             disabled={isDisabled}
+                            maxLength={150}
                             value={paragraph}
                             onChange={onChangeParagraph(idx)}
                             className={cls.textarea}
