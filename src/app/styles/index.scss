@@ -4,11 +4,6 @@
 @import "themes/normal";
 @import "themes/orange";
 
-body {
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
 .app {
     font: var(--font-m);
     color: var(--primary-color);

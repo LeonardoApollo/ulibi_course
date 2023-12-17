@@ -32,17 +32,17 @@ export const AboutRedesigned = memo(
                     target="_blank"
                     to="https://github.com/LeonardoApollo/webForum"
                 >
-                    <HStack max gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <img
                             style={{ width: 30, height: 30 }}
                             src={githubLogo}
                             alt="GitHubLogo"
                         />
-                        {t('Github')}
+                        <Text variant="error" text={t('Github')} />
                     </HStack>
                 </AppLink>
                 <Text variant="accent" title={t('Про проект')} />
-                <VStack max gap="8">
+                <VStack max gap="8" wrap="wrap">
                     <Text
                         text={t(
                             'В основе, это SPA приложение, для обмена статьями на всевозможные темы.',
@@ -79,7 +79,7 @@ export const AboutRedesigned = memo(
                     title={t('Основные технологии проекта и архитектура')}
                 />
                 <VStack gap="8" max>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Архитектура фронтенда создана следуя методологии:',
@@ -93,9 +93,9 @@ export const AboutRedesigned = memo(
                             {t('Feature Slice Design.')}
                         </AppLink>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text text={t('Сам фронтенд основан на стэке:')} />
-                        <HStack>
+                        <HStack wrap="wrap">
                             <AppLink
                                 variant="secondary"
                                 target="_blank"
@@ -119,9 +119,9 @@ export const AboutRedesigned = memo(
                             </AppLink>
                         </HStack>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text text={t('Работа с API происходит используя:')} />
-                        <HStack>
+                        <HStack wrap="wrap">
                             <AppLink
                                 variant="secondary"
                                 target="_blank"
@@ -145,7 +145,7 @@ export const AboutRedesigned = memo(
                             </AppLink>
                         </HStack>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t('Работа со стилями происходит в рамках:')}
                         />
@@ -157,8 +157,8 @@ export const AboutRedesigned = memo(
                             {t('CSS(SCSS) Modules.')}
                         </AppLink>
                     </HStack>
-                    <HStack gap="8">
-                        <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
+                        <HStack gap="8" wrap="wrap">
                             <Text
                                 text={t(
                                     'В качестве сборщика, настроенный с нуля',
@@ -172,7 +172,7 @@ export const AboutRedesigned = memo(
                                 {t('Webpack')}
                             </AppLink>
                         </HStack>
-                        <HStack gap="8">
+                        <HStack gap="8" wrap="wrap">
                             <Text text={t('и небольшая альтернатива в виде')} />
                             <AppLink
                                 variant="secondary"
@@ -193,7 +193,7 @@ export const AboutRedesigned = memo(
                             'тем самым увеличивая скорость первичной загрузки и уменьшая размер главного чанка.',
                         )}
                     />
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Для выявления визуальных багов и отслеживания изменений UI используется:',
@@ -213,7 +213,7 @@ export const AboutRedesigned = memo(
                     title={t('Удобство и стандартизация разработки')}
                 />
                 <VStack gap="8" max>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text text={t('Применяется')} />
                         <AppLink
                             variant="secondary"
@@ -228,7 +228,7 @@ export const AboutRedesigned = memo(
                             )}
                         />
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text text={t('Применяется')} />
                         <AppLink
                             variant="secondary"
@@ -241,7 +241,7 @@ export const AboutRedesigned = memo(
                             text={t('для проверки написания файлов стилей')}
                         />
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text text={t('Применяется')} />
                         <AppLink
                             variant="secondary"
@@ -262,7 +262,7 @@ export const AboutRedesigned = memo(
                             'Фронтенд приложения покрыт всеми видами тестов:',
                         )}
                     />
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <AppLink
                             variant="secondary"
                             target="_blank"
@@ -279,7 +279,7 @@ export const AboutRedesigned = memo(
                             {t('Jest')}
                         </AppLink>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <AppLink
                             variant="secondary"
                             target="_blank"
@@ -296,7 +296,7 @@ export const AboutRedesigned = memo(
                             {t('React testing library')}
                         </AppLink>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <AppLink
                             variant="secondary"
                             target="_blank"
@@ -313,7 +313,7 @@ export const AboutRedesigned = memo(
                             {t('Storybook')}
                         </AppLink>
                         <Text text={t('и')} />
-                        <HStack>
+                        <HStack wrap="wrap">
                             <AppLink
                                 variant="secondary"
                                 target="_blank"
@@ -330,7 +330,7 @@ export const AboutRedesigned = memo(
                             </AppLink>
                         </HStack>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <AppLink
                             variant="secondary"
                             target="_blank"
@@ -350,7 +350,7 @@ export const AboutRedesigned = memo(
                 </VStack>
                 <Text variant="accent" title={t('Библиотека компонентов')} />
                 <VStack gap="8" max>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Была создана своя библиотека компонентов на основе:',
@@ -367,7 +367,7 @@ export const AboutRedesigned = memo(
                 </VStack>
                 <Text variant="accent" title={t('Интернализация')} />
                 <VStack gap="8" max>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Сайт использует интернализацию, на русский и английский языки используя:',
@@ -389,7 +389,7 @@ export const AboutRedesigned = memo(
                     )}
                 />
                 <VStack gap="8" max>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Для быстрого и удобного обновления приложения, работа с ними происходит по средствам',
@@ -403,7 +403,7 @@ export const AboutRedesigned = memo(
                             {t('Feature Flags')}
                         </AppLink>
                     </HStack>
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Подробнее про работу с ними в данном проекте, можно узнать на',
@@ -428,7 +428,7 @@ export const AboutRedesigned = memo(
                     title={t('Continuous Integration и pre-commit хуки')}
                 />
                 <VStack max gap="8">
-                    <HStack gap="8">
+                    <HStack gap="8" wrap="wrap">
                         <Text
                             text={t(
                                 'Процесс проверки коммитов и пушей автоматизирован используя',

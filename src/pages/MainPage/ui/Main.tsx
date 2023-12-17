@@ -16,7 +16,7 @@ const Main = memo(() => {
             <ToggleFeatures
                 feature="isAppRedesigned"
                 on={
-                    <VStack max align="center" gap="16">
+                    <VStack max gap="16" wrap="wrap">
                         <Text variant="accent" title={t('Важно!')} />
                         <Text
                             text={t(
@@ -45,7 +45,7 @@ const Main = memo(() => {
                     </VStack>
                 }
                 off={
-                    <VStack max align="center" gap="16">
+                    <VStack max gap="16" wrap="wrap">
                         <TextDeprecated
                             theme={TextTheme.INVERTED}
                             title={t('Важно!')}
