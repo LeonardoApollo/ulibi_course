@@ -205,7 +205,7 @@
                 {
                     "id": "1",
                     "type": "TEXT",
-                    "title": "Заголовок этого блока!",
+                    "title": "Заголовок блока",
                     "paragraphs": [
                         "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
                         "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
@@ -424,6 +424,69 @@
                     ]
                 }
             ]
+        },
+        {
+            "title": "TypeScript news",
+            "subtitle": "Что нового в TypeScript за 2023",
+            "img": "data:image/png;base64,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",
+            "views": 0,
+            "createdAt": "18.12.2023",
+            "type": ["IT"],
+            "blocks": [
+                {
+                    "id": "18c7dfaaa08",
+                    "type": "TEXT",
+                    "title": "TypeScript  в 2023",
+                    "paragraphs": [
+                        "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.",
+                        "JavaScript — это язык, программы на котором можно выполнять в разных средах. В нашем случае речь идёт о браузерах и о серверной платформе Node.js. Если до сих пор вы не написали ни строчки кода на JS и читаете этот текст в браузере, на настольном компьютере, это значит, что вы буквально в считанных секундах от своей первой JavaScript-программы."
+                    ]
+                },
+                {
+                    "id": "18c7dfb24a8",
+                    "type": "CODE",
+                    "code": "<!DOCTYPE html>\n<html>\n  <body>\n    <p id=\"hello\"></p>\n\n    <script>\n      document.getElementById(\"hello\").innerHTML = \"Hello, world!\";\n    </script>\n  </body>\n</html>;"
+                },
+                {
+                    "id": "18c7dfb5a1c",
+                    "type": "TEXT",
+                    "title": "Hello World на TypeScript",
+                    "paragraphs": [
+                        "Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка",
+                        "Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:"
+                    ]
+                },
+                {
+                    "id": "18c7dfbcf0d",
+                    "type": "IMAGE",
+                    "title": "Рисунок 1 - скриншот сайта",
+                    "src": "https://hsto.org/r/w1560/getpro/habr/post_images/d56/a02/ffc/d56a02ffc62949b42904ca00c63d8cc1.png"
+                },
+                {
+                    "id": "18c7dfc0d25",
+                    "type": "CODE",
+                    "code": "const path = require('path');\n\nconst server = jsonServer.create();\n\nconst router = jsonServer.router(path.resolve(__dirname, 'db.json'));\n\nserver.use(jsonServer.defaults({}));\nserver.use(jsonServer.bodyParser);"
+                }
+            ],
+            "user": {
+                "id": "1",
+                "username": "Admin",
+                "password": "123",
+                "roles": ["ADMIN"],
+                "features": {
+                    "isArticleRatingEnabled": true,
+                    "isCounterEnabled": true,
+                    "isAppRedesigned": true
+                },
+                "jsonSettings": {
+                    "isArticlesPageWasOpend": true,
+                    "theme": "app_dark_theme",
+                    "sideBarState": "close"
+                },
+                "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
+            },
+            "userId": "1",
+            "id": "xPsVm07"
         }
     ],
     "comments": [
@@ -502,7 +565,7 @@
             "jsonSettings": {
                 "isArticlesPageWasOpend": true,
                 "theme": "app_dark_theme",
-                "sideBarState": "close"
+                "sideBarState": "open"
             },
             "avatar": "https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg"
         },

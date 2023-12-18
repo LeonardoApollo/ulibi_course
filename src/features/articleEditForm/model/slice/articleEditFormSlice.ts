@@ -10,6 +10,8 @@ import {
 } from '@/entities/Article';
 import { User } from '@/entities/User';
 
+import { createArticle } from '../services/createArticle';
+import { deleteArticle } from '../services/deleteArticle';
 import { fetchEditArticleData } from '../services/fetchEditArticle';
 import { updateArticleData } from '../services/updateArticles';
 import { ArticleEditFormSchema } from '../types/articleEditFormSchema';
@@ -40,9 +42,6 @@ export const articleEditFormSlice = createSlice({
         },
         setCreatedAt: (state, action: PayloadAction<string>) => {
             state.createdAt = action.payload;
-        },
-        setViews: (state, action: PayloadAction<number>) => {
-            state.views = action.payload;
         },
         setUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload;
@@ -125,19 +124,29 @@ export const articleEditFormSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(updateArticleData.fulfilled, (state) => {
-                state.error = undefined;
-                state.id = undefined;
-                state.title = '';
-                state.subtitle = '';
-                state.user = undefined;
-                state.img = '';
-                state.createdAt = '';
-                state.views = 0;
-                state.type = [];
-                state.blocks = [];
                 state.isLoading = false;
             })
             .addCase(updateArticleData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(createArticle.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(createArticle.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(createArticle.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteArticle.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(deleteArticle.fulfilled, (state) => {
+                state.isLoading = false;
+            })
+            .addCase(deleteArticle.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

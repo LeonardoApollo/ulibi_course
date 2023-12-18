@@ -36,7 +36,6 @@ export const initArticlePage = createAsyncThunk<
         if (typeFromUrl) {
             dispatch(articlesPageSliceActions.setType(typeFromUrl));
         }
-
         dispatch(articlesPageSliceActions.initState());
         dispatch(fetchArticlesList({}));
     }

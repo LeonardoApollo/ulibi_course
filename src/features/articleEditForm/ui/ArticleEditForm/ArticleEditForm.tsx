@@ -5,30 +5,36 @@ import { useNavigate } from 'react-router-dom';
 
 import { User } from '@/entities/User';
 
-import { getRouteArticleDetails } from '@/shared/const/router';
+import {
+    getRouteArticleDetails,
+    getRouteArticles,
+} from '@/shared/const/router';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { useInitialEffect } from '@/shared/hooks/useInitialEffect';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { Modal } from '@/shared/ui/redesigned/Modal';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 import {
-    getArticleEditCreatedAt,
     getArticleEditError,
     getArticleEditImg,
     getArticleEditSubtitle,
     getArticleEditTitle,
-    getArticleEditViews,
     getArticleEditisLoading,
 } from '../../model/selectors/getArticleEditFormData';
+import { createArticle } from '../../model/services/createArticle';
+import { deleteArticle } from '../../model/services/deleteArticle';
 import { updateArticleData } from '../../model/services/updateArticles';
 import { articleEditFormSliceActions } from '../../model/slice/articleEditFormSlice';
 import { ArticleEditBlocks } from '../ArticleEditBlocks/ArticleEditBlocks';
+import {
+    ArticleEditDeleteModal,
+    ArticleEditExitModal,
+    ArticleEditSaveModal,
+} from '../ArticleEditModals';
 import { ArticleEditTags } from '../ArticleEditTags/ArticleEditTagsRedux';
 import cls from './ArticleEditForm.module.scss';
 
@@ -48,13 +54,13 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
     const subtitle = useSelector(getArticleEditSubtitle);
     const image = useSelector(getArticleEditImg);
     const isLoading = useSelector(getArticleEditisLoading);
-    // Будут нужны при создании статьи и валидации
+    // Будут нужен при создании статьи и валидации
     const error = useSelector(getArticleEditError);
-    const views = useSelector(getArticleEditViews);
-    const createdAt = useSelector(getArticleEditCreatedAt);
 
-    const [isExitModalOpen, setIsExitModalOpen] = useState(false);
-    const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+    const [isExitModalOpen, setIsExitModalOpen] = useState<boolean>(false);
+    const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
+
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
     const onUpdateArticle = useCallback(async () => {
         if (id) {
@@ -64,12 +70,36 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
         }
     }, [id, dispatch, navigate]);
 
-    const onExitModalCloseAccept = useCallback(() => {
+    const onExit = useCallback(() => {
         if (id) {
             setIsExitModalOpen(false);
             navigate(getRouteArticleDetails(id));
+        } else {
+            setIsExitModalOpen(false);
+            window.history.length > 2 ? window.history.back() : navigate('/');
         }
     }, [navigate, id]);
+
+    const onDeleteArticle = useCallback(async () => {
+        if (id) {
+            setIsDeleteModalOpen(false);
+            await dispatch(deleteArticle(id));
+            navigate(getRouteArticles());
+        }
+    }, [id, dispatch, navigate]);
+
+    const onCreateArticle = useCallback(async () => {
+        if (user) {
+            dispatch(articleEditFormSliceActions.setUser(user));
+            dispatch(
+                articleEditFormSliceActions.setCreatedAt(
+                    new Date().toLocaleDateString('en-GB').replace(/\//g, '.'),
+                ),
+            );
+            await dispatch(createArticle(user.id));
+            navigate(getRouteArticles());
+        }
+    }, [navigate, dispatch, user]);
 
     const onSaveModalClose = useCallback(() => {
         setIsSaveModalOpen(false);
@@ -79,12 +109,20 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
         setIsExitModalOpen(false);
     }, []);
 
+    const onDeleteModalClose = useCallback(() => {
+        setIsDeleteModalOpen(false);
+    }, []);
+
     const onSaveModalOpen = useCallback(() => {
         setIsSaveModalOpen(true);
     }, []);
 
     const onExitModalOpen = useCallback(() => {
         setIsExitModalOpen(true);
+    }, []);
+
+    const onDeleteModalOpen = useCallback(() => {
+        setIsDeleteModalOpen(true);
     }, []);
 
     const onChangeTitle = useCallback(
@@ -108,12 +146,6 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
         [dispatch],
     );
 
-    useInitialEffect(() => {
-        if (user) {
-            dispatch(articleEditFormSliceActions.setUser(user));
-        }
-    }, [user]);
-
     if (isLoading) {
         return null;
     }
@@ -125,7 +157,9 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
             align="center"
             className={classNames(cls.ArticleEditForm, {}, [className])}
         >
-            <Text title={t('Редактирование статьи')} />
+            <Text
+                title={id ? t('Редактирование статьи') : t('Создание статьи')}
+            />
             <Input
                 label={t('Заголовок')}
                 value={title}
@@ -160,54 +194,36 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
             <ArticleEditBlocks />
             <HStack max justify="between" className={cls.Btns}>
                 <Button colorType="success" onClick={onSaveModalOpen}>
-                    {t('Сохранить')}
+                    {id ? t('Сохранить') : t('Создать')}
+                </Button>
+                <Button colorType="error" onClick={onDeleteModalOpen}>
+                    {t('Удалить')}
                 </Button>
                 <Button colorType="error" onClick={onExitModalOpen}>
                     {t('Отмена')}
                 </Button>
             </HStack>
             {isSaveModalOpen && (
-                <Modal isOpen={isSaveModalOpen} onClose={onSaveModalClose}>
-                    <VStack gap="16" max>
-                        <Text title={t('Сохранить изменения?')} />
-                        <HStack max justify="between">
-                            <Button
-                                colorType="success"
-                                onClick={onUpdateArticle}
-                            >
-                                {t('Да')}
-                            </Button>
-                            <Button
-                                colorType="error"
-                                onClick={onSaveModalClose}
-                            >
-                                {t('Нет')}
-                            </Button>
-                        </HStack>
-                    </VStack>
-                </Modal>
+                <ArticleEditSaveModal
+                    isSaveModalOpen={isSaveModalOpen}
+                    onSaveModalClose={onSaveModalClose}
+                    onChangeArticle={id ? onUpdateArticle : onCreateArticle}
+                    type={id ? 'update' : 'create'}
+                />
             )}
             {isExitModalOpen && (
-                <Modal isOpen={isExitModalOpen} onClose={onExitModalClose}>
-                    <VStack gap="16" max>
-                        <Text title={t('Вы действительно хотите выйти?')} />
-                        <Text text={t('Изменения не будут сохранены')} />
-                        <HStack max justify="between">
-                            <Button
-                                colorType="success"
-                                onClick={onExitModalCloseAccept}
-                            >
-                                {t('Да')}
-                            </Button>
-                            <Button
-                                colorType="error"
-                                onClick={onExitModalClose}
-                            >
-                                {t('Нет')}
-                            </Button>
-                        </HStack>
-                    </VStack>
-                </Modal>
+                <ArticleEditExitModal
+                    isExitModalOpen={isExitModalOpen}
+                    onExitModalClose={onExitModalClose}
+                    onExit={onExit}
+                />
+            )}
+            {isDeleteModalOpen && (
+                <ArticleEditDeleteModal
+                    isDeleteModalOpen={isDeleteModalOpen}
+                    onDeleteModalClose={onDeleteModalClose}
+                    onDeleteArticle={onDeleteArticle}
+                />
             )}
         </VStack>
     );

@@ -18,12 +18,6 @@ export const getArticleEditSubtitle = (state: StateSchema) =>
 export const getArticleEditImg = (state: StateSchema) =>
     state?.articleEditForm?.img ?? '';
 
-export const getArticleEditCreatedAt = (state: StateSchema) =>
-    state?.articleEditForm?.createdAt ?? '';
-
-export const getArticleEditViews = (state: StateSchema) =>
-    state?.articleEditForm?.views ?? 0;
-
 export const getArticleEditType = (state: StateSchema) =>
     state?.articleEditForm?.type;
 

@@ -8,16 +8,22 @@ import { NotificationButton } from '@/features/notificationButton';
 
 import { getUserAuthData } from '@/entities/User';
 
+import CreateArticleIcon from '@/shared/assets/icons/CreateArticleRedesigned.svg';
 import { getRouteArticleCreate } from '@/shared/const/router';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
-import { AppLink, AppLinkTheme } from '@/shared/ui/deprecated/AppLink';
+import {
+    AppLink as AppLinkDeprecated,
+    AppLinkTheme,
+} from '@/shared/ui/deprecated/AppLink';
 import {
     Button as ButtonDeprecated,
     ThemeButton,
 } from '@/shared/ui/deprecated/Button';
 import { Text, TextTheme } from '@/shared/ui/deprecated/Text';
+import { AppLink } from '@/shared/ui/redesigned/AppLink';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 
 import cls from './Navbar.module.scss';
@@ -50,6 +56,15 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                         ])}
                     >
                         <HStack gap="16" className={cls.actions}>
+                            <AppLink
+                                className={cls.iconLink}
+                                to={getRouteArticleCreate()}
+                            >
+                                <Icon
+                                    className={cls.createIcon}
+                                    Svg={CreateArticleIcon}
+                                />
+                            </AppLink>
                             <NotificationButton />
                             <AvatarDropdown />
                         </HStack>
@@ -62,13 +77,13 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                             title={t('MT den news')}
                             theme={TextTheme.INVERTED}
                         />
-                        <AppLink
+                        <AppLinkDeprecated
                             to={getRouteArticleCreate()}
                             theme={AppLinkTheme.SECONDARY}
                             className={cls.createBtn}
                         >
                             {t('Создать статью')}
-                        </AppLink>
+                        </AppLinkDeprecated>
                         <HStack gap="16" className={cls.actions}>
                             <NotificationButton />
                             <AvatarDropdown />

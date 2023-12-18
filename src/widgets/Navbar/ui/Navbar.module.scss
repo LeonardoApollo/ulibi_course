@@ -23,4 +23,15 @@
 
 .NavbarRedesigned {
     padding: 16px;
+
+    .iconLink {
+        padding-top: 1px;
+    }
+
+    .createIcon {
+        &:hover,
+        &:focus {
+            color: var(--accent-redesigned);
+        }
+    }
 }
