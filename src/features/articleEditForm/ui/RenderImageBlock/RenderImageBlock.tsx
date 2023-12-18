@@ -20,7 +20,7 @@ interface RenderImageBlockProps {
 }
 
 export const RenderImageBlock = memo((props: RenderImageBlockProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('articleForm');
     const { className, block } = props;
     const dispatch = useAppDispatch();
     const [isDisabled, setIsDisabled] = useState<boolean>(true);

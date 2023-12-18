@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -22,7 +21,6 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
-import { Input } from '@/shared/ui/redesigned/Input';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 
 import cls from './ArticleEditPage.module.scss';
@@ -36,7 +34,6 @@ const reducers: ReducersList = {
 };
 
 const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
-    const { t } = useTranslation();
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const userData = useSelector(getUserAuthData);
@@ -70,11 +67,13 @@ const ArticleEditPage = ({ className }: ArticleEditPageProps) => {
     }
 
     return (
-        <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
-            <Input label={t('Название')} />
-            <Input label={t('Описание')} />
-            <Input label={t('Изображдение')} />
-        </Page>
+        <DynamicModuleLoader reducers={reducers}>
+            <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+                <VStack max gap="16" align="center">
+                    <ArticleEditForm user={userData} />
+                </VStack>
+            </Page>
+        </DynamicModuleLoader>
     );
 };
 

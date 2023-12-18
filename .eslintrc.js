@@ -49,6 +49,7 @@ module.exports = {
         'no-shadow': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
+        'no-unused-expressions': ['error', { allowTernary: true }],
         'i18next/no-literal-string': [
             'error',
             {

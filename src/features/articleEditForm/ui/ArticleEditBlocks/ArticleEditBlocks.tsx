@@ -20,7 +20,7 @@ interface ArticleEditBlocksProps {
 }
 
 export const ArticleEditBlocks = memo((props: ArticleEditBlocksProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('articleForm');
     const { className } = props;
     const id = Math.floor(Date.now() + Math.random() * 100).toString(16);
     const dispatch = useAppDispatch();

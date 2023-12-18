@@ -19,7 +19,7 @@ interface ArticleEditTagsReduxProps {
 }
 
 export const ArticleEditTags = memo((props: ArticleEditTagsReduxProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('articleForm');
     const { className } = props;
     const dispatch = useAppDispatch();
     const type = useSelector(getArticleEditType);

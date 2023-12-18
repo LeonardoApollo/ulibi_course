@@ -17,7 +17,7 @@ interface RenderCodeBlockProps {
 }
 
 export const RenderCodeBlock = memo((props: RenderCodeBlockProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('articleForm');
     const { className, block } = props;
     const dispatch = useAppDispatch();
     const textareaRef = useRef<HTMLTextAreaElement>(null);

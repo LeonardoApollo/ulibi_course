@@ -1,4 +1,4 @@
-import { ChangeEvent, Children, memo, useCallback, useState } from 'react';
+import { ChangeEvent, Children, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ArticleTextBlock } from '@/entities/Article';
@@ -18,7 +18,7 @@ interface RenderTextBlockProps {
 }
 
 export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('articleForm');
     const { className, block } = props;
     const dispatch = useAppDispatch();
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -39,12 +39,9 @@ export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
         }
     };
 
-    const onTitleChange = useCallback(
-        (value: string) => {
-            setNewBlock({ ...newBlock, title: value });
-        },
-        [newBlock],
-    );
+    const onTitleChange = (value: string) => {
+        setNewBlock({ ...newBlock, title: value });
+    };
 
     const onChangeParagraph =
         (idx: number) => (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -103,7 +100,7 @@ export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
                         </VStack>
                         <textarea
                             disabled={isDisabled}
-                            maxLength={150}
+                            maxLength={1000}
                             value={paragraph}
                             onChange={onChangeParagraph(idx)}
                             className={cls.textarea}
