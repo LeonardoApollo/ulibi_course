@@ -4,6 +4,14 @@
 @import "themes/normal";
 @import "themes/orange";
 
+pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
 .app {
     font: var(--font-m);
     color: var(--primary-color);
