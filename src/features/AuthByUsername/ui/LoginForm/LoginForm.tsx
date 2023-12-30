@@ -1,7 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
+import PasswordEye from '@/shared/assets/icons/eye-password.svg';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import {
@@ -17,15 +18,18 @@ import {
 import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { Icon } from '@/shared/ui/redesigned/Icon';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
+import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { getLoginisLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { registerUser } from '../../model/services/register/registerUser';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
@@ -39,15 +43,26 @@ const initalReducers: ReducersList = {
 
 const LoginForm = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
+    const [isModalRegister, setIsModalRegister] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorUsername, setErrorUsername] = useState(false);
+    const [errorPassword, setErrorPassword] = useState(false);
+    const [isPasswordHidden, setIsPasswordHidden] = useState(true);
     const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
+    const email = useSelector(getLoginEmail);
     const isLoading = useSelector(getLoginisLoading);
     const error = useSelector(getLoginError);
     const forceUpdate = useForceUpdate();
 
     const onChangeUsername = useCallback(
         (value: string) => {
+            if (value.length >= 5 || value.length === 0) {
+                setErrorUsername(false);
+            } else {
+                setErrorUsername(true);
+            }
             dispatch(loginActions.setUsername(value));
         },
         [dispatch],
@@ -55,7 +70,29 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
     const onChangePassword = useCallback(
         (value: string) => {
+            if (value.length >= 6 || value.length === 0) {
+                setErrorPassword(false);
+            } else {
+                setErrorPassword(true);
+            }
             dispatch(loginActions.setPassword(value));
+        },
+        [dispatch],
+    );
+
+    const onChnageEmail = useCallback(
+        (value: string) => {
+            if (
+                value.match(
+                    /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/,
+                ) ||
+                value.length === 0
+            ) {
+                setErrorEmail(false);
+            } else {
+                setErrorEmail(true);
+            }
+            dispatch(loginActions.setEmail(value));
         },
         [dispatch],
     );
@@ -67,6 +104,22 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         }
     }, [dispatch, username, password, forceUpdate]);
 
+    const onRegisterClick = useCallback(async () => {
+        const result = await dispatch(
+            registerUser({ username, password, email }),
+        );
+        if (result.meta.requestStatus === 'fulfilled') {
+            forceUpdate();
+        }
+    }, [dispatch, username, password, email, forceUpdate]);
+
+    const onChangeModalClick = useCallback(() => {
+        setIsModalRegister((prev) => !prev);
+        dispatch(loginActions.setEmail(''));
+        dispatch(loginActions.setUsername(''));
+        dispatch(loginActions.setPassword(''));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initalReducers}>
             <ToggleFeatures
@@ -75,12 +128,27 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                     <VStack
                         gap="16"
                         className={classNames(cls.LoginForm, {}, [className])}
+                        align="center"
                     >
-                        <Text title={t('Форма авторизации')} />
+                        <Text
+                            title={
+                                isModalRegister
+                                    ? t('Форма регистрации')
+                                    : t('Форма авторизации')
+                            }
+                        />
                         {error && (
                             <Text
-                                text={t('Вы ввели неверный логин или пароль')}
+                                text={t(
+                                    'Вы ввели неверный логин/email или пароль',
+                                )}
                                 variant="error"
+                            />
+                        )}
+                        {isModalRegister && errorUsername && (
+                            <Text
+                                variant="error"
+                                text={t('Длина логина минимум 5 символов')}
                             />
                         )}
                         <Input
@@ -88,25 +156,78 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             maxLength={15}
                             type="text"
                             className={cls.input}
-                            placeholder={t('Введите логин')}
+                            placeholder={
+                                isModalRegister
+                                    ? t('Придумайте логин')
+                                    : t('Введите логин или email')
+                            }
                             onChange={onChangeUsername}
                             value={username}
                         />
-                        <Input
-                            maxLength={15}
-                            type="text"
-                            className={cls.input}
-                            placeholder={t('Введите пароль')}
-                            onChange={onChangePassword}
-                            value={password}
-                        />
+                        {isModalRegister && (
+                            <>
+                                {errorEmail && (
+                                    <Text
+                                        variant="error"
+                                        text={t('Некорректный email')}
+                                    />
+                                )}
+                                <Input
+                                    type="email"
+                                    className={cls.input}
+                                    placeholder={t('Введите email')}
+                                    onChange={onChnageEmail}
+                                    value={email}
+                                />
+                            </>
+                        )}
+                        {isModalRegister && errorPassword && (
+                            <Text
+                                variant="error"
+                                text={t('Длина пароля минимум 6 символов')}
+                            />
+                        )}
+                        <div className={cls.PasswordContainer}>
+                            <button
+                                className={cls.PasswordEye}
+                                type="button"
+                                onClick={() =>
+                                    setIsPasswordHidden((prev) => !prev)
+                                }
+                            >
+                                <Icon Svg={PasswordEye} />
+                            </button>
+                            <Input
+                                maxLength={15}
+                                type={isPasswordHidden ? 'password' : 'text'}
+                                className={cls.input}
+                                placeholder={t('Введите пароль')}
+                                onChange={onChangePassword}
+                                value={password}
+                            />
+                        </div>
+                        <Button variant="filled" onClick={onChangeModalClick}>
+                            <Text
+                                variant="accent"
+                                text={
+                                    isModalRegister
+                                        ? t('Вернуться')
+                                        : t('Зарегестироваться')
+                                }
+                                className={cls.Register}
+                            />
+                        </Button>
                         <Button
                             variant="outline"
                             className={cls.loginBtn}
-                            onClick={onLoginClick}
+                            onClick={
+                                isModalRegister ? onRegisterClick : onLoginClick
+                            }
                             disabled={isLoading}
                         >
-                            {t('Войти')}
+                            {isModalRegister
+                                ? t('Зарегистрироваться')
+                                : t('Войти')}
                         </Button>
                     </VStack>
                 }
@@ -124,7 +245,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             maxLength={15}
                             type="text"
                             className={cls.input}
-                            placeholder={t('Введите логин')}
+                            placeholder={t('Введите логин или email')}
                             onChange={onChangeUsername}
                             value={username}
                         />

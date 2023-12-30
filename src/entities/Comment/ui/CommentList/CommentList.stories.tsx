@@ -22,6 +22,8 @@ const comments = [
         id: '1',
         text: 'hello world',
         user: {
+            email: 'abc',
+            token: '123',
             id: '1',
             username: 'Admin',
             avatar: 'https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg',
@@ -31,6 +33,8 @@ const comments = [
         id: '2',
         text: 'Comment 2',
         user: {
+            email: 'abc',
+            token: '123',
             id: '1',
             username: 'User',
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa3xJHuQ_yC7x2ia0Mgs02sAeK_i4jwR4ipg&usqp=CAU',

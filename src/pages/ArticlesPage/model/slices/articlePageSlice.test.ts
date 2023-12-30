@@ -17,6 +17,8 @@ const data = [
         createdAt: '26.02.2022',
         type: [ArticleType.IT],
         user: {
+            email: 'abc',
+            token: '123',
             id: '1',
             username: 'Admin',
             avatar: 'https://i.pinimg.com/originals/2e/2e/21/2e2e2125ee53807c2d77b34773f84b5c.jpg',
