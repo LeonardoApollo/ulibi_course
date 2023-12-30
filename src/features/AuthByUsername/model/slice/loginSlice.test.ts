@@ -34,3 +34,5 @@ describe('loginSlice', () => {
     //     ).toEqual({ email: 'google@gmail.com' });
     // });
 });
+
+export {};
