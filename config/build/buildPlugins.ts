@@ -9,12 +9,14 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { BuildOptions } from './types/config';
 
+const Dotenv = require('dotenv-webpack');
+
 export function buildPlugins({
     paths, isDev, apiUrl, project,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
     const isProd = !isDev;
-
     const plugins = [
+        new Dotenv(),
         new HtmlWebpackPlugin({
             template: paths.html,
         }),

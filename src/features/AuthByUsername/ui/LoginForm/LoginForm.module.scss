@@ -12,3 +12,26 @@
     margin-top: 15px;
     margin-left: auto;
 }
+
+.Register {
+    cursor: pointer;
+}
+
+.PasswordContainer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.PasswordEye {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    right: 5px;
+    bottom: 2px;
+    cursor: pointer;
+}
