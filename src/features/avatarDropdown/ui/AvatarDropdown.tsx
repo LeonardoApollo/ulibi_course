@@ -1,3 +1,4 @@
+import { getAuth, signOut } from 'firebase/auth';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,13 +30,16 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const { className } = props;
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const auth = getAuth();
     const isAdmin = useSelector(isUserAdmin);
     const isManager = useSelector(isUserManager);
     const authData = useSelector(getUserAuthData);
 
     const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
-    }, [dispatch]);
+        signOut(auth)
+            .then(() => dispatch(userActions.logout()))
+            .catch(() => dispatch(userActions.logout()));
+    }, [dispatch, auth]);
 
     const isAdminPanelAvailable = isAdmin || isManager;
 

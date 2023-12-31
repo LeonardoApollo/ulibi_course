@@ -6,7 +6,7 @@ import {
 } from '@/shared/const/localestorage';
 import { setFeatureFlags } from '@/shared/libs/features';
 
-import { initAuthData } from '../services/initAuthData';
+// import { initAuthData } from '../services/initAuthData';
 import { saveJsonSettings } from '../services/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
 import { User, UserSchema } from '../types/user';
@@ -32,6 +32,9 @@ export const userSlice = createSlice({
             state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
+        setInit: (state) => {
+            state._inited = true;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -42,18 +45,18 @@ export const userSlice = createSlice({
                 }
             },
         );
-        builder
-            .addCase(
-                initAuthData.fulfilled,
-                (state, action: PayloadAction<User>) => {
-                    state.authData = action.payload;
-                    setFeatureFlags(action.payload.features);
-                    state._inited = true;
-                },
-            )
-            .addCase(initAuthData.rejected, (state) => {
-                state._inited = true;
-            });
+        // builder
+        //     .addCase(
+        //         initAuthData.fulfilled,
+        //         (state, action: PayloadAction<User>) => {
+        //             state.authData = action.payload;
+        //             setFeatureFlags(action.payload.features);
+        //             state._inited = true;
+        //         },
+        //     )
+        //     .addCase(initAuthData.rejected, (state) => {
+        //         state._inited = true;
+        //     });
     },
 });
 

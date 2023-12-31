@@ -1,9 +1,9 @@
 {
     "Важно!": "Important!",
     "Бэкэнд сделан с помощью json-server а бесплатный сервер Vercel раздает только статику": "The backend is made using a json server and the free Vercel server distributes only static",
-    "Поэтому возможен только вход с существующими данными": "Therefore, it is only possible to log in with existing data",
     "Данные для входа": "Login information",
-    "Логин и пароль для admin роли: Admin, 123": "Login and password for admin role: Admin, 123",
-    "Логин и пароль для user роли: User, 345": "Login and password for user role: User, 345",
-    "Логин и пароль для manager роли: Manager, 567": "Login and password for manager role: Manager, 567"
+    "Логин и пароль для admin роли: Admin или admin@gmail.com, 123456": "Login and password for admin role: Admin or admin@gmail.com, 123456",
+    "Логин и пароль для user роли: User или user@gmail.com, 123456": "Login and password for user role: User or user@gmail.com, 123456",
+    "Логин и пароль для manager роли: Manager или manager@gmail.com, 123456": "Login and password for manager role: Manager or manager@gmail.com, 123456",
+    "Выпоняется переход на Firebase, на данный момент не доступны профили": "Switching to Firebase in progress, ProfilePage are not available at the moment"
 }

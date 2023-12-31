@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import PasswordEye from '@/shared/assets/icons/eye-password.svg';
+import { USERNAME_ALREADY_EXIST } from '@/shared/const/errors';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import {
@@ -139,9 +140,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                         />
                         {error && (
                             <Text
-                                text={t(
-                                    'Вы ввели неверный логин/email или пароль',
-                                )}
+                                text={
+                                    error === USERNAME_ALREADY_EXIST
+                                        ? t('Данный логин уже существет')
+                                        : t(
+                                              'Вы ввели неверный логин/email или пароль',
+                                          )
+                                }
                                 variant="error"
                             />
                         )}
