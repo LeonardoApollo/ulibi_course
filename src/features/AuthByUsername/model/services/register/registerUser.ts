@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { User, UserRole, userActions } from '@/entities/User';
 
 import { db } from '@/shared/config/firebase/firebase';
+import { USERNAME_ALREADY_EXIST } from '@/shared/const/errors';
 import { Theme } from '@/shared/const/theme';
 
 interface LoginByUsernameProps {
@@ -24,6 +25,11 @@ export const registerUser = createAsyncThunk<
     async (authData, { dispatch, extra, rejectWithValue }) => {
         const auth = getAuth();
         try {
+            const initDataRef = doc(db, 'initUsers', authData.username);
+            const initData = await getDoc(initDataRef);
+            if (initData.exists()) {
+                throw new Error(USERNAME_ALREADY_EXIST);
+            }
             const { user } = await createUserWithEmailAndPassword(
                 auth,
                 authData.email,
@@ -60,11 +66,12 @@ export const registerUser = createAsyncThunk<
             };
             dispatch(userActions.setAuthData(userData));
             return userData;
-        } catch (error) {
+        } catch (e) {
+            const error = e as Error;
             if (__PROJECT__ === 'frontend') {
-                console.log(error);
+                console.log(error.message);
             }
-            return rejectWithValue('error');
+            return rejectWithValue(`${error.message}`);
         }
     },
 );

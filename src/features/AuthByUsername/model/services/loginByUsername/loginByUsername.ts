@@ -1,19 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import {
-    collection,
-    doc,
-    getDoc,
-    getDocs,
-    query,
-    where,
-} from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { User, userActions } from '@/entities/User';
 
-import { db } from '@/shared/config/firebase/firebase';
+import { db, getUserFromFirestore } from '@/shared/config/firebase/firebase';
 
 interface LoginByUsernameProps {
     username: string;
@@ -30,12 +23,7 @@ export const loginByUsername = createAsyncThunk<
     async (authData, { dispatch, extra, rejectWithValue }) => {
         const auth = getAuth();
         try {
-            let username = '';
             let email = '';
-            let avatar = '';
-            let roles = [];
-            let jsonSettings = {};
-            let features = {};
             if (
                 authData.username.match(
                     /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/,
@@ -43,21 +31,14 @@ export const loginByUsername = createAsyncThunk<
             ) {
                 email = authData.username;
             } else {
-                const q = query(
-                    collection(db, 'users'),
-                    where('username', '==', authData.username),
-                );
-                const qSnap = await getDocs(q);
-                if (qSnap.empty) {
+                const initDataRef = doc(db, 'initUsers', authData.username);
+                const initData = await getDoc(initDataRef);
+                if (initData.exists()) {
+                    const data = initData.data();
+                    email = await data.email;
+                } else {
                     throw new Error('error data');
                 }
-                const data = qSnap.docs[0].data();
-                username = await data.username;
-                email = await data.email;
-                avatar = await data.avatar;
-                roles = await data.roles;
-                jsonSettings = await data.jsonSettings;
-                features = await data.features;
             }
             const { user } = await signInWithEmailAndPassword(
                 auth,
@@ -68,26 +49,13 @@ export const loginByUsername = createAsyncThunk<
                 throw new Error('error data');
             }
             const id = user.uid;
-            if (!username && id) {
-                const docRef = doc(db, 'users', id);
-                const docData = (await getDoc(docRef)).data();
-                username = await docData!.username;
-                avatar = await docData!.avatar;
-                roles = await docData!.roles;
-                jsonSettings = await docData!.jsonSettings;
-                features = await docData!.features;
-            }
             const token = user.refreshToken;
-            const userData: User = {
+            const userData: User = await getUserFromFirestore(
+                db,
+                'users',
                 id,
-                email,
                 token,
-                username,
-                avatar,
-                roles,
-                features,
-                jsonSettings,
-            };
+            );
             dispatch(userActions.setAuthData(userData));
             return userData;
             // Способ через json-server

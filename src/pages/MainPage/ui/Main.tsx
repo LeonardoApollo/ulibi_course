@@ -24,22 +24,25 @@ const Main = memo(() => {
                             )}
                         />
                         <Text
+                            variant="error"
                             text={t(
-                                'Поэтому возможен только вход с существующими данными',
+                                'Выпоняется переход на Firebase, на данный момент не доступны профили',
                             )}
                         />
                         <Text variant="accent" text={t('Данные для входа')} />
                         <Text
                             text={t(
-                                'Логин и пароль для admin роли: Admin, 123',
+                                'Логин и пароль для admin роли: Admin или admin@gmail.com, 123456',
                             )}
                         />
                         <Text
-                            text={t('Логин и пароль для user роли: User, 345')}
+                            text={t(
+                                'Логин и пароль для user роли: User или user@gmail.com, 123456',
+                            )}
                         />
                         <Text
                             text={t(
-                                'Логин и пароль для manager роли: Manager, 567',
+                                'Логин и пароль для manager роли: Manager или manager@gmail.com, 123456',
                             )}
                         />
                     </VStack>
