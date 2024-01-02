@@ -6,8 +6,10 @@ import {
 } from '@reduxjs/toolkit';
 
 import { ScrollSaveReducer } from '@/features/ScrollSave';
+import { profileRatingApi } from '@/features/profileRating';
 
 import { counterReducer } from '@/entities/Counter';
+import { notificationApi } from '@/entities/Notification';
 import { userReducer } from '@/entities/User';
 
 import { $api } from '@/shared/api/api';
@@ -26,6 +28,8 @@ export function createReduxStore(
         user: userReducer,
         scrollSave: ScrollSaveReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
+        [profileRatingApi.reducerPath]: profileRatingApi.reducer,
+        [notificationApi.reducerPath]: notificationApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -43,7 +47,11 @@ export function createReduxStore(
                 thunk: {
                     extraArgument: extraArg,
                 },
-            }).concat(rtkApi.middleware),
+            }).concat(
+                rtkApi.middleware,
+                profileRatingApi.middleware,
+                notificationApi.middleware,
+            ),
     });
 
     // @ts-ignore

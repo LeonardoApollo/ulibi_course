@@ -90,7 +90,7 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                 <HStack gap="24" max>
                     <VStack gap="16" max>
                         <Input
-                            value={data?.firstname}
+                            value={data?.firstname ?? ''}
                             label={t('Имя')}
                             className={cls.input}
                             onChange={onChangeFirstname}
@@ -98,7 +98,7 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                             data-testid="ProfileCard.firstname"
                         />
                         <Input
-                            value={data?.lastname}
+                            value={data?.lastname ?? ''}
                             label={t('Фамилия')}
                             className={cls.input}
                             onChange={onChangeLastname}
@@ -106,14 +106,14 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                             data-testid="ProfileCard.lastname"
                         />
                         <Input
-                            value={data?.age}
+                            value={data?.age ?? ''}
                             label={t('Возраст')}
                             className={cls.input}
                             onChange={onChangeAge}
                             readonly={readonly}
                         />
                         <Input
-                            value={data?.city}
+                            value={data?.city ?? ''}
                             label={t('Город')}
                             className={cls.input}
                             onChange={onChangeCity}
@@ -122,7 +122,7 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                     </VStack>
                     <VStack gap="16" max>
                         <Input
-                            value={data?.username}
+                            value={data?.username ?? ''}
                             label={t('Псевдоним')}
                             className={cls.input}
                             onChange={onChangeUsername}
@@ -130,7 +130,7 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
                         />
 
                         <Input
-                            value={data?.avatar}
+                            value={data?.avatar ?? ''}
                             label={t('Аватар')}
                             className={cls.input}
                             onChange={onChangeAvatar}

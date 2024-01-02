@@ -5,7 +5,7 @@ import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
 import { Profile } from '@/entities/Profile';
 
-import { $api } from '@/shared/api/api';
+// import { $api } from '@/shared/api/api';
 import { componentRender } from '@/shared/libs/tests/componentRender/componentRender';
 
 import { profileReducer } from '../../model/slice/profileSlice';
@@ -100,25 +100,26 @@ describe('features/EditableProfileCard', () => {
         ).toBeInTheDocument();
     });
 
-    test('should send PUT request to server', async () => {
-        const mockPutReq = jest.spyOn($api, 'put').mockResolvedValue('');
-        componentRender(<EditableProfileCard id="1" />, options);
+    // Тест отключен в связи с переходом на настоящий backend Firebase и оставлен в качестве примера
+    // test('should send PUT request to server', async () => {
+    //     const mockPutReq = jest.spyOn($api, 'put').mockResolvedValue('');
+    //     componentRender(<EditableProfileCard id="1" />, options);
 
-        await userEvent.click(
-            screen.getByTestId('EditableProfileCardHeader.EditButton'),
-        );
+    //     await userEvent.click(
+    //         screen.getByTestId('EditableProfileCardHeader.EditButton'),
+    //     );
 
-        await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
+    //     await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
 
-        await userEvent.type(
-            screen.getByTestId('ProfileCard.firstname'),
-            'user',
-        );
+    //     await userEvent.type(
+    //         screen.getByTestId('ProfileCard.firstname'),
+    //         'user',
+    //     );
 
-        await userEvent.click(
-            screen.getByTestId('EditableProfileCardHeader.SaveButton'),
-        );
+    //     await userEvent.click(
+    //         screen.getByTestId('EditableProfileCardHeader.SaveButton'),
+    //     );
 
-        expect(mockPutReq).toHaveBeenCalled();
-    });
+    //     expect(mockPutReq).toHaveBeenCalled();
+    // });
 });

@@ -1,5 +1,7 @@
 import { screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+// eslint-disable-next-line
+import { setImmediate } from 'timers';
 
 import { UserRole } from '@/entities/User';
 

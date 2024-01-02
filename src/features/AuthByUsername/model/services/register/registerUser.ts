@@ -4,6 +4,7 @@ import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
+import { Profile } from '@/entities/Profile';
 import { User, UserRole, userActions } from '@/entities/User';
 
 import { db } from '@/shared/config/firebase/firebase';
@@ -29,6 +30,10 @@ export const registerUser = createAsyncThunk<
             const initData = await getDoc(initDataRef);
             if (initData.exists()) {
                 throw new Error(USERNAME_ALREADY_EXIST);
+            } else {
+                await setDoc(initDataRef, {
+                    email: authData.email,
+                });
             }
             const { user } = await createUserWithEmailAndPassword(
                 auth,
@@ -42,6 +47,10 @@ export const registerUser = createAsyncThunk<
             const { username } = authData;
             const docRef = collection(db, 'users');
             const token = user.refreshToken;
+            const initProfile: Profile = {
+                username,
+                id,
+            };
             const initialData = {
                 username,
                 email: authData.email,
@@ -57,6 +66,7 @@ export const registerUser = createAsyncThunk<
                     settingsPageHasBeenOpen: false,
                     theme: Theme.LIGHT,
                 },
+                profile: initProfile,
             };
             await setDoc(doc(docRef, id), initialData);
             const userData: User = {

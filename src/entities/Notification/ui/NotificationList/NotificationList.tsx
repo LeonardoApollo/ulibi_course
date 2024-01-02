@@ -22,10 +22,10 @@ interface NotificationListProps {
 
 export const NotificationList = memo(({ className }: NotificationListProps) => {
     const { t } = useTranslation();
-    const { data, isLoading, error } = useNotifications(null, {
+    const userId = useSelector(getUserAuthData);
+    const { data, isLoading, error } = useNotifications(userId?.id, {
         pollingInterval: 5000,
     });
-    const userId = useSelector(getUserAuthData);
 
     const Skeleton = toggleFeatures({
         name: 'isAppRedesigned',
@@ -59,18 +59,34 @@ export const NotificationList = memo(({ className }: NotificationListProps) => {
         );
     }
 
+    if (!data?.length) {
+        return (
+            <VStack
+                gap="16"
+                max
+                className={classNames(cls.NotificationList, {}, [className])}
+            >
+                <NotificationItem
+                    key="1"
+                    item={{
+                        id: '1',
+                        title: t('У вас нет уведомлений'),
+                        description: '',
+                    }}
+                />
+            </VStack>
+        );
+    }
+
     return (
         <VStack
             gap="16"
             max
             className={classNames(cls.NotificationList, {}, [className])}
         >
-            {data?.map((item) => {
-                if (userId?.id === item.userId) {
-                    return <NotificationItem key={item.id} item={item} />;
-                }
-                return null;
-            })}
+            {data?.map((item) => (
+                <NotificationItem key={item.id} item={item} />
+            ))}
         </VStack>
     );
 });

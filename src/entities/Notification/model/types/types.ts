@@ -3,5 +3,5 @@ export interface Notification {
     title: string;
     description: string;
     href?: string;
-    userId: string;
+    userId?: string;
 }

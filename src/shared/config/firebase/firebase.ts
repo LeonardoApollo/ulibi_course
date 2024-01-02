@@ -31,6 +31,7 @@ export async function getUserFromFirestore(
     const jsonSettings = await docData!.jsonSettings;
     const features = await docData!.features;
     const email = await docData!.email;
+    const profile = await docData!.profile;
     const userData = {
         id: uid,
         email,
@@ -40,6 +41,7 @@ export async function getUserFromFirestore(
         roles,
         features,
         jsonSettings,
+        profile,
     };
     return userData;
 }
