@@ -5,11 +5,11 @@ import { TextDecoder, TextEncoder } from 'util';
 
 Object.assign(global, { TextDecoder, TextEncoder });
 Object.assign(process.env, {
-    API_KEY: '',
-    AUTH_DOMAIN: '',
-    PROJECT_ID: '',
-    STORAGE_BUTCKET: '',
-    MESSEGING_SENDER_ID: '',
-    APP_ID: '',
-    MESURMENT_ID: '',
+    API_KEY: 'fgtshydhgtdthdtgh',
+    AUTH_DOMAIN: 'sdfgtygfh',
+    PROJECT_ID: 'sdfgdftr',
+    STORAGE_BUTCKET: '123536123',
+    MESSEGING_SENDER_ID: 'sdfdfstet',
+    APP_ID: '12456234',
+    MESURMENT_ID: '12354456',
 });
