@@ -5,7 +5,7 @@ import { Page } from '@/widgets/Page';
 
 import { ToggleFeatures } from '@/shared/libs/features';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
-import { VStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
 const Main = memo(() => {
@@ -25,10 +25,29 @@ const Main = memo(() => {
                         />
                         <Text
                             variant="error"
-                            text={t(
-                                'Выпоняется переход на Firebase, на данный момент не доступны профили',
-                            )}
+                            text={t('Выпоняется переход на Firebase!')}
                         />
+                        <HStack gap="16" max align="start" justify="between">
+                            <div>
+                                <Text text={`✅ ${t('Регистрация')}`} />
+                                <Text text={`✅ ${t('Авторизация')}`} />
+                                <Text text={`✅ ${t('Выход')}`} />
+                                <Text text={`✅ ${t('Профиль')}`} />
+                                <Text text={`✅ ${t('Рейтинг профиля')}`} />
+                                <Text text={`✅ ${t('Уведомления')}`} />
+                                <Text text={`✅ ${t('JsonSettings')}`} />
+                            </div>
+                            <div>
+                                <Text text={`❌ ${t('Статьи')}`} />
+                                <Text text={`❌ ${t('Рейтинг статьи')}`} />
+                                <Text text={`❌ ${t('Комментарии')}`} />
+                                <Text
+                                    text={`❌ ${t(
+                                        'Редактирование/удаление/создание статьи',
+                                    )}`}
+                                />
+                            </div>
+                        </HStack>
                         <Text variant="accent" text={t('Данные для входа')} />
                         <Text
                             text={t(

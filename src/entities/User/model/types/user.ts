@@ -1,3 +1,5 @@
+import { Profile } from '@/entities/Profile';
+
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
 import { UserRole } from '../consts/consts';
@@ -7,6 +9,7 @@ export interface User {
     id: string;
     username: string;
     token: string;
+    profile?: Profile;
     email: string;
     avatar?: string;
     roles?: UserRole[];

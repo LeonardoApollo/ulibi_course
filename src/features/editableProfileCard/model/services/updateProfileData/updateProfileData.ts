@@ -1,8 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { doc, updateDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { Profile } from '@/entities/Profile';
+import { getUserAuthData } from '@/entities/User';
+
+import { db } from '@/shared/config/firebase/firebase';
 
 import { ValidateProfileError } from '../../consts/consts';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
@@ -16,6 +20,7 @@ export const updateProfileData = createAsyncThunk<
     'profile/updateProfileData',
     async (_, { extra, rejectWithValue, getState }) => {
         const formData = getProfileForm(getState());
+        const user = getUserAuthData(getState());
 
         const errors = validateProfileData(formData);
 
@@ -24,16 +29,25 @@ export const updateProfileData = createAsyncThunk<
         }
 
         try {
-            const response = await extra.api.put<Profile>(
-                `/profile/${formData?.id}`,
-                formData,
-            );
-
-            if (!response.data) {
+            const profile = formData;
+            if (!user || !profile) {
                 throw new Error();
             }
+            const userDataRef = doc(db, 'users', user.id);
+            await updateDoc(userDataRef, {
+                profile,
+            });
+            return profile;
+            // const response = await extra.api.put<Profile>(
+            //     `/profile/${formData?.id}`,
+            //     formData,
+            // );
 
-            return response.data;
+            // if (!response.data) {
+            //     throw new Error();
+            // }
+
+            // return response.data;
         } catch (error) {
             if (__PROJECT__ === 'frontend') {
                 console.log(error);

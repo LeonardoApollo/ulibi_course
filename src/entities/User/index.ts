@@ -3,6 +3,7 @@ export type { UserSchema, User } from './model/types/user';
 export { UserRole } from './model/consts/consts';
 export { getUserAuthData } from './model/selectors/getUserAuthData';
 export { getUserInited } from './model/selectors/getUserInited';
+export { getUserProfile } from './model/selectors/getUserProfile';
 export {
     isUserAdmin,
     isUserManager,

@@ -5,5 +5,16 @@
     "Логин и пароль для admin роли: Admin или admin@gmail.com, 123456": "Login and password for admin role: Admin or admin@gmail.com, 123456",
     "Логин и пароль для user роли: User или user@gmail.com, 123456": "Login and password for user role: User or user@gmail.com, 123456",
     "Логин и пароль для manager роли: Manager или manager@gmail.com, 123456": "Login and password for manager role: Manager or manager@gmail.com, 123456",
-    "Выпоняется переход на Firebase, на данный момент не доступны профили": "Switching to Firebase in progress, ProfilePage are not available at the moment"
+    "Выпоняется переход на Firebase!": "Switching to Firebase in progress!",
+    "Регистрация": "Registration",
+    "Авторизация": "Authorization",
+    "Выход": "Exit",
+    "Профиль": "Profile",
+    "Рейтинг профиля": "Profile rating",
+    "Уведомления": "Notifications",
+    "JsonSettings": "JsonSettings",
+    "Статьи": "Articles",
+    "Рейтинг статьи": "Article rating",
+    "Комментарии": "Comments",
+    "Редактирование/удаление/создание статьи": "Editing/deleting/creating article"
 }
