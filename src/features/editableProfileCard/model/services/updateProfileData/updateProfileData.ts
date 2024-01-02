@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { doc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
 import { Profile } from '@/entities/Profile';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, userActions } from '@/entities/User';
 
 import { db } from '@/shared/config/firebase/firebase';
 
@@ -18,7 +18,7 @@ export const updateProfileData = createAsyncThunk<
     ThunkConfig<ValidateProfileError[]>
 >(
     'profile/updateProfileData',
-    async (_, { extra, rejectWithValue, getState }) => {
+    async (_, { extra, rejectWithValue, getState, dispatch }) => {
         const formData = getProfileForm(getState());
         const user = getUserAuthData(getState());
 
@@ -30,13 +30,27 @@ export const updateProfileData = createAsyncThunk<
 
         try {
             const profile = formData;
-            if (!user || !profile) {
+            if (!user || !profile || !profile.username) {
                 throw new Error();
             }
             const userDataRef = doc(db, 'users', user.id);
+            const userInitRef = doc(db, 'initUsers', user.username);
             await updateDoc(userDataRef, {
+                avatar: profile.avatar,
+                username: profile.username,
                 profile,
             });
+            await deleteDoc(userInitRef);
+            await setDoc(doc(db, 'initUsers', profile.username), {
+                email: user.email,
+            });
+            dispatch(
+                userActions.setAuthData({
+                    ...user,
+                    avatar: profile.avatar,
+                    username: profile.username,
+                }),
+            );
             return profile;
             // const response = await extra.api.put<Profile>(
             //     `/profile/${formData?.id}`,
