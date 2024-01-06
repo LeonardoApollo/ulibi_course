@@ -164,7 +164,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             placeholder={
                                 isModalRegister
                                     ? t('Придумайте логин')
-                                    : t('Введите логин или email')
+                                    : t('Введите логин/email')
                             }
                             onChange={onChangeUsername}
                             value={username}
@@ -238,11 +238,29 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                 }
                 off={
                     <div className={classNames(cls.LoginForm, {}, [className])}>
-                        <TextDeprecated title={t('Форма авторизации')} />
+                        <TextDeprecated
+                            title={
+                                isModalRegister
+                                    ? t('Форма регистрации')
+                                    : t('Форма авторизации')
+                            }
+                        />
                         {error && (
                             <TextDeprecated
-                                text={t('Вы ввели неверный логин или пароль')}
+                                text={
+                                    error === USERNAME_ALREADY_EXIST
+                                        ? t('Данный логин уже существет')
+                                        : t(
+                                              'Вы ввели неверный логин/email или пароль',
+                                          )
+                                }
                                 theme={TextTheme.ERROR}
+                            />
+                        )}
+                        {isModalRegister && errorUsername && (
+                            <TextDeprecated
+                                theme={TextTheme.ERROR}
+                                text={t('Длина логина минимум 5 символов')}
                             />
                         )}
                         <InputDeprecated
@@ -250,10 +268,37 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             maxLength={15}
                             type="text"
                             className={cls.input}
-                            placeholder={t('Введите логин или email')}
+                            placeholder={
+                                isModalRegister
+                                    ? t('Придумайте логин')
+                                    : t('Введите логин/email')
+                            }
                             onChange={onChangeUsername}
                             value={username}
                         />
+                        {isModalRegister && (
+                            <>
+                                {errorEmail && (
+                                    <TextDeprecated
+                                        theme={TextTheme.ERROR}
+                                        text={t('Некорректный email')}
+                                    />
+                                )}
+                                <InputDeprecated
+                                    type="email"
+                                    className={cls.input}
+                                    placeholder={t('Введите email')}
+                                    onChange={onChnageEmail}
+                                    value={email}
+                                />
+                            </>
+                        )}
+                        {isModalRegister && errorPassword && (
+                            <TextDeprecated
+                                theme={TextTheme.ERROR}
+                                text={t('Длина пароля минимум 6 символов')}
+                            />
+                        )}
                         <InputDeprecated
                             maxLength={15}
                             type="text"
@@ -263,12 +308,30 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             value={password}
                         />
                         <ButtonDeprecated
+                            theme={ThemeButton.CLEAR}
+                            onClick={onChangeModalClick}
+                        >
+                            <TextDeprecated
+                                theme={TextTheme.INVERTED}
+                                text={
+                                    isModalRegister
+                                        ? t('Вернуться')
+                                        : t('Зарегестироваться')
+                                }
+                                className={cls.Register}
+                            />
+                        </ButtonDeprecated>
+                        <ButtonDeprecated
                             theme={ThemeButton.OUTLINE}
                             className={cls.loginBtn}
-                            onClick={onLoginClick}
+                            onClick={
+                                isModalRegister ? onRegisterClick : onLoginClick
+                            }
                             disabled={isLoading}
                         >
-                            {t('Войти')}
+                            {isModalRegister
+                                ? t('Зарегестироваться')
+                                : t('Войти')}
                         </ButtonDeprecated>
                     </div>
                 }

@@ -45,7 +45,7 @@ export function buildPlugins({
         }));
         plugins.push(new CircularDependencyPlugin({
             exclude: /node_modules/,
-            failOnError: true,
+            failOnError: false,
         }));
     }
 

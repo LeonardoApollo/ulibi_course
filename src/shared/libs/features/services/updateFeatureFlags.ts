@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { doc, updateDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
+import { db } from '@/shared/config/firebase/firebase';
 import { FeatureFlags } from '@/shared/types/featureFlags';
 
-import { updateFeatureFlagsMutation } from '../api/featureFlagsApi';
 import { getAllFeatureFlags } from '../lib/setGetFeatures';
 
 interface UpdateFeatureFlagOptions {
@@ -24,12 +25,16 @@ export const updateFeatureFlag = createAsyncThunk<
         ...newFeatures,
     };
     try {
-        await dispatch(
-            updateFeatureFlagsMutation({
-                userId,
-                features: allFeatures,
-            }),
-        );
+        const userRef = doc(db, 'users', userId);
+        await updateDoc(userRef, {
+            features: allFeatures,
+        });
+        // await dispatch(
+        //     updateFeatureFlagsMutation({
+        //         userId,
+        //         features: allFeatures,
+        //     }),
+        // );
 
         // Используется для обновления страницы, без forceUpdate
         window.location.reload();

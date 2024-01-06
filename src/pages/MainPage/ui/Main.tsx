@@ -82,18 +82,59 @@ const Main = memo(() => {
                                 'Поэтому возможен только вход с существующими данными',
                             )}
                         />
+                        <TextDeprecated
+                            theme={TextTheme.ERROR}
+                            text={t('Выпоняется переход на Firebase!')}
+                        />
+                        <HStack gap="16" max align="start" justify="between">
+                            <div>
+                                <TextDeprecated
+                                    text={`✅ ${t('Регистрация')}`}
+                                />
+                                <TextDeprecated
+                                    text={`✅ ${t('Авторизация')}`}
+                                />
+                                <TextDeprecated text={`✅ ${t('Выход')}`} />
+                                <TextDeprecated text={`✅ ${t('Профиль')}`} />
+                                <TextDeprecated
+                                    text={`✅ ${t('Рейтинг профиля')}`}
+                                />
+                                <TextDeprecated
+                                    text={`✅ ${t('Уведомления')}`}
+                                />
+                                <TextDeprecated
+                                    text={`✅ ${t('JsonSettings')}`}
+                                />
+                            </div>
+                            <div>
+                                <TextDeprecated text={`❌ ${t('Статьи')}`} />
+                                <TextDeprecated
+                                    text={`❌ ${t('Рейтинг статьи')}`}
+                                />
+                                <TextDeprecated
+                                    text={`❌ ${t('Комментарии')}`}
+                                />
+                                <TextDeprecated
+                                    text={`❌ ${t(
+                                        'Редактирование/удаление/создание статьи',
+                                    )}`}
+                                />
+                            </div>
+                        </HStack>
                         <TextDeprecated text={t('Данные для входа')} />
                         <TextDeprecated
                             text={t(
-                                'Логин и пароль для admin роли: Admin, 123',
+                                'Логин и пароль для admin роли: Admin или admin@gmail.com, 123456',
                             )}
                         />
                         <TextDeprecated
-                            text={t('Логин и пароль для user роли: User, 345')}
+                            text={t(
+                                'Логин и пароль для user роли: User или user@gmail.com, 123456',
+                            )}
                         />
                         <TextDeprecated
                             text={t(
-                                'Логин и пароль для manager роли: Manager, 567',
+                                'Логин и пароль для manager роли: Manager или manager@gmail.com, 123456',
                             )}
                         />
                     </VStack>

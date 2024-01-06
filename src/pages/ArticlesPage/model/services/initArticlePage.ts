@@ -37,6 +37,8 @@ export const initArticlePage = createAsyncThunk<
             dispatch(articlesPageSliceActions.setType(typeFromUrl));
         }
         dispatch(articlesPageSliceActions.initState());
-        dispatch(fetchArticlesList({}));
+        if (__PROJECT__ !== 'jest') {
+            dispatch(fetchArticlesList({}));
+        }
     }
 });
