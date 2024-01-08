@@ -6,6 +6,8 @@ import {
 } from '@reduxjs/toolkit';
 
 import { ScrollSaveReducer } from '@/features/ScrollSave';
+import { articleRatingApi } from '@/features/articleRating';
+import { recommendationsApi } from '@/features/articleRecommendationsList';
 import { profileRatingApi } from '@/features/profileRating';
 
 import { counterReducer } from '@/entities/Counter';
@@ -30,6 +32,8 @@ export function createReduxStore(
         [rtkApi.reducerPath]: rtkApi.reducer,
         [profileRatingApi.reducerPath]: profileRatingApi.reducer,
         [notificationApi.reducerPath]: notificationApi.reducer,
+        [articleRatingApi.reducerPath]: articleRatingApi.reducer,
+        [recommendationsApi.reducerPath]: recommendationsApi.reducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -51,6 +55,8 @@ export function createReduxStore(
                 rtkApi.middleware,
                 profileRatingApi.middleware,
                 notificationApi.middleware,
+                articleRatingApi.middleware,
+                recommendationsApi.middleware,
             ),
     });
 

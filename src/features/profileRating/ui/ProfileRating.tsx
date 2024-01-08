@@ -40,8 +40,7 @@ const ProfileRating = ({ className, profileId }: ProfileRatingProps) => {
 
     const [rateProfileMutation] = useRateProfile();
 
-    const rating = data?.[0];
-
+    const rating = data?.filter((obj) => obj.userId === userData?.id)[0];
     const handleRateProfile = useCallback(
         (starsCount: number, feedback?: string) => {
             try {

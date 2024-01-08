@@ -45,7 +45,7 @@ Loading.args = {
     comment: {
         id: '1',
         text: 'hello world',
-        user: { id: '1', username: 'Admin', email: 'abc', token: '123' },
+        user: { id: '1', username: 'Admin', email: 'abc' },
     },
     isLoading: true,
 };

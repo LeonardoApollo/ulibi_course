@@ -31,7 +31,7 @@ export type ArticleBlock =
 
 export interface Article {
     id: string;
-    user: User;
+    user: Omit<User, 'token'>;
     title: string;
     subtitle: string;
     img: string;

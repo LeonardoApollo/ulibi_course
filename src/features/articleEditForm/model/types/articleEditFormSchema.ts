@@ -3,7 +3,7 @@ import { User } from '@/entities/User';
 
 export interface ArticleEditFormSchema extends Omit<Article, 'id' | 'user'> {
     id?: string;
-    user?: User;
+    user?: Omit<User, 'token'>;
     isLoading: boolean;
     error?: string;
 }

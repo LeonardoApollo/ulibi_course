@@ -8,7 +8,7 @@
     "Произошла непредвиденная ошибка": "An unexpected error has occurred",
     "Обновить страницу": "Reset the page",
     "Войти": "Login",
-    "Введите логин": "Enter Username",
+    "Введите логин/email": "Enter Username/email",
     "Введите пароль": "Enter password",
     "Форма авторизации": "Auth form",
     "Вы ввели неверный логин или пароль": "incorrect username or password",
@@ -40,5 +40,11 @@
     "Отправить": "Send",
     "Настройки": "Settings",
     "Добро пожаловать на страницу статей": "Welcome to the articles page",
-    "Здаесь вы можете искать и просматривать статьи на различные темы": "Here you can search and view articles on various topics"
+    "Здаесь вы можете искать и просматривать статьи на различные темы": "Here you can search and view articles on various topics",
+    "Зарегестироваться": "Register",
+    "Придумайте логин": "Create login",
+    "Данный логин уже существет": "This login already exist",
+    "Форма регистрации": "Registration form",
+    "Введите email": "Enter email",
+    "Вернуться": "Back"
 }

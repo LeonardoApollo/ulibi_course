@@ -74,7 +74,6 @@ export const ProfileCardRedesigned = (props: ProfileCardProps) => {
     } = props;
 
     const { t } = useTranslation('profile');
-
     return (
         <Card
             padding="24"

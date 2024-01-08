@@ -33,7 +33,7 @@ const ArticleRating = (props: ArticleRatingProps) => {
 
     const [rateArticleMutation] = useRateArticle();
 
-    const rating = data?.[0];
+    const rating = data?.filter((obj) => obj.userId === userData?.id)[0];
 
     const handleRateArticle = useCallback(
         (starsCount: number, feedback?: string) => {
