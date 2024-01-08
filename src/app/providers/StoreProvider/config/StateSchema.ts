@@ -14,6 +14,8 @@ import { LoginSchema } from '@/features/AuthByUsername';
 import { ScrollSaveSchema } from '@/features/ScrollSave';
 import { addCommentFormSchema } from '@/features/addNewComment';
 import { ArticleEditFormSchema } from '@/features/articleEditForm';
+import { articleRatingApi } from '@/features/articleRating';
+import { recommendationsApi } from '@/features/articleRecommendationsList';
 import { ProfileSchema } from '@/features/editableProfileCard';
 import { profileRatingApi } from '@/features/profileRating';
 
@@ -31,7 +33,10 @@ export interface StateSchema {
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
     [profileRatingApi.reducerPath]: ReturnType<typeof profileRatingApi.reducer>;
     [notificationApi.reducerPath]: ReturnType<typeof notificationApi.reducer>;
-
+    [articleRatingApi.reducerPath]: ReturnType<typeof articleRatingApi.reducer>;
+    [recommendationsApi.reducerPath]: ReturnType<
+        typeof recommendationsApi.reducer
+    >;
     // Асинхронные редьюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;

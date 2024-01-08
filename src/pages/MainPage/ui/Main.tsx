@@ -35,12 +35,13 @@ const Main = memo(() => {
                                 <Text text={`✅ ${t('Профиль')}`} />
                                 <Text text={`✅ ${t('Рейтинг профиля')}`} />
                                 <Text text={`✅ ${t('Уведомления')}`} />
+                                <Text text={`✅ ${t('Статьи')}`} />
+                                <Text text={`✅ ${t('Рейтинг статьи')}`} />
+                                <Text text={`✅ ${t('Комментарии')}`} />
                                 <Text text={`✅ ${t('JsonSettings')}`} />
+                                <Text text={`✅ ${t('Features')}`} />
                             </div>
                             <div>
-                                <Text text={`❌ ${t('Статьи')}`} />
-                                <Text text={`❌ ${t('Рейтинг статьи')}`} />
-                                <Text text={`❌ ${t('Комментарии')}`} />
                                 <Text
                                     text={`❌ ${t(
                                         'Редактирование/удаление/создание статьи',
@@ -74,6 +75,11 @@ const Main = memo(() => {
                         />
                         <TextDeprecated
                             text={t(
+                                'Сейчас вы видите старый дизайн, чтобы увидеть новый создайте аккаунт или войдите под Admin',
+                            )}
+                        />
+                        <TextDeprecated
+                            text={t(
                                 'Бэкэнд сделан с помощью json-server а бесплатный сервер Vercel раздает только статику',
                             )}
                         />
@@ -102,18 +108,19 @@ const Main = memo(() => {
                                 <TextDeprecated
                                     text={`✅ ${t('Уведомления')}`}
                                 />
+                                <TextDeprecated text={`✅ ${t('Статьи')}`} />
+                                <TextDeprecated
+                                    text={`✅ ${t('Рейтинг статьи')}`}
+                                />
+                                <TextDeprecated
+                                    text={`✅ ${t('Комментарии')}`}
+                                />
                                 <TextDeprecated
                                     text={`✅ ${t('JsonSettings')}`}
                                 />
+                                <TextDeprecated text={`✅ ${t('Features')}`} />
                             </div>
                             <div>
-                                <TextDeprecated text={`❌ ${t('Статьи')}`} />
-                                <TextDeprecated
-                                    text={`❌ ${t('Рейтинг статьи')}`}
-                                />
-                                <TextDeprecated
-                                    text={`❌ ${t('Комментарии')}`}
-                                />
                                 <TextDeprecated
                                     text={`❌ ${t(
                                         'Редактирование/удаление/создание статьи',

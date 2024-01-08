@@ -2,7 +2,6 @@ import {
     CSSProperties,
     ImgHTMLAttributes,
     ReactElement,
-    memo,
     useLayoutEffect,
     useMemo,
     useState,
@@ -18,7 +17,7 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     border?: string | number;
 }
 
-export const AppImage = memo((props: AppImageProps) => {
+export const AppImage = (props: AppImageProps) => {
     const {
         className,
         src,
@@ -31,11 +30,11 @@ export const AppImage = memo((props: AppImageProps) => {
     } = props;
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
-
     useLayoutEffect(() => {
         const img = new Image();
         img.src = src ?? '';
         img.onload = () => {
+            setHasError(false);
             setIsLoading(false);
         };
         img.onerror = () => {
@@ -43,7 +42,6 @@ export const AppImage = memo((props: AppImageProps) => {
             setHasError(true);
         };
     }, [src]);
-
     const styles = useMemo<CSSProperties>(
         () => ({
             width: size || '100%',
@@ -70,4 +68,4 @@ export const AppImage = memo((props: AppImageProps) => {
             {...otherProps}
         />
     );
-});
+};

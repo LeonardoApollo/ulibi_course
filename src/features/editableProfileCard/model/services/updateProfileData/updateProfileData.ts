@@ -1,14 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    query,
-    setDoc,
-    updateDoc,
-    where,
-} from 'firebase/firestore';
+import { deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 
@@ -52,21 +43,6 @@ export const updateProfileData = createAsyncThunk<
             await deleteDoc(userInitRef);
             await setDoc(doc(db, 'initUsers', profile.username), {
                 email: user.email,
-            });
-            const articlesQuery = query(
-                collection(db, 'articles'),
-                where('userId', '==', user.id),
-            );
-            const articlesSnap = await getDocs(articlesQuery);
-            articlesSnap.forEach((doc) => {
-                const data = doc.data();
-                updateDoc(doc.ref, {
-                    user: {
-                        ...data!.user,
-                        avatar: profile.avatar,
-                        username: profile.username,
-                    },
-                });
             });
             dispatch(
                 userActions.setAuthData({

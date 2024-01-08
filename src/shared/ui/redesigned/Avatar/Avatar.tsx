@@ -17,7 +17,6 @@ interface AvatarProps {
 
 export const Avatar: FC<AvatarProps> = ({ className, src, size, alt }) => {
     const mods: Mods = {};
-
     const styles = useMemo<CSSProperties>(
         () => ({
             width: size || 100,
@@ -25,7 +24,6 @@ export const Avatar: FC<AvatarProps> = ({ className, src, size, alt }) => {
         }),
         [size],
     );
-
     const errorFallback = (
         <Icon width={size} height={size} Svg={DefaultAvatar} />
     );

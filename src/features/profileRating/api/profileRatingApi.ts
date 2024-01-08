@@ -58,6 +58,7 @@ export const profileRatingApi = createApi({
                         const rating = {
                             rate: docData.rate,
                             feedback: docData.feetback,
+                            userId: docData.userId,
                         };
                         ratings.push(rating);
                     });

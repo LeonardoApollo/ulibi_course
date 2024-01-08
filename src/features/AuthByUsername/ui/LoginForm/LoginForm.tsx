@@ -158,7 +158,6 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                         )}
                         <Input
                             autofocuse
-                            maxLength={15}
                             type="text"
                             className={cls.input}
                             placeholder={
@@ -203,7 +202,6 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                                 <Icon Svg={PasswordEye} />
                             </button>
                             <Input
-                                maxLength={15}
                                 type={isPasswordHidden ? 'password' : 'text'}
                                 className={cls.input}
                                 placeholder={t('Введите пароль')}
@@ -265,7 +263,6 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                         )}
                         <InputDeprecated
                             autofocuse
-                            maxLength={15}
                             type="text"
                             className={cls.input}
                             placeholder={
@@ -300,7 +297,6 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             />
                         )}
                         <InputDeprecated
-                            maxLength={15}
                             type="text"
                             className={cls.input}
                             placeholder={t('Введите пароль')}

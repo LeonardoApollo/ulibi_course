@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
+    DocumentReference,
     collection,
+    getDoc,
     getDocs,
     limit,
     orderBy,
@@ -92,7 +94,7 @@ export const fetchArticlesList = createAsyncThunk<
                             lastVisible = document;
                             articles.push({
                                 id: document.id,
-                                user: data!.user as User,
+                                user: data!.user,
                                 title: data!.title,
                                 subtitle: data!.subtitle,
                                 img: data!.img,
@@ -105,7 +107,7 @@ export const fetchArticlesList = createAsyncThunk<
                     } else {
                         articles.push({
                             id: document.id,
-                            user: data!.user as User,
+                            user: data!.user,
                             title: data!.title,
                             subtitle: data!.subtitle,
                             img: data!.img,
@@ -125,7 +127,7 @@ export const fetchArticlesList = createAsyncThunk<
                             lastVisible = document;
                             articles.push({
                                 id: document.id,
-                                user: data!.user as User,
+                                user: data!.user,
                                 title: data!.title,
                                 subtitle: data!.subtitle,
                                 img: data!.img,
@@ -138,7 +140,7 @@ export const fetchArticlesList = createAsyncThunk<
                     } else {
                         articles.push({
                             id: document.id,
-                            user: data!.user as User,
+                            user: data!.user,
                             title: data!.title,
                             subtitle: data!.subtitle,
                             img: data!.img,
@@ -149,6 +151,23 @@ export const fetchArticlesList = createAsyncThunk<
                         });
                     }
                 });
+            }
+            // eslint-disable-next-line
+            for await (const article of articles) {
+                const userSnap = await getDoc(
+                    article.user as any as DocumentReference,
+                );
+                if (!userSnap.exists) {
+                    throw new Error('user dont exist');
+                }
+                const userData = userSnap.data();
+                const user: Omit<User, 'token'> = {
+                    id: userSnap.id,
+                    username: userData!.username,
+                    email: userData!.email,
+                    avatar: userData!.avatar,
+                };
+                article.user = user;
             }
             return articles;
             // const response = await extra.api.get<Article[]>('/articles', {
@@ -169,8 +188,9 @@ export const fetchArticlesList = createAsyncThunk<
 
             // return response.data;
         } catch (error) {
-            console.log(error);
-            return rejectWithValue('error');
+            const e = error as Error;
+            console.log(e);
+            return rejectWithValue(`${e.message}`);
         }
     },
 );
