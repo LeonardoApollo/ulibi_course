@@ -70,7 +70,6 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
         },
     ];
 
-    console.log(authData.avatar);
     return (
         <ToggleFeatures
             feature="isAppRedesigned"
