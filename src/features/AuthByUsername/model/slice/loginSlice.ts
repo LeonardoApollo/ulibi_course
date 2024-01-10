@@ -23,6 +23,9 @@ export const loginSlice = createSlice({
         setEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
         },
+        resetErrors: (state) => {
+            state.error = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder

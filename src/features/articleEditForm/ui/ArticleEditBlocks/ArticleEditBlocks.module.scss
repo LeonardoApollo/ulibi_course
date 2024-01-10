@@ -1,0 +1,12 @@
+.blockWrapper {
+    padding-top: 15px;
+    border-top: solid 2px var(--accent-redesigned);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.deleteBtn {
+    display: block;
+}

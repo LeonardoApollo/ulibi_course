@@ -14,14 +14,16 @@ import { articleEditFormSliceActions } from '../../model/slice/articleEditFormSl
 import { RenderCodeBlock } from '../RenderCodeBlock/RenderCodeBlock';
 import { RenderImageBlock } from '../RenderImageBlock/RenderImageBlock';
 import { RenderTextBlock } from '../RenderTextBlock/RenderTextBlock';
+import cls from './ArticleEditBlocks.module.scss';
 
 interface ArticleEditBlocksProps {
     className?: string;
+    handleErrors: (action: any) => void;
 }
 
 export const ArticleEditBlocks = memo((props: ArticleEditBlocksProps) => {
     const { t } = useTranslation('articleForm');
-    const { className } = props;
+    const { className, handleErrors } = props;
     const id = Math.floor(Date.now() + Math.random() * 100).toString(16);
     const dispatch = useAppDispatch();
     const blocks = useSelector(getArticleEditBlocks);
@@ -76,39 +78,57 @@ export const ArticleEditBlocks = memo((props: ArticleEditBlocksProps) => {
                 if (block.type === ArticleBlockType.TEXT) {
                     return (
                         <VStack max gap="8" key={block.id}>
-                            <RenderTextBlock block={block} />
-                            <Button
-                                colorType="error"
-                                onClick={onDeleteBlockHandle(block)}
-                            >
-                                {t('Удалить')}
-                            </Button>
+                            <div className={cls.blockWrapper}>
+                                <RenderTextBlock
+                                    block={block}
+                                    handleErrors={handleErrors}
+                                />
+                                <Button
+                                    colorType="error"
+                                    onClick={onDeleteBlockHandle(block)}
+                                    className={cls.deleteBtn}
+                                >
+                                    {t('Удалить блок')}
+                                </Button>
+                            </div>
                         </VStack>
                     );
                 }
                 if (block.type === ArticleBlockType.CODE) {
                     return (
                         <VStack max gap="8" key={block.id}>
-                            <RenderCodeBlock block={block} />
-                            <Button
-                                colorType="error"
-                                onClick={onDeleteBlockHandle(block)}
-                            >
-                                {t('Удалить')}
-                            </Button>
+                            <div className={cls.blockWrapper}>
+                                <RenderCodeBlock
+                                    block={block}
+                                    handleErrors={handleErrors}
+                                />
+                                <Button
+                                    colorType="error"
+                                    onClick={onDeleteBlockHandle(block)}
+                                    className={cls.deleteBtn}
+                                >
+                                    {t('Удалить блок')}
+                                </Button>
+                            </div>
                         </VStack>
                     );
                 }
                 if (block.type === ArticleBlockType.IMAGE) {
                     return (
                         <VStack max gap="16" key={block.id}>
-                            <RenderImageBlock block={block} />
-                            <Button
-                                colorType="error"
-                                onClick={onDeleteBlockHandle(block)}
-                            >
-                                {t('Удалить')}
-                            </Button>
+                            <div className={cls.blockWrapper}>
+                                <RenderImageBlock
+                                    block={block}
+                                    handleErrors={handleErrors}
+                                />
+                                <Button
+                                    colorType="error"
+                                    onClick={onDeleteBlockHandle(block)}
+                                    className={cls.deleteBtn}
+                                >
+                                    {t('Удалить блок')}
+                                </Button>
+                            </div>
                         </VStack>
                     );
                 }

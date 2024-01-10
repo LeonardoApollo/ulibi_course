@@ -29,5 +29,13 @@
     "Ссылка": "URL",
     "Добавить параграф": "Add paragraph",
     "Параграф": "Paragraph",
-    "Создание статьи": "Creating article"
+    "Создание статьи": "Creating article",
+    "Серверная ошибка": "Server error",
+    "Данные не указаны": "Data not provided",
+    "Минимальная длина заголовка 3 символа": "Minimum title length 3 characters",
+    "Создайте хотя бы один блок": "Create at least one block",
+    "Минимальная длина подзаголовка 3 символа": "Minimum length of subheading 3 characters",
+    "Укажите хотя бы один тег": "Provide at least one tag",
+    "Первый блок должен быть текстовым": "The first block must be text",
+    "Все блоки должны быть заполнены": "All blocks must be completed"
 }

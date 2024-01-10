@@ -12,6 +12,14 @@ pre {
     word-wrap: break-word;
 }
 
+code {
+    white-space: pre-wrap;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 .app {
     font: var(--font-m);
     color: var(--primary-color);

@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useReducer, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ import {
 } from '@/shared/const/router';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { classNames } from '@/shared/libs/classNames/classNames';
+import { ToggleFeatures } from '@/shared/libs/features';
+import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
@@ -18,6 +20,7 @@ import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
+import { ValidateArticleError } from '../../model/consts/consts';
 import {
     getArticleEditError,
     getArticleEditImg,
@@ -44,6 +47,20 @@ interface ArticleEditFormProps {
     user?: User;
 }
 
+function reactReducer(state: any, action: any) {
+    switch (action.type) {
+        case 'handleError': {
+            return {
+                ...state,
+                ...action.errorBlock,
+            };
+        }
+        default: {
+            throw Error('unknow action');
+        }
+    }
+}
+
 export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
     const { className, id, user } = props;
     const { t } = useTranslation('articleForm');
@@ -54,19 +71,42 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
     const subtitle = useSelector(getArticleEditSubtitle);
     const image = useSelector(getArticleEditImg);
     const isLoading = useSelector(getArticleEditisLoading);
-    // Будут нужен при создании статьи и валидации
-    const error = useSelector(getArticleEditError);
+    const validateErrors = useSelector(getArticleEditError);
 
     const [isExitModalOpen, setIsExitModalOpen] = useState<boolean>(false);
     const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
+    const [reactState, reactDispatch] = useReducer(reactReducer, {});
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+
+    const validateErrorTranslates = {
+        [ValidateArticleError.SERVER_ERROR]: t('Серверная ошибка'),
+        [ValidateArticleError.NO_DATA]: t('Данные не указаны'),
+        [ValidateArticleError.INCORRECT_TITLE]: t(
+            'Минимальная длина заголовка 3 символа',
+        ),
+        [ValidateArticleError.INCORRECT_SUBTITLE]: t(
+            'Минимальная длина подзаголовка 3 символа',
+        ),
+        [ValidateArticleError.INCORRECT_BLOCKS]: t(
+            'Создайте хотя бы один блок',
+        ),
+        [ValidateArticleError.INCORRECT_TAGS]: t('Укажите хотя бы один тег'),
+        [ValidateArticleError.INCORRECT_FIRST_BLOCK]: t(
+            'Первый блок должен быть текстовым',
+        ),
+        [ValidateArticleError.INCORRECT_BLOCK]: t(
+            'Все блоки должны быть заполнены',
+        ),
+    };
 
     const onUpdateArticle = useCallback(async () => {
         if (id) {
             setIsSaveModalOpen(false);
-            await dispatch(updateArticleData(id));
-            navigate(getRouteArticleDetails(id));
+            const result = await dispatch(updateArticleData(id));
+            if (result.meta.requestStatus === 'fulfilled') {
+                navigate(getRouteArticleDetails(id));
+            }
         }
     }, [id, dispatch, navigate]);
 
@@ -96,10 +136,17 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
                     new Date().toLocaleDateString('en-GB').replace(/\//g, '.'),
                 ),
             );
-            await dispatch(createArticle(user.id));
-            navigate(getRouteArticles());
+            setIsSaveModalOpen(false);
+            const result = await dispatch(createArticle(user.id));
+            if (result.meta.requestStatus === 'fulfilled') {
+                navigate(getRouteArticles());
+            }
         }
     }, [navigate, dispatch, user]);
+
+    const handleErrors = useCallback((action: any) => {
+        reactDispatch(action);
+    }, []);
 
     const onSaveModalClose = useCallback(() => {
         setIsSaveModalOpen(false);
@@ -147,7 +194,29 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
     );
 
     if (isLoading) {
-        return null;
+        return (
+            <VStack max gap="16" align="center">
+                <Skeleton width="100%" height={38} border="34px" />
+                <Skeleton width="100%" height={38} border="34px" />
+                <Skeleton width={300} height={150} />
+                <Skeleton width="100%" height={38} border="34px" />
+                <HStack max gap="24">
+                    <Skeleton width={70} height={20} border="34px" />
+                    <Skeleton width={70} height={20} border="34px" />
+                    <Skeleton width={70} height={20} border="34px" />
+                </HStack>
+                <HStack max gap="24">
+                    <Skeleton width={70} height={20} border="34px" />
+                    <Skeleton width={70} height={20} border="34px" />
+                    <Skeleton width={70} height={20} border="34px" />
+                </HStack>
+                <HStack max gap="24" justify="between">
+                    <Skeleton width={50} height={20} border="34px" />
+                    <Skeleton width={50} height={20} border="34px" />
+                    <Skeleton width={50} height={20} border="34px" />
+                </HStack>
+            </VStack>
+        );
     }
 
     return (
@@ -191,9 +260,39 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
                 onChange={onChangeImage}
             />
             <ArticleEditTags />
-            <ArticleEditBlocks />
+            <ArticleEditBlocks handleErrors={handleErrors} />
+            {validateErrors?.length && (
+                <VStack max gap="8">
+                    {validateErrors.map((error) => (
+                        <ToggleFeatures
+                            key={`${error}`}
+                            feature="isAppRedesigned"
+                            on={
+                                <Text
+                                    key={error}
+                                    variant="error"
+                                    text={validateErrorTranslates[error]}
+                                    data-testid="EditableProfileCard.Error"
+                                />
+                            }
+                            off={
+                                <TextDeprecated
+                                    key={error}
+                                    theme={TextTheme.ERROR}
+                                    text={validateErrorTranslates[error]}
+                                    data-testid="EditableProfileCard.Error"
+                                />
+                            }
+                        />
+                    ))}
+                </VStack>
+            )}
             <HStack max justify="between" className={cls.Btns}>
-                <Button colorType="success" onClick={onSaveModalOpen}>
+                <Button
+                    disabled={!!Object.values(reactState).includes(true)}
+                    colorType="success"
+                    onClick={onSaveModalOpen}
+                >
                     {id ? t('Сохранить') : t('Создать')}
                 </Button>
                 <Button colorType="error" onClick={onDeleteModalOpen}>

@@ -1,7 +1,0 @@
-{
-    " Admin или admin@gmail": {
-        "com, 123456": ""
-    },
-    " Admin или admin@gmail.com, 123456": " Admin или admin@gmail.com, 123456",
-    " Admin, 123": " Admin, 123"
-}

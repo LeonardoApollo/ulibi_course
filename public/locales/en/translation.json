@@ -11,7 +11,7 @@
     "Введите логин/email": "Enter Username/email",
     "Введите пароль": "Enter password",
     "Форма авторизации": "Auth form",
-    "Вы ввели неверный логин или пароль": "incorrect username or password",
+    "Вы ввели неверный логин/email или пароль": "Incorrect username/email or password",
     "Выйти": "Logout",
     "Профиль": "Profile",
     "Статьи": "Articles",
@@ -46,5 +46,8 @@
     "Данный логин уже существет": "This login already exist",
     "Форма регистрации": "Registration form",
     "Введите email": "Enter email",
-    "Вернуться": "Back"
+    "Вернуться": "Back",
+    "Длина логина минимум 5 символов": "Login length minimum 5 characters",
+    "Некорректный email": "Incorrect email",
+    "Длина пароля минимум 6 символов": "Password length minimum 6 characters"
 }

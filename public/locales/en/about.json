@@ -1,6 +1,5 @@
 {
     "Важно!": "Important!",
-    "В связи с ограничениями json-server, бесплатных версий Vercel и Netlify,": "Due to the limitations of the json server, the free versions of Vercel and Netlify,",
     "Рекомендуется установить проект локально и запустить используя fork Github репозитория проекта.": "It is recommended to install the project locally and run it using the Github fork of the project repository.",
     "Github": "Github",
     "Про проект": "About this Project",

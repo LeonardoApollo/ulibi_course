@@ -116,6 +116,10 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
 
     const onChangeModalClick = useCallback(() => {
         setIsModalRegister((prev) => !prev);
+        setErrorEmail(false);
+        setErrorUsername(false);
+        setErrorPassword(false);
+        dispatch(loginActions.resetErrors());
         dispatch(loginActions.setEmail(''));
         dispatch(loginActions.setUsername(''));
         dispatch(loginActions.setPassword(''));
@@ -226,10 +230,15 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             onClick={
                                 isModalRegister ? onRegisterClick : onLoginClick
                             }
-                            disabled={isLoading}
+                            disabled={
+                                isLoading ||
+                                errorEmail ||
+                                errorPassword ||
+                                errorUsername
+                            }
                         >
                             {isModalRegister
-                                ? t('Зарегистрироваться')
+                                ? t('Зарегестироваться')
                                 : t('Войти')}
                         </Button>
                     </VStack>

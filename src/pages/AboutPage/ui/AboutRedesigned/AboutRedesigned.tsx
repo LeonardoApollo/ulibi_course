@@ -19,11 +19,6 @@ export const AboutRedesigned = memo(
                 <Text head="h1" variant="accent" title={t('Важно!')} />
                 <Text
                     text={t(
-                        'В связи с ограничениями json-server, бесплатных версий Vercel и Netlify,',
-                    )}
-                />
-                <Text
-                    text={t(
                         'Рекомендуется установить проект локально и запустить используя fork Github репозитория проекта.',
                     )}
                 />
