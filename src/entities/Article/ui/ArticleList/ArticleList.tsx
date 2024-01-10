@@ -1,4 +1,4 @@
-import { HTMLAttributeAnchorTarget, memo } from 'react';
+import { CSSProperties, HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
@@ -48,6 +48,10 @@ export const ArticleList = memo((props: ArticleListProps) => {
         />
     );
 
+    const style: CSSProperties = {
+        width,
+    };
+
     if (!isLoading && !articles.length) {
         return (
             <div
@@ -66,7 +70,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
             feature="isAppRedesigned"
             on={
                 <HStack
-                    style={{ width }}
+                    style={style}
                     wrap="wrap"
                     gap="16"
                     className={classNames(cls.ArticleListRedesigned, {}, [

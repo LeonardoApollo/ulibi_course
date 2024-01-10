@@ -1,6 +1,6 @@
 {
     "Важно!": "Important!",
-    "Бэкэнд сделан с помощью json-server а бесплатный сервер Vercel раздает только статику": "The backend is made using a json server and the free Vercel server distributes only static",
+    "Бэкэнд сделан с помощью Firebase": "The backend is made using Firebase",
     "Данные для входа": "Login information",
     "Логин и пароль для admin роли: Admin или admin@gmail.com, 123456": "Login and password for admin role: Admin or admin@gmail.com, 123456",
     "Логин и пароль для user роли: User или user@gmail.com, 123456": "Login and password for user role: User or user@gmail.com, 123456",

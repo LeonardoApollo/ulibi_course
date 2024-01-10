@@ -14,29 +14,46 @@ import cls from './RenderTextBlock.module.scss';
 
 interface RenderTextBlockProps {
     className?: string;
+    handleErrors: (action: any) => void;
     block: ArticleTextBlock;
 }
 
 export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
     const { t } = useTranslation('articleForm');
-    const { className, block } = props;
+    const { className, block, handleErrors } = props;
     const dispatch = useAppDispatch();
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
     const [newBlock, setNewBlock] = useState<ArticleTextBlock>(block);
     const [paragraphs, setParagraphs] = useState<string[]>(block.paragraphs);
+    const [isError, setIsError] = useState<boolean>(false);
 
     const onClickHandle = (isDisabled: boolean) => () => {
         if (isDisabled) {
             setIsDisabled(false);
-        } else {
-            dispatch(
-                articleEditFormSliceActions.updateTextBlock({
-                    ...newBlock,
-                    paragraphs,
-                }),
-            );
-            setIsDisabled(true);
+            return;
         }
+        if (!newBlock.title || newBlock.title.length < 3) {
+            setIsError(true);
+            handleErrors({
+                type: 'handleError',
+                errorBlock: { [block.id]: true },
+            });
+            return;
+        }
+        if (isError) {
+            setIsError(false);
+            handleErrors({
+                type: 'handleError',
+                errorBlock: { [block.id]: false },
+            });
+        }
+        dispatch(
+            articleEditFormSliceActions.updateTextBlock({
+                ...newBlock,
+                paragraphs,
+            }),
+        );
+        setIsDisabled(true);
     };
 
     const onTitleChange = (value: string) => {
@@ -65,18 +82,27 @@ export const RenderTextBlock = memo((props: RenderTextBlockProps) => {
 
     return (
         <VStack max gap="16" className={className}>
-            <HStack max gap="24">
+            {isError && (
+                <Text
+                    variant="error"
+                    text={t('Минимальная длина заголовка 3 символа')}
+                />
+            )}
+            <HStack max gap="24" justify="between">
                 <Text text={t('Текст')} />
-                <Button
-                    disabled={isDisabled}
-                    colorType="success"
-                    onClick={onAddParagraph}
-                >
-                    {t('Добавить параграф')}
-                </Button>
-                <Button onClick={onClickHandle(isDisabled)}>
-                    {isDisabled ? t('Изменить') : t('Сохранить')}
-                </Button>
+
+                <HStack gap="24">
+                    <Button
+                        disabled={isDisabled}
+                        colorType="success"
+                        onClick={onAddParagraph}
+                    >
+                        {t('Добавить параграф')}
+                    </Button>
+                    <Button onClick={onClickHandle(isDisabled)}>
+                        {isDisabled ? t('Изменить') : t('Сохранить')}
+                    </Button>
+                </HStack>
             </HStack>
             <Input
                 readonly={isDisabled}

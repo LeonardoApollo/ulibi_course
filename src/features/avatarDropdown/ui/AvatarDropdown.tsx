@@ -69,8 +69,6 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
             onClick: onLogout,
         },
     ];
-
-    console.log(authData.avatar);
     return (
         <ToggleFeatures
             feature="isAppRedesigned"

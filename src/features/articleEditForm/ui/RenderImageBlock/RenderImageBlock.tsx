@@ -16,15 +16,17 @@ import cls from './RenderImageBlock.module.scss';
 
 interface RenderImageBlockProps {
     className?: string;
+    handleErrors: (action: any) => void;
     block: ArticleImageBlock;
 }
 
 export const RenderImageBlock = memo((props: RenderImageBlockProps) => {
     const { t } = useTranslation('articleForm');
-    const { className, block } = props;
+    const { className, block, handleErrors } = props;
     const dispatch = useAppDispatch();
     const [isDisabled, setIsDisabled] = useState<boolean>(true);
     const [newBlock, setNewBlock] = useState<ArticleImageBlock>(block);
+    const [isError, setIsError] = useState<boolean>(false);
 
     const onSrcChange = (value: string) => {
         setNewBlock({ ...newBlock, src: value });
@@ -40,20 +42,42 @@ export const RenderImageBlock = memo((props: RenderImageBlockProps) => {
     const onClickHandle = (isDisabled: boolean) => () => {
         if (isDisabled) {
             setIsDisabled(false);
-        } else {
-            dispatch(
-                articleEditFormSliceActions.updateImageBlock({
-                    ...newBlock,
-                }),
-            );
-            setIsDisabled(true);
+            return;
         }
+        if (!newBlock.title) {
+            setIsError(true);
+            handleErrors({
+                type: 'handleError',
+                errorBlock: { [block.id]: true },
+            });
+            return;
+        }
+        if (isError) {
+            setIsError(false);
+            handleErrors({
+                type: 'handleError',
+                errorBlock: { [block.id]: false },
+            });
+        }
+        dispatch(
+            articleEditFormSliceActions.updateImageBlock({
+                ...newBlock,
+            }),
+        );
+        setIsDisabled(true);
     };
 
     return (
         <VStack max gap="16" align="center" className={className}>
+            {isError && (
+                <Text
+                    variant="error"
+                    text={t('Название не может быть пустым')}
+                />
+            )}
             <HStack max justify="between">
                 <Text text={t('Изображение')} />
+
                 <Button onClick={onClickHandle(isDisabled)}>
                     {isDisabled ? t('Изменить') : t('Сохранить')}
                 </Button>
