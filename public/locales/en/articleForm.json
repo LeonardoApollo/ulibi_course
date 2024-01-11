@@ -37,5 +37,7 @@
     "Минимальная длина подзаголовка 3 символа": "Minimum length of subheading 3 characters",
     "Укажите хотя бы один тег": "Provide at least one tag",
     "Первый блок должен быть текстовым": "The first block must be text",
-    "Все блоки должны быть заполнены": "All blocks must be completed"
+    "Все блоки должны быть заполнены": "All blocks must be completed",
+    "Убедитесь что все блоки сохраненны!": "Make sure that all blocks are saved!",
+    "Удалить блок": "Delete this block"
 }

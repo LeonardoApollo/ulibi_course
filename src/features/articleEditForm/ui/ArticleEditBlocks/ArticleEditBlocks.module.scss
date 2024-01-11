@@ -9,4 +9,10 @@
 
 .deleteBtn {
     display: block;
+    width: 100%;
+}
+
+.btnUp,
+.btnDown {
+    transform: rotate(-90deg);
 }

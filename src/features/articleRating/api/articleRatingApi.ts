@@ -54,10 +54,12 @@ export const articleRatingApi = createApi({
                         articleId,
                         'ratings',
                     );
+                    console.log(ratingsRef);
                     const rating = {
                         rate,
-                        feetback: feedback,
+                        feetback: feedback ?? '',
                         user: doc(db, 'users', userId),
+                        userId,
                     };
                     await addDoc(ratingsRef, rating);
                     return { data: undefined };

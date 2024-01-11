@@ -2,6 +2,10 @@
     color: var(--icon-redesigned);
 }
 
+.disabled .Icon {
+    color: grey;
+}
+
 .button {
     margin: 0;
     padding: 0;
@@ -11,6 +15,14 @@
     cursor: pointer;
 }
 
+.disabled.button {
+    cursor: auto;
+}
+
 .button:hover .Icon {
     color: var(--accent-redesigned);
+}
+
+.disabled.button:hover .Icon {
+    color: grey;
 }

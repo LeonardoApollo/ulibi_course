@@ -289,13 +289,19 @@ export const ArticleEditForm = memo((props: ArticleEditFormProps) => {
             )}
             <HStack max justify="between" className={cls.Btns}>
                 <Button
-                    disabled={!!Object.values(reactState).includes(true)}
+                    disabled={
+                        !!Object.values(reactState).includes(true) || isLoading
+                    }
                     colorType="success"
                     onClick={onSaveModalOpen}
                 >
                     {id ? t('Сохранить') : t('Создать')}
                 </Button>
-                <Button colorType="error" onClick={onDeleteModalOpen}>
+                <Button
+                    colorType="error"
+                    onClick={onDeleteModalOpen}
+                    disabled={isLoading}
+                >
                     {t('Удалить')}
                 </Button>
                 <Button colorType="error" onClick={onExitModalOpen}>

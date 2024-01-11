@@ -14,7 +14,10 @@ import { createArticle } from '../services/createArticle';
 import { deleteArticle } from '../services/deleteArticle';
 import { fetchEditArticleData } from '../services/fetchEditArticle';
 import { updateArticleData } from '../services/updateArticles';
-import { ArticleEditFormSchema } from '../types/articleEditFormSchema';
+import {
+    ArticleEditFormSchema,
+    ChangeBlockPosition,
+} from '../types/articleEditFormSchema';
 
 const initialState: ArticleEditFormSchema = {
     isLoading: false,
@@ -69,6 +72,15 @@ export const articleEditFormSlice = createSlice({
             state.blocks = state.blocks.filter(
                 (block) => block.id !== action.payload.id,
             );
+        },
+        changeBlockPosition: (
+            state,
+            { payload }: PayloadAction<ChangeBlockPosition>,
+        ) => {
+            [state.blocks[payload.from], state.blocks[payload.to]] = [
+                state.blocks[payload.to],
+                state.blocks[payload.from],
+            ];
         },
         updateCodeBlock: (state, action: PayloadAction<ArticleCodeBlock>) => {
             state.blocks = state.blocks.map((block) => {
