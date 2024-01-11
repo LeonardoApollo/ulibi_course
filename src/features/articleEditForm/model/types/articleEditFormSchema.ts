@@ -9,3 +9,8 @@ export interface ArticleEditFormSchema extends Omit<Article, 'id' | 'user'> {
     isLoading: boolean;
     error?: ValidateArticleError[];
 }
+
+export interface ChangeBlockPosition {
+    from: number;
+    to: number;
+}

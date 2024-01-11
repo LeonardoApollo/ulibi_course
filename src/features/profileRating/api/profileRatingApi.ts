@@ -80,8 +80,9 @@ export const profileRatingApi = createApi({
                     );
                     const rating = {
                         rate,
-                        feetback: feedback,
+                        feetback: feedback ?? '',
                         user: doc(db, 'users', userId),
+                        userId,
                     };
                     await addDoc(ratingsRef, rating);
                     return { data: undefined };

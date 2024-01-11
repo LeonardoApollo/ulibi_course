@@ -38,6 +38,10 @@ export const ArticleEditSaveModal = memo((props: ArticleEditSaveModalProps) => {
                             : t('Сохранить изменения?')
                     }
                 />
+                <Text
+                    variant="error"
+                    text={t('Убедитесь что все блоки сохраненны!')}
+                />
                 <HStack max justify="between">
                     <Button colorType="success" onClick={onChangeArticle}>
                         {t('Да')}

@@ -177,67 +177,81 @@ export const RatingCard = memo((props: RatingCardProps) => {
             <BrowserView>
                 {isModalOpen && (
                     <Modal isOpen={isModalOpen} lazy onClose={cancelHandler}>
-                        {isClosing ? (
-                            <ToggleFeatures
-                                feature="isAppRedesigned"
-                                on={
-                                    <Text
-                                        align="center"
-                                        title={t('Спасибо за отзыв!')}
-                                    />
-                                }
-                                off={
-                                    <TextDeprecated
-                                        align={TextAlign.CENTER}
-                                        title={t('Спасибо за отзыв!')}
-                                    />
-                                }
-                            />
-                        ) : (
-                            <>
-                                {modalContent}
-                                <VStack max gap="32">
-                                    <ToggleFeatures
-                                        feature="isAppRedesigned"
-                                        on={
-                                            <HStack gap="16" max justify="end">
-                                                <Button
-                                                    onClick={cancelHandler}
-                                                    data-testid="RatingCard.Close"
+                        <VStack max gap="16">
+                            {isClosing ? (
+                                <ToggleFeatures
+                                    feature="isAppRedesigned"
+                                    on={
+                                        <Text
+                                            align="center"
+                                            title={t('Спасибо за отзыв!')}
+                                        />
+                                    }
+                                    off={
+                                        <TextDeprecated
+                                            align={TextAlign.CENTER}
+                                            title={t('Спасибо за отзыв!')}
+                                        />
+                                    }
+                                />
+                            ) : (
+                                <>
+                                    {modalContent}
+                                    <VStack max gap="32">
+                                        <ToggleFeatures
+                                            feature="isAppRedesigned"
+                                            on={
+                                                <HStack
+                                                    gap="16"
+                                                    max
+                                                    justify="end"
                                                 >
-                                                    {t('Закрыть')}
-                                                </Button>
-                                                <Button
-                                                    onClick={closeAcceptDelay}
-                                                    data-testid="RatingCard.Send"
+                                                    <Button
+                                                        onClick={cancelHandler}
+                                                        data-testid="RatingCard.Close"
+                                                    >
+                                                        {t('Закрыть')}
+                                                    </Button>
+                                                    <Button
+                                                        onClick={
+                                                            closeAcceptDelay
+                                                        }
+                                                        data-testid="RatingCard.Send"
+                                                    >
+                                                        {t('Отправить')}
+                                                    </Button>
+                                                </HStack>
+                                            }
+                                            off={
+                                                <HStack
+                                                    gap="16"
+                                                    max
+                                                    justify="end"
                                                 >
-                                                    {t('Отправить')}
-                                                </Button>
-                                            </HStack>
-                                        }
-                                        off={
-                                            <HStack gap="16" max justify="end">
-                                                <ButtonDeprecated
-                                                    theme={
-                                                        ThemeButton.OUTLINE_RED
-                                                    }
-                                                    onClick={cancelHandler}
-                                                    data-testid="RatingCard.Close"
-                                                >
-                                                    {t('Закрыть')}
-                                                </ButtonDeprecated>
-                                                <ButtonDeprecated
-                                                    onClick={closeAcceptDelay}
-                                                    data-testid="RatingCard.Send"
-                                                >
-                                                    {t('Отправить')}
-                                                </ButtonDeprecated>
-                                            </HStack>
-                                        }
-                                    />
-                                </VStack>
-                            </>
-                        )}
+                                                    <ButtonDeprecated
+                                                        theme={
+                                                            ThemeButton.OUTLINE_RED
+                                                        }
+                                                        onClick={cancelHandler}
+                                                        data-testid="RatingCard.Close"
+                                                    >
+                                                        {t('Закрыть')}
+                                                    </ButtonDeprecated>
+                                                    <ButtonDeprecated
+                                                        onClick={
+                                                            closeAcceptDelay
+                                                        }
+                                                        data-testid="RatingCard.Send"
+                                                    >
+                                                        {t('Отправить')}
+                                                    </ButtonDeprecated>
+                                                </HStack>
+                                            }
+                                        />
+                                    </VStack>
+                                </>
+                            )}
+                        </VStack>
                     </Modal>
                 )}
             </BrowserView>
