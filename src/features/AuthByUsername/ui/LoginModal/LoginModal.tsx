@@ -1,7 +1,9 @@
 import { FC, Suspense } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { Loader } from '@/shared/ui/deprecated/Loader';
+import { Drawer } from '@/shared/ui/redesigned/Drawer';
 import { Modal } from '@/shared/ui/redesigned/Modal';
 
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
@@ -18,14 +20,29 @@ export const LoginModal: FC<LoginModalProps> = ({
     isOpen,
     onClose,
 }) => (
-    <Modal
-        className={classNames(cls.LoginModal, {}, [className])}
-        isOpen={isOpen}
-        onClose={onClose}
-        lazy
-    >
-        <Suspense fallback={<Loader />}>
-            <LoginFormAsync />
-        </Suspense>
-    </Modal>
+    <>
+        <BrowserView>
+            <Modal
+                className={classNames(cls.LoginModal, {}, [className])}
+                isOpen={isOpen}
+                onClose={onClose}
+                lazy
+            >
+                <Suspense fallback={<Loader />}>
+                    <LoginFormAsync />
+                </Suspense>
+            </Modal>
+        </BrowserView>
+        <MobileView>
+            <Drawer
+                className={classNames(cls.LoginModal, {}, [className])}
+                isOpen={isOpen}
+                onClose={onClose}
+            >
+                <Suspense fallback={<Loader />}>
+                    <LoginFormAsync />
+                </Suspense>
+            </Drawer>
+        </MobileView>
+    </>
 );

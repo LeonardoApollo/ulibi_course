@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
+import { isMobile } from '@/shared/libs/isMobile/isMobile';
 import {
     Button as ButtonDeprecated,
     ThemeButton,
@@ -20,6 +21,7 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
     const toggleLang = () => {
         i18n.changeLanguage(/ru/.test(curLangueage) ? 'en' : 'ru');
     };
+    const mobile = isMobile();
 
     return (
         <ToggleFeatures
@@ -36,7 +38,9 @@ export const LangSwitcher = memo(({ className, short }: LangSwitcherProps) => {
             off={
                 <ButtonDeprecated
                     className={classNames('', {}, [className])}
-                    theme={ThemeButton.CLEAR}
+                    theme={
+                        mobile ? ThemeButton.CLEAR_INVERTED : ThemeButton.CLEAR
+                    }
                     onClick={toggleLang}
                 >
                     {t(short ? 'Короткий язык' : 'Язык')}

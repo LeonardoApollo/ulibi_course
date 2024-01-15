@@ -5,6 +5,7 @@ import { Page } from '@/widgets/Page';
 
 import { UiDesignSwitcher } from '@/features/uiDesignSwitcher';
 
+import { isMobile } from '@/shared/libs/isMobile/isMobile';
 import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Text } from '@/shared/ui/redesigned/Text';
 
@@ -17,12 +18,15 @@ interface SettingPageProps {
 const SettingPage = memo((props: SettingPageProps) => {
     const { className } = props;
     const { t } = useTranslation('settings');
+    const mobile = isMobile();
 
     return (
         <Page className={className}>
             <VStack gap="16">
                 <Text title={t('Настройки')} />
-                <UiDesignSwitcher className={cls.Switcher} />
+                <UiDesignSwitcher
+                    className={mobile ? cls.MobileSwitcher : cls.Switcher}
+                />
             </VStack>
         </Page>
     );

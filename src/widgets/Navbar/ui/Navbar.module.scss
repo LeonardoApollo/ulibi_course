@@ -1,15 +1,26 @@
-.Navbar {
+.Navbar,
+.NavbarNoAuth {
     width: 100%;
     height: var(--navbar-height);
     background: var(--inverted-bg-color);
     display: flex;
     align-items: center;
     padding: 30px;
+
+    .Theme {
+        margin: 4px;
+    }
 }
 
-.links,
-.actions {
-    margin-left: auto;
+.NavbarNoAuth {
+    justify-content: space-around;
+}
+
+.Navbar {
+    .links,
+    .actions {
+        margin-left: auto;
+    }
 }
 
 .mainLink {
@@ -21,8 +32,11 @@
     margin-left: 15px;
 }
 
-.NavbarRedesigned {
+.NavbarRedesigned,
+.MobileNavbarRedesigned,
+.MobileNavbarRedesignedNoAuth {
     padding: 16px;
+    display: flex;
 
     .iconLink {
         padding-top: 1px;
@@ -34,4 +48,37 @@
             color: var(--accent-redesigned);
         }
     }
+}
+
+.MobileNavbarRedesigned {
+    justify-content: space-between;
+
+    .actions {
+        margin-left: auto;
+    }
+
+    .Theme {
+        height: 26px;
+    }
+
+    .Lang {
+        padding-bottom: 5px;
+    }
+}
+
+.MobileNavbarRedesignedNoAuth {
+    justify-content: space-between;
+
+    .AppLogo {
+        width: 150px;
+    }
+}
+
+.iconLinkDeprecated {
+    height: 24px;
+}
+
+.createIconDeprecated {
+    width: 18px;
+    height: 18px;
 }

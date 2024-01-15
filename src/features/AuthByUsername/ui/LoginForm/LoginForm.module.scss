@@ -1,16 +1,21 @@
 .LoginForm {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 500px;
+}
+
+.loginBtn {
+    margin-top: 15px;
+    margin-left: auto;
 }
 
 .input {
     margin-top: 10px;
 }
 
-.loginBtn {
-    margin-top: 15px;
-    margin-left: auto;
+.button {
+    margin-top: 10px;
 }
 
 .Register {
@@ -34,4 +39,21 @@
     right: 5px;
     bottom: 2px;
     cursor: pointer;
+
+    .Eye.isShown {
+        fill: var(--accent-redesigned);
+    }
+}
+
+.MobileLoginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .loginBtn {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+    }
 }
