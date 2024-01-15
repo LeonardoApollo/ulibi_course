@@ -1,5 +1,6 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React, { Suspense, memo, useEffect } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 import { useSelector } from 'react-redux';
 
 import { Navbar } from '@/widgets/Navbar';
@@ -13,6 +14,7 @@ import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useTheme } from '@/shared/hooks/useTheme';
 import { MainLayout } from '@/shared/layout';
 import { AppLoaderLayout } from '@/shared/layout/AppLoaderLayout';
+import { MobileLayout } from '@/shared/layout/MobileLayout';
 import { classNames } from '@/shared/libs/classNames/classNames';
 import { ToggleFeatures } from '@/shared/libs/features';
 
@@ -64,35 +66,77 @@ const App = memo(() => {
     }
 
     return (
-        <ToggleFeatures
-            feature="isAppRedesigned"
-            off={
-                <div id="app" className={classNames('app', {}, [theme])}>
-                    <Suspense fallback="">
-                        <Navbar />
-                        <div className="content-page">
-                            <Sidebar />
-                            <AppRouter />
+        <>
+            <BrowserView>
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    off={
+                        <div
+                            id="app"
+                            className={classNames('app', {}, [theme])}
+                        >
+                            <Suspense fallback="">
+                                <Navbar />
+                                <div className="content-page">
+                                    <Sidebar />
+                                    <AppRouter />
+                                </div>
+                            </Suspense>
                         </div>
-                    </Suspense>
-                </div>
-            }
-            on={
-                <div
-                    id="app"
-                    className={classNames('app_redesigned', {}, [theme])}
-                >
-                    <Suspense fallback="">
-                        <MainLayout
-                            header={<Navbar />}
-                            content={<AppRouter />}
-                            sidebar={<Sidebar />}
-                            toolbar={toolbar}
-                        />
-                    </Suspense>
-                </div>
-            }
-        />
+                    }
+                    on={
+                        <div
+                            id="app"
+                            className={classNames('app_redesigned', {}, [
+                                theme,
+                            ])}
+                        >
+                            <Suspense fallback="">
+                                <MainLayout
+                                    header={<Navbar />}
+                                    content={<AppRouter />}
+                                    sidebar={<Sidebar />}
+                                    toolbar={toolbar}
+                                />
+                            </Suspense>
+                        </div>
+                    }
+                />
+            </BrowserView>
+            <MobileView>
+                <ToggleFeatures
+                    feature="isAppRedesigned"
+                    off={
+                        <div
+                            id="app"
+                            className={classNames('app', {}, [theme])}
+                        >
+                            <Suspense fallback="">
+                                <Navbar />
+                                <div className="content-page">
+                                    <AppRouter />
+                                </div>
+                            </Suspense>
+                        </div>
+                    }
+                    on={
+                        <div
+                            id="app"
+                            className={classNames('app_redesigned', {}, [
+                                theme,
+                            ])}
+                        >
+                            <Suspense fallback="">
+                                <MobileLayout
+                                    header={<Navbar />}
+                                    content={<AppRouter />}
+                                />
+                            </Suspense>
+                        </div>
+                    }
+                />
+            </MobileView>
+        </>
     );
 });
 

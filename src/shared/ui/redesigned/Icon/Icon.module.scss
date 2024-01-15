@@ -1,5 +1,6 @@
 .Icon {
     color: var(--icon-redesigned);
+    fill: var(--icon-redesigned);
 }
 
 .disabled .Icon {
@@ -21,8 +22,10 @@
 
 .button:hover .Icon {
     color: var(--accent-redesigned);
+    fill: var(--accent-redesigned);
 }
 
 .disabled.button:hover .Icon {
     color: grey;
+    fill: grey;
 }

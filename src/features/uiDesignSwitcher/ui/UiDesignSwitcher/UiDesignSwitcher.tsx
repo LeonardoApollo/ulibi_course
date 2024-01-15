@@ -63,24 +63,19 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     };
 
     return (
-        <HStack>
+        <HStack className={className}>
             <Text text={t('Вариант интерфейса')} />
             {isLoading ? (
-                <Skeleton
-                    width={100}
-                    height={40}
-                    className={className}
-                    border="15%"
-                />
+                <Skeleton width={100} height={40} border="15%" />
             ) : (
                 <ToggleFeatures
                     feature="isAppRedesigned"
                     on={
                         <ListBox
                             onChange={onChange}
+                            direction="bottomLeft"
                             items={items}
                             value={isAppRedesigned ? 'new' : 'old'}
-                            className={className}
                         />
                     }
                     off={
@@ -89,7 +84,6 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
                             onChange={onChange}
                             items={items}
                             value={isAppRedesigned ? 'new' : 'old'}
-                            className={className}
                         />
                     }
                 />

@@ -20,10 +20,11 @@ interface DropdownProps {
     items: DropdownItem[];
     trigger: ReactNode;
     direction?: DropDownDirection;
+    row?: boolean;
 }
 
 export const Dropdown = (props: DropdownProps) => {
-    const { className, items, trigger, direction = 'bottomLeft' } = props;
+    const { className, items, trigger, row, direction = 'bottomLeft' } = props;
 
     return (
         <Menu as="div" className={classNames(popupCls.popup, {}, [className])}>
@@ -31,7 +32,7 @@ export const Dropdown = (props: DropdownProps) => {
                 {trigger}
             </Menu.Button>
             <Menu.Items
-                className={classNames(cls.menu, {}, [
+                className={classNames(row ? cls.MobileMenu : cls.menu, {}, [
                     cls[direction],
                     popupCls.menu,
                 ])}
@@ -42,9 +43,12 @@ export const Dropdown = (props: DropdownProps) => {
                             type="button"
                             onClick={item?.onClick}
                             disabled={item.disabled}
-                            className={classNames(cls.item, {
-                                [cls.active]: active,
-                            })}
+                            className={classNames(
+                                row ? cls.MobileItem : cls.item,
+                                {
+                                    [cls.active]: active,
+                                },
+                            )}
                         >
                             {item.content}
                         </button>

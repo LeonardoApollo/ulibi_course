@@ -11,12 +11,12 @@ import {
     ReducersList,
 } from '@/shared/libs/components/DynamicModuleLoader/DynamicModuleLoader';
 import { ToggleFeatures } from '@/shared/libs/features';
+import { isMobile } from '@/shared/libs/isMobile/isMobile';
 import { useForceUpdate } from '@/shared/render/forceUpdate';
 import {
     Button as ButtonDeprecated,
     ThemeButton,
 } from '@/shared/ui/deprecated/Button';
-import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input';
 import { Text as TextDeprecated, TextTheme } from '@/shared/ui/deprecated/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Icon } from '@/shared/ui/redesigned/Icon';
@@ -56,6 +56,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     const isLoading = useSelector(getLoginisLoading);
     const error = useSelector(getLoginError);
     const forceUpdate = useForceUpdate();
+    const mobile = isMobile();
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -132,7 +133,11 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                 on={
                     <VStack
                         gap="16"
-                        className={classNames(cls.LoginForm, {}, [className])}
+                        className={classNames(
+                            mobile ? cls.MobileLoginForm : cls.LoginForm,
+                            {},
+                            [className],
+                        )}
                         align="center"
                     >
                         <Text
@@ -203,7 +208,12 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                                     setIsPasswordHidden((prev) => !prev)
                                 }
                             >
-                                <Icon Svg={PasswordEye} />
+                                <Icon
+                                    className={classNames(cls.Eye, {
+                                        [cls.isShown]: !isPasswordHidden,
+                                    })}
+                                    Svg={PasswordEye}
+                                />
                             </button>
                             <Input
                                 type={isPasswordHidden ? 'password' : 'text'}
@@ -244,7 +254,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                     </VStack>
                 }
                 off={
-                    <div className={classNames(cls.LoginForm, {}, [className])}>
+                    <div
+                        className={classNames(
+                            mobile ? cls.MobileLoginForm : cls.LoginForm,
+                            {},
+                            [className],
+                        )}
+                    >
                         <TextDeprecated
                             title={
                                 isModalRegister
@@ -270,7 +286,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                                 text={t('Длина логина минимум 5 символов')}
                             />
                         )}
-                        <InputDeprecated
+                        <Input
                             autofocuse
                             type="text"
                             className={cls.input}
@@ -290,7 +306,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                                         text={t('Некорректный email')}
                                     />
                                 )}
-                                <InputDeprecated
+                                <Input
                                     type="email"
                                     className={cls.input}
                                     placeholder={t('Введите email')}
@@ -305,7 +321,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                                 text={t('Длина пароля минимум 6 символов')}
                             />
                         )}
-                        <InputDeprecated
+                        <Input
                             type="text"
                             className={cls.input}
                             placeholder={t('Введите пароль')}
@@ -313,11 +329,11 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
                             value={password}
                         />
                         <ButtonDeprecated
+                            className={cls.button}
                             theme={ThemeButton.CLEAR}
                             onClick={onChangeModalClick}
                         >
                             <TextDeprecated
-                                theme={TextTheme.INVERTED}
                                 text={
                                     isModalRegister
                                         ? t('Вернуться')
